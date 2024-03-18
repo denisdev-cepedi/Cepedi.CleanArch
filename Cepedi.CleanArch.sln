@@ -23,9 +23,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cepedi.Shareable", "src\Cep
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "98 - Tests", "98 - Tests", "{2D4A6734-55E9-46FD-BC86-1A6B9652198C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cepedi.WebApi.Tests", "tests\Cepedi.Api.Tests\Cepedi.WebApi.Tests.csproj", "{3B6EEBEF-C0AF-4872-BDAC-39163EFE21FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cepedi.WebApi.Tests", "tests\Cepedi.Api.Tests\Cepedi.WebApi.Tests.csproj", "{3B6EEBEF-C0AF-4872-BDAC-39163EFE21FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cepedi.Domain.Tests", "tests\Cepedi.Domain.Tests\Cepedi.Domain.Tests.csproj", "{67C7491E-768C-4D66-BDE9-331F6C0B5952}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cepedi.Domain.Tests", "tests\Cepedi.Domain.Tests\Cepedi.Domain.Tests.csproj", "{67C7491E-768C-4D66-BDE9-331F6C0B5952}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99 - Stuff", "99 - Stuff", "{083535C5-41AC-4FF7-83DA-B0034E46A0F9}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
