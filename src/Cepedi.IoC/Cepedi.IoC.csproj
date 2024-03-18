@@ -21,4 +21,9 @@
     <ProjectReference Include="..\Cepedi.Shareable\Cepedi.Shareable.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services/" />
+    <Folder Include="Services/Interfaces/" />
+  </ItemGroup>
+
 </Project>
