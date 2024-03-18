@@ -1,4 +1,5 @@
-﻿using Cepedi.Shareable.Responses;
+﻿using Cepedi.Shareable.Requests;
+using Cepedi.Shareable.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,7 +21,7 @@ public class CursoController : ControllerBase
     [HttpGet("{idCurso}")]
     public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso)
     {
-        var response = await _mediator.Send(idCurso);
+        var response = await _mediator.Send(new ObtemCursoRequest(idCurso));
         return Ok(response);
     }
 }
