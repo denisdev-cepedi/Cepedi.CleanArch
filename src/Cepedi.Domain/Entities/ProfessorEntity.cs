@@ -1,14 +1,14 @@
 ﻿namespace Cepedi.Domain.Entities;
 public class ProfessorEntity
 {
-    public ProfessorEntity(int id, string nome, string especialidade)
+    public ProfessorEntity(int? id, string nome, string especialidade)
     {
         Id = id;
         Nome = nome;
         Especialidade = especialidade;
     }
 
-    public int Id { get; set; }
+    public int? Id { get; set; }
 
     public string Nome { get; set; } = default!;
     

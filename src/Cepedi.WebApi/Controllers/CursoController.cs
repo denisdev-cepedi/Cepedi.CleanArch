@@ -1,4 +1,5 @@
-﻿using Cepedi.Shareable.Responses;
+﻿using Cepedi.Domain.Entities;
+using Cepedi.Domain.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cepedi.WebApi.Controllers;
@@ -8,15 +9,24 @@ namespace Cepedi.WebApi.Controllers;
 public class CursoController : ControllerBase
 {
     private readonly ILogger<CursoController> _logger;
+    private readonly ICursoRepository _repository;
 
-    public CursoController(ILogger<CursoController> logger)
+    public CursoController(ILogger<CursoController> logger, ICursoRepository repository)
     {
         _logger = logger;
+        _repository = repository;
     }
 
-    [HttpGet("{idCurso}")]
-    public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso)
+    [HttpGet]
+    public async Task<ActionResult<ICollection<ProfessorEntity>>> ConsultarCursosAsync()
     {
+        var cursos = _repository.GetAll();
+        return Ok(cursos);
+    }
+    [HttpPost]
+    public async Task<ActionResult> CriarProfessorAsync()
+    {
+        // _repository.Insert(model);
         return Ok();
     }
 }
