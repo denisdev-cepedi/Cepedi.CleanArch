@@ -1,6 +1,8 @@
 using Serilog;
 using Cepedi.IoC;
 using Cepedi.WebApi;
+using Cepedi.Data.Repositories;
+using Namespace;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.ConfigureAppDependencies(builder.Configuration);
+
+builder.Services.AddScoped<ICursoRepository, CursoRepository>();
 
 builder.Host.UseSerilog((context, configuration) =>
 {
