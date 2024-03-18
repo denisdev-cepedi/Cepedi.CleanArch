@@ -45,8 +45,8 @@ public class ApplicationDbContextInitialiser
     public async Task TrySeedAsync()
     {
         // Default roles
-        var professor = new ProfessorEntity(1, "João", "Matemática");
-        var curso = new CursoEntity(1, "Matemática Básica", "Curso introdutório de matemática", DateTime.Now, DateTime.Now.AddMonths(3), professor);
+        var professor = new ProfessorEntity(1, "Denis", ".NET");
+        var curso = new CursoEntity(1, ".NET Avançado", "Curso avançado de .NET", DateTime.Now, DateTime.Now.AddMonths(3), professor);
 
         // Adicionando o curso à lista de cursos do professor
         professor.Cursos.Add(curso);
