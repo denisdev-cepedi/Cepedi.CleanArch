@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Cepedi.Data;
+using Cepedi.IoC.Services;
+using Cepedi.IoC.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +30,7 @@ namespace Cepedi.IoC
             });
 
             services.AddScoped<ApplicationDbContextInitialiser>();
+            services.AddScoped<ICursoService, CursoService>();
         }
     }
 }
