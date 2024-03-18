@@ -17,6 +17,8 @@ public class CursoController : ControllerBase
     [HttpGet("{idCurso}")]
     public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso)
     {
+        // Aqui eu utilizaria o service definido em cepedi.ioc, e tiraria a linha
+        // return Ok();
         return Ok();
     }
 }
