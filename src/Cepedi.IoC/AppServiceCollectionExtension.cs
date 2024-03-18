@@ -29,12 +29,5 @@ namespace Cepedi.IoC
 
             services.AddScoped<ApplicationDbContextInitialiser>();
         }
-
-        private static void getCurso(IServiceCollection services, IConfiguration configuration)
-        {
-            // Minha ideia era criar o service de get aqui e utilizar no controller,
-            // já que aqui é o arquivo de service. Entretanto, eu acho que 
-            // aqui é o lugar apenas para os serviços de collection.
-        }
     }
 }
