@@ -50,7 +50,7 @@ public class ApplicationDbContextInitialiser
 
         // Adicionando o curso à lista de cursos do professor
         professor.Cursos.Add(curso);
-
+        
         // Default data
         // Seed, if necessary
         if (!_context.Professor.Any())
