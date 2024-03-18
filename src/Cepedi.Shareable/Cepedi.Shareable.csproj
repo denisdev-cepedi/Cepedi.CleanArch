@@ -13,8 +13,10 @@
     <Folder Include="Enums\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Responses\" />
-    <Folder Include="Requests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Refit" Version="7.0.0" />
   </ItemGroup>
 
 </Project>

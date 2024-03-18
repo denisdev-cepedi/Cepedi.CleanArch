@@ -10,8 +10,15 @@
 
   <ItemGroup>
     <Folder Include="Handlers\" />
-    <Folder Include="Services\" />
     <Folder Include="Repository\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cepedi.Shareable\Cepedi.Shareable.csproj" />
   </ItemGroup>
 
 </Project>

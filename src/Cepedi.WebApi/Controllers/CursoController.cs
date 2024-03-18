@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Cepedi.Shareable.Responses;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Cepedi.WebApi.Controllers;
 
@@ -11,5 +12,11 @@ public class CursoController : ControllerBase
     public CursoController(ILogger<CursoController> logger)
     {
         _logger = logger;
+    }
+
+    [HttpGet("{idCurso}")]
+    public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso)
+    {
+        return Ok();
     }
 }
