@@ -1,7 +1,7 @@
 ﻿using Cepedi.Shareable.Requests;
 using Cepedi.Shareable.Responses;
 using MediatR;
-using Cepedi.Data.Repositories;
+using Cepedi.Data;
 
 namespace Cepedi.Shareable.Handlers;
 internal class ObtemCursoHandler : IRequestHandler<ObtemCursoRequest, ObtemCursoResponse>
@@ -15,8 +15,8 @@ internal class ObtemCursoHandler : IRequestHandler<ObtemCursoRequest, ObtemCurso
 
     public async Task<ObtemCursoResponse> Handle(ObtemCursoRequest request)
     {
-        var response = await _cursoRepository;
+        var response = await _cursoRepository.GetById(request.idCurso);
 
-        return _mapper.Map<List<GetAllUserResponse>>(response);
+        return response;
     }
 }
