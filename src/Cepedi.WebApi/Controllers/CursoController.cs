@@ -1,4 +1,5 @@
 ﻿using Cepedi.Shareable.Responses;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cepedi.WebApi.Controllers;
@@ -8,10 +9,12 @@ namespace Cepedi.WebApi.Controllers;
 public class CursoController : ControllerBase
 {
     private readonly ILogger<CursoController> _logger;
+    private readonly IMediator _mediator;
 
-    public CursoController(ILogger<CursoController> logger)
+    public CursoController(ILogger<CursoController> logger, IMediator mediator)
     {
         _logger = logger;
+        _mediator = mediator;
     }
 
     [HttpGet("{idCurso}")]
