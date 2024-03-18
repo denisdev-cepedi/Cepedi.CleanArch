@@ -12,6 +12,6 @@ public class CursoServiceCollection
     }
     
     public CursoEntity GetByID(int ID){
-      return _context.Curso.Find(ID);
+      return _context.Curso.Find(ID) ?? throw new Exception();
     }
 }

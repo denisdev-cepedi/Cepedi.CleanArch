@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Cepedi.IoC
+namespace Cepedi.IoC.services
 {
     [ExcludeFromCodeCoverage]
     public static class AppServiceCollectionExtension
@@ -28,6 +28,7 @@ namespace Cepedi.IoC
             });
 
             services.AddScoped<ApplicationDbContextInitialiser>();
+            services.AddScoped<CursoServiceCollection>();
         }
     }
 }
