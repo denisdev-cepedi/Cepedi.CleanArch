@@ -20,6 +20,7 @@ public class CursoController : ControllerBase
     [HttpGet("{idCurso}")]
     public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso)
     {
-        return Ok();
+        var response = await _mediator.Send(idCurso);
+        return Ok(response);
     }
 }
