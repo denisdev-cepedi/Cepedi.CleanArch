@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Cepedi.Data.Interfaces;
+namespace Cepedi.Domain.Interfaces;
 public interface IBaseRepository<T> where T : class
 {
     IEnumerable<T> GetAll();

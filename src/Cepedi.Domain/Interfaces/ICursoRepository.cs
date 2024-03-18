@@ -1,6 +1,6 @@
 ﻿using Cepedi.Domain.Entities;
 
-namespace Cepedi.Data.Interfaces;
+namespace Cepedi.Domain.Interfaces;
 public interface ICursoRepository : IBaseRepository<CursoEntity>
 {
 }

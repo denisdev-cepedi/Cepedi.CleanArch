@@ -1,5 +1,5 @@
 ﻿using System.Linq.Expressions;
-using Cepedi.Data.Interfaces;
+using Cepedi.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cepedi.Data.Repositories;

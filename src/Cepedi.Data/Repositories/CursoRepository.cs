@@ -1,4 +1,4 @@
-﻿using Cepedi.Data.Interfaces;
+﻿using Cepedi.Domain.Interfaces;
 using Cepedi.Domain.Entities;
 
 namespace Cepedi.Data.Repositories;

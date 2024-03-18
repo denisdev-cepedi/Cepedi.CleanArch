@@ -19,9 +19,9 @@ public class CursoController : ControllerBase
     }
 
     [HttpGet("{idCurso}")]
-    public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso)
+    public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso, CancellationToken cancellationToken)
     {
-        var response = await _mediator.Send(new ObtemCursoRequest(idCurso));
+        var response = await _mediator.Send(new ObtemCursoRequest(idCurso), cancellationToken);
         return Ok(response);
     }
 }
