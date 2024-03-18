@@ -1,16 +1,18 @@
 using Serilog;
 using Cepedi.IoC;
 using Cepedi.WebApi;
+using Cepedi.Data.Repositories.Interfaces;
+using Cepedi.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<ICursoRepository, CursoRepository>();
 
 builder.Services.ConfigureAppDependencies(builder.Configuration);
 

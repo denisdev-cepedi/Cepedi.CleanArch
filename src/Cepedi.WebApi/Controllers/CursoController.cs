@@ -1,4 +1,5 @@
-﻿using Cepedi.Shareable.Responses;
+﻿using Cepedi.Data.Repositories.Interfaces;
+using Cepedi.Shareable.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cepedi.WebApi.Controllers;
@@ -8,10 +9,12 @@ namespace Cepedi.WebApi.Controllers;
 public class CursoController : ControllerBase
 {
     private readonly ILogger<CursoController> _logger;
+    private readonly ICursoRepository _cursoRepository;
 
-    public CursoController(ILogger<CursoController> logger)
+    public CursoController(ILogger<CursoController> logger, ICursoRepository cursoRepository)
     {
         _logger = logger;
+        _cursoRepository = cursoRepository;
     }
 
     [HttpGet("{idCurso}")]
