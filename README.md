@@ -4,7 +4,7 @@ Executar o projeto `src\Cepedi.WebApi` para abrir o swagger
 
 ## Características do projeto
 
-- .NET 8.0
+- .NET 7.0
 - ORM Entity Framework
 - Framework de testes: xUnit
 - Framework de assertions: FluentAssertions
@@ -23,5 +23,5 @@ Executar o projeto `src\Cepedi.WebApi` para abrir o swagger
 ## Setup
 
 * Quais ferramentas necessárias
- Visual Studio, .NET Core SDK 8+, etc
+ - Visual Studio, .NET Core SDK 8+, etc
 

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RootNamespace>Cepedi.Shareable</RootNamespace>
     <AssemblyName>Cepedi.Shareable</AssemblyName>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
