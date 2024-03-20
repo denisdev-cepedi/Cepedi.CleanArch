@@ -37,11 +37,10 @@ public class CursoRepository : ICursoRepository
         return entity.Entity;
     }
 
-    public async Task<CursoEntity> Delete(int id, CancellationToken cancellationToken)
+    public async Task<int> Delete(int id, CancellationToken cancellationToken)
     {
         var curso = await GetById(id, cancellationToken);
-        var entity = _context.Curso.Remove(curso);
-        await _context.SaveChangesAsync(cancellationToken);
-        return entity.Entity;
+        _context.Curso.Remove(curso);
+        return await _context.SaveChangesAsync(cancellationToken);
     }
 }

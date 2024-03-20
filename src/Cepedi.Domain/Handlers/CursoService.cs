@@ -28,7 +28,7 @@ public class CursoService : ICursoService
         return cursos.Select(c => new ObtemCursoResponse(c.Nome, $"{c.DataInicio} - {c.DataFim}", c.Professor.Nome));
     }
 
-    public async Task<ObtemCursoResponse> Create(CriaCursoRequest request, CancellationToken cancellationToken = default)
+    public async Task<CursoEntity> Create(CriaCursoRequest request, CancellationToken cancellationToken = default)
     {
         var professor = await _professorRepository.GetById(request.ProfessorId, cancellationToken);
 
@@ -44,8 +44,8 @@ public class CursoService : ICursoService
             DataFim = request.DataFim,
             ProfessorId = request.ProfessorId
         };
-        await _cursoRepository.Create(curso, cancellationToken);
-        return new ObtemCursoResponse(curso.Nome, $"{curso.DataInicio} - {curso.DataFim}", curso.Professor.Nome);
+        return await _cursoRepository.Create(curso, cancellationToken);
+        // return new ObtemCursoResponse(curso.Nome, $"{curso.DataInicio} - {curso.DataFim}", curso.Professor.Nome);
     }
 
     public async Task<ObtemCursoResponse> Update(int cursoId, CriaCursoRequest request, CancellationToken cancellationToken = default)

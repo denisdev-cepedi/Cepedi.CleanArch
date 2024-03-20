@@ -8,5 +8,5 @@ public interface ICursoRepository
     Task<IEnumerable<CursoEntity>> GetAll(CancellationToken cancellationToken);
     Task<CursoEntity> Create(CursoEntity curso, CancellationToken cancellationToken);
     Task<CursoEntity> Update(CursoEntity curso, CancellationToken cancellationToken);
-    Task<CursoEntity> Delete(int id, CancellationToken cancellationToken);
+    Task<int> Delete(int id, CancellationToken cancellationToken);
 }

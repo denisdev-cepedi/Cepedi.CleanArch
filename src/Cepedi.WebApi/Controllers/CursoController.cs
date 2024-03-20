@@ -49,10 +49,6 @@ public class CursoController : ControllerBase
     [HttpDelete("{idCurso}")]
     public async Task<ActionResult> DeletarCursoAsync([FromRoute] int idCurso)
     {
-        if (await _cursoService.GetById(idCurso) == null)
-        {
-            return NotFound();
-        }
         await _cursoService.Delete(idCurso);
         return Ok();
     }
