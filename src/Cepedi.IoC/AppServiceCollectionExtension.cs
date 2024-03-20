@@ -18,6 +18,9 @@ namespace Cepedi.IoC
             ConfigureDbContext(services, configuration);
 
             services.AddScoped<IObtemCursoHandler, ObtemCursoHandler>();
+            services.AddScoped<ICadastraCursoHandler, CadastraCursoHandler>();
+            services.AddScoped<IEditaCursoHandler, EditaCursoHandler>();
+            services.AddScoped<IDeletaCursoHandler, DeletaCursoHandler>();
             services.AddScoped<IProfessorRepository, ProfessorRepository>();
             services.AddScoped<ICursoRepository, CursoRepository>();
 

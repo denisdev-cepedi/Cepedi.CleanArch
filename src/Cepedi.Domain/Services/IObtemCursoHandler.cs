@@ -1,4 +1,5 @@
-﻿using Cepedi.Shareable.Responses;
+﻿using Cepedi.Shareable;
+using Cepedi.Shareable.Responses;
 
 namespace Cepedi.Domain.Services;
 
