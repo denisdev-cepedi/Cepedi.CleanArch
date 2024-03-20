@@ -29,8 +29,8 @@ public class CreateCursoHandler : ICreateCursoHandler
         };
 
         var cursoCriado = await _cursoRepository.CriaCursoAsync(curso);
-        var duracao = $"O curso tem duração de {curso.DataInicio} até {curso.DataFim}";
+        var duracao = $"O curso tem duração de {cursoCriado.DataInicio} até {cursoCriado.DataFim}";
 
-        return new ObtemCursoResponse(curso.Nome, duracao, professor.Nome);
+        return new ObtemCursoResponse(cursoCriado.Nome, duracao, professor.Nome);
     }
 }

@@ -14,14 +14,17 @@ public class CursoController : ControllerBase
     private readonly ILogger<CursoController> _logger;
     private readonly IObtemCursoHandler _obtemCursoHandler;
     private readonly ICreateCursoHandler _createCursoHandler;
+    private readonly IAtualizaCursoHandler _atualizaCursoHandler;
     private readonly ApplicationDbContext _context;
     public CursoController(ILogger<CursoController> logger,
     IObtemCursoHandler obtemCursoHandler,
-    ICreateCursoHandler createCursoHandler)
+    ICreateCursoHandler createCursoHandler,
+    IAtualizaCursoHandler atualizaCursoHandler)
     {
         _logger = logger;
         _obtemCursoHandler = obtemCursoHandler;
         _createCursoHandler = createCursoHandler;
+        _atualizaCursoHandler = atualizaCursoHandler;
     }
 
     [HttpGet("{idCurso}")]
@@ -34,5 +37,11 @@ public class CursoController : ControllerBase
     public async Task<ActionResult<ObtemCursoResponse>> CriaCursoAsync([FromBody] CriaCursoRequest criaCursoRequest)
     {
         return Ok(await _createCursoHandler.CreateCursoAsync(criaCursoRequest));
+    }
+
+    [HttpPut("{idCurso}")]
+    public async Task<ActionResult<AtualizaCursoResponse>> AtualizarCursoAsync([FromRoute] int idCurso, [FromBody] CriaCursoRequest criaCursoRequest)
+    {
+        return Ok(await _atualizaCursoHandler.AtualizarCursoAsync(idCurso, criaCursoRequest));
     }
 }
