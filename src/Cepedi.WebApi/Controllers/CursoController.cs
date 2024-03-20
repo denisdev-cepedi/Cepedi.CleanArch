@@ -1,6 +1,6 @@
 ﻿using Cepedi.Shareable.Responses;
 using Microsoft.AspNetCore.Mvc;
-using Cepedi.Data.Services;
+using Cepedi.Domain.Services;
 
 namespace Cepedi.WebApi.Controllers;
 
@@ -22,5 +22,12 @@ public class CursoController : ControllerBase
     {
         var response = await _cursoService.GetById(idCurso);
         return Ok(response);        
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<ObtemCursoResponse>>> ConsultarCursosAsync()
+    {
+        var response = await _cursoService.GetAll();
+        return Ok(response);
     }
 }
