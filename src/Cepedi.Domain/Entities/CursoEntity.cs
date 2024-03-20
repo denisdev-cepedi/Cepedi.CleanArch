@@ -28,6 +28,5 @@ public class CursoEntity
 
     public ProfessorEntity Professor { get; set; }
 
-    public int ProfessorId { get; set; } 
-
+    public int ProfessorId { get; set; }
 }
