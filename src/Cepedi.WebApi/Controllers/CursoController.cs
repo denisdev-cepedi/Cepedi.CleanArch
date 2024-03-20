@@ -1,4 +1,4 @@
-﻿using Cepedi.IoC.Services.Interfaces;
+﻿using Cepedi.Domain.Services;
 using Cepedi.Shareable.Responses;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,17 +9,18 @@ namespace Cepedi.WebApi.Controllers;
 public class CursoController : ControllerBase
 {
     private readonly ILogger<CursoController> _logger;
-    private readonly ICursoService _service;
+    private readonly IObtemCursoHandler _obtemCursoHandler;
 
-    public CursoController(ILogger<CursoController> logger, ICursoService service)
+    public CursoController(ILogger<CursoController> logger, IObtemCursoHandler obtemCursoHandler)
+
     {
         _logger = logger;
-        _service = service;
+        _obtemCursoHandler = obtemCursoHandler;
     }
 
     [HttpGet("{idCurso}")]
     public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso)
     {
-        return Ok(_service.GetById(idCurso));
+        return Ok(await _obtemCursoHandler.ObterCursoAsync(idCurso));
     }
 }
