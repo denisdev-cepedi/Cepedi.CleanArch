@@ -1,9 +1,11 @@
-﻿namespace Cepedi.Domain.Entities;
+﻿using System.Text.Json.Serialization;
+
+namespace Cepedi.Domain.Entities;
 
 public class CursoEntity
 {
     public CursoEntity()
-    {        
+    {
     }
 
     public CursoEntity(int id, string nome, string descricao, DateTime inicio, DateTime fim, ProfessorEntity professor)
@@ -23,11 +25,12 @@ public class CursoEntity
     public string Descricao { get; set; } = default!;
 
     public DateTime DataInicio { get; set; }
-    
+
     public DateTime DataFim { get; set; }
 
+    [JsonIgnore]
     public ProfessorEntity Professor { get; set; }
 
-    public int ProfessorId { get; set; } 
+    public int ProfessorId { get; set; }
 
 }
