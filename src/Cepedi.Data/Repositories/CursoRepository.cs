@@ -22,4 +22,11 @@ public class CursoRepository : ICursoRepository
             .Include(c => c.Professor)
             .ToListAsync(cancellationToken);
     }
+
+    public async Task<CursoEntity> Create(CursoEntity curso, CancellationToken cancellationToken)
+    {
+        var entity = _context.Curso.Add(curso);
+        await _context.SaveChangesAsync(cancellationToken);
+        return entity.Entity;
+    }
 }

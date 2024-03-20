@@ -20,6 +20,7 @@ namespace Cepedi.IoC
             //services.AddHttpContextAccessor();
             services.AddScoped<ICursoService, CursoService>();
             services.AddScoped<ICursoRepository, CursoRepository>();
+            services.AddScoped<IProfessorRepository, ProfessorRepository>();
 
             services.AddHealthChecks()
                 .AddDbContextCheck<ApplicationDbContext>();

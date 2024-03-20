@@ -1,4 +1,5 @@
 ﻿using Cepedi.Shareable.Responses;
+using Cepedi.Shareable.Requests;
 using Microsoft.AspNetCore.Mvc;
 using Cepedi.Domain.Services;
 
@@ -30,4 +31,12 @@ public class CursoController : ControllerBase
         var response = await _cursoService.GetAll();
         return Ok(response);
     }
+
+    [HttpPost]
+    public async Task<ActionResult<ObtemCursoResponse>> CriarCursoAsync([FromBody] CriaCursoRequest request)
+    {
+        var response = await _cursoService.Create(request);
+        return Ok(response);
+    }
+    
 }
