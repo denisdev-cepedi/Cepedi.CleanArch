@@ -1,11 +1,12 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Cepedi.Data;
-using Cepedi.Data.Repositories;
+﻿using Cepedi.Data;
 using Cepedi.Domain;
+using Cepedi.Data.Repositories;
 using Cepedi.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AutoMapper;
 
 namespace Cepedi.IoC
 {
@@ -18,8 +19,12 @@ namespace Cepedi.IoC
 
             ConfigureDbContext(services, configuration);
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICursoRepository, CursoRepository>();
             services.AddScoped<IProfessorRepository, ProfessorRepository>();
+
+            var mappingConfig = new MapperConfiguration(mc => mc.AddProfile(new AutoMapping()));
+            services.AddSingleton(mappingConfig.CreateMapper());
 
             //services.AddHttpContextAccessor();
 

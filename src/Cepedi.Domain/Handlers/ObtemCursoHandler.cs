@@ -18,9 +18,12 @@ public class ObtemCursoHandler : IRequestHandler<ObtemCursoRequest, ObtemCursoRe
     public async Task<ObtemCursoResponse> Handle(ObtemCursoRequest request, CancellationToken cancellationToken)
     {
         var curso = _cursoRepository.GetById(request.idCurso);
-        var professor = _professorRepository.GetById(curso.ProfessorId);
+
+        if(curso != null)
+            curso.Professor = _professorRepository.GetById(curso.ProfessorId);
+
         var msg = $"de {curso.DataInicio.ToString("dd/MM/yyyy")} até {curso.DataFim.ToString("dd/MM/yyyy")}";
 
-        return new ObtemCursoResponse(curso.Nome, msg, professor.Nome);
+        return new ObtemCursoResponse(curso.Nome, msg, curso.Professor.Nome);
     }
 }
