@@ -7,4 +7,6 @@ public interface ICursoService{
     public Task<ObtemCursoResponse> GetById(int id, CancellationToken cancellationToken = default);
     public Task<IEnumerable<ObtemCursoResponse>> GetAll(CancellationToken cancellationToken = default);
     public Task<ObtemCursoResponse> Create(CriaCursoRequest request, CancellationToken cancellationToken = default);
+    public Task<ObtemCursoResponse> Update(int id, CriaCursoRequest request, CancellationToken cancellationToken = default);
+    public Task Delete(int id, CancellationToken cancellationToken = default);
 }

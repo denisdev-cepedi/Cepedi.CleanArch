@@ -38,5 +38,22 @@ public class CursoController : ControllerBase
         var response = await _cursoService.Create(request);
         return Ok(response);
     }
-    
+
+    [HttpPut("{idCurso}")]
+    public async Task<ActionResult<ObtemCursoResponse>> AtualizarCursoAsync([FromRoute] int idCurso, [FromBody] CriaCursoRequest request)
+    {
+        var response = await _cursoService.Update(idCurso, request);
+        return Ok(response);
+    }
+
+    [HttpDelete("{idCurso}")]
+    public async Task<ActionResult> DeletarCursoAsync([FromRoute] int idCurso)
+    {
+        if (await _cursoService.GetById(idCurso) == null)
+        {
+            return NotFound();
+        }
+        await _cursoService.Delete(idCurso);
+        return Ok();
+    }
 }

@@ -48,4 +48,30 @@ public class CursoService : ICursoService
         return new ObtemCursoResponse(curso.Nome, $"{curso.DataInicio} - {curso.DataFim}", curso.Professor.Nome);
     }
 
+    public async Task<ObtemCursoResponse> Update(int cursoId, CriaCursoRequest request, CancellationToken cancellationToken = default)
+    {
+        var professor = await _professorRepository.GetById(request.ProfessorId, cancellationToken);
+
+        if (professor == null)
+        {
+            throw new KeyNotFoundException($"Professor with id {request.ProfessorId} not found.");
+        }
+
+        var curso = new CursoEntity(){
+            Id = cursoId,
+            Nome = request.Nome,
+            Descricao = request.Descricao,
+            DataInicio = request.DataInicio,
+            DataFim = request.DataFim,
+            ProfessorId = request.ProfessorId
+        };
+
+        await _cursoRepository.Update(curso, cancellationToken);
+        return new ObtemCursoResponse(curso.Nome, $"{curso.DataInicio} - {curso.DataFim}", curso.Professor.Nome);
+    }
+
+    public async Task Delete(int id, CancellationToken cancellationToken = default)
+    {
+        await _cursoRepository.Delete(id, cancellationToken);
+    }
 }
