@@ -18,7 +18,6 @@ public class CriaCursoHandlerTests
     {
         _sut = new CriaCursoHandler(_cursoRepository, _whatsApp);
     }
-
     //TODO : Devo fazer esse teste em algum momento na minha vida
     // [Fact]
     // public async Task CriarCursoAsync_QuandoCriadoEnviarWhatsApp_DeveLancarException()
