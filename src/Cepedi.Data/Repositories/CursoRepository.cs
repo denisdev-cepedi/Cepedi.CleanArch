@@ -26,7 +26,7 @@ namespace Cepedi.Data
         }
 
         public async Task<CursoEntity> ObtemCursoPorIdAsync(int idCurso) => 
-        await _context.Curso.Where(curso => curso.Id == idCurso).FirstOrDefaultAsync();
+        await _context.Curso.Where(curso => curso.Id == idCurso).FirstOrDefaultAsync() ;
 
         public async Task<List<CursoEntity>> ObtemCursosAsync()
         {

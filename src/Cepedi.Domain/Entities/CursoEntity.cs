@@ -6,6 +6,7 @@ public class CursoEntity
     {        
     }
 
+
     public CursoEntity(int id, string nome, string descricao, DateTime inicio, DateTime fim, ProfessorEntity professor)
     {
         Id = id;
@@ -21,8 +22,6 @@ public class CursoEntity
     public string Nome { get; set; } = default!;
 
     public string Descricao { get; set; } = default!;
-
-    public string Telefone {get;set;} =default!;
 
     public DateTime DataInicio { get; set; }
     

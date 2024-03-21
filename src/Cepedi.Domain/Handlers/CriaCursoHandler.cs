@@ -11,13 +11,12 @@ namespace Cepedi.Domain.Handlers
     public class CriaCursoHandler: ICriaCursoHandler
     {
          private readonly ICursoRepository _cursoRepository;
-         private readonly IWhatsApp _whatsApp;
+        //  private readonly IWhatsApp _whatsApp;
 
-        public CriaCursoHandler(ICursoRepository cursoRepository,
-        IWhatsApp whatsApp)
+        public CriaCursoHandler(ICursoRepository cursoRepository)
         {
             _cursoRepository = cursoRepository;
-            _whatsApp = whatsApp;
+            // _whatsApp = whatsApp;
         }
 
         public async Task<int> CriarCursoAsync(CriaCursoRequest request)
@@ -29,22 +28,19 @@ namespace Cepedi.Domain.Handlers
                 DataInicio = request.DataInicio,
                 DataFim = request.DataFim,
                 ProfessorId = request.ProfessorId,
-                Telefone = request.telefone
+                // Telefone = request.telefone
             };
-            
-            
-            await _cursoRepository.CriaNovoCursoAsync(novoCurso);
+        
 
-            var retornoMensagem = await _whatsApp.EnviarMensagemWhatsAppAsync
-            (request.telefone, $"O curso {request.Descricao} está aberto");
+            // var retornoMensagem = await _whatsApp.EnviarMensagemWhatsAppAsync(request.telefone, $"O curso {request.Descricao} está aberto");
 
-            if(retornoMensagem == "Sucesso"){
-                Console.WriteLine("Enviado com sucesso!");
-            }else{
-                throw new Exception("Erro");
-            }
+            // if(retornoMensagem == "Sucesso"){
+            //     Console.WriteLine("Enviado com sucesso!");
+            // }else{
+            //     throw new Exception("Erro");
+            // }
 
-            return default(int);
+            return await _cursoRepository.CriaNovoCursoAsync(novoCurso);
 
         }
 

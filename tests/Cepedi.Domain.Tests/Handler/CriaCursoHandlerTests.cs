@@ -11,12 +11,12 @@ public class CriaCursoHandlerTests
 {
     private readonly ICursoRepository _cursoRepository = 
     Substitute.For<ICursoRepository>();
-    private readonly IWhatsApp _whatsApp = Substitute.For<IWhatsApp>();
+    // private readonly IWhatsApp _whatsApp = Substitute.For<IWhatsApp>();
     private readonly CriaCursoHandler _sut;
 
     public CriaCursoHandlerTests()
     {
-        _sut = new CriaCursoHandler(_cursoRepository, _whatsApp);
+        _sut = new CriaCursoHandler(_cursoRepository);
     }
 
     //TODO : Devo fazer esse teste em algum momento na minha vida
@@ -34,24 +34,41 @@ public class CriaCursoHandlerTests
     //     // Assert 
     //     Assert.Equal(result, default(int));
     // }
-
+    
     [Fact]
     public async Task CriarCursoAsync_QuandoCriadoEnviarWhatsApp_DeveRetornarSucesso()
     {
         // Arrange
         var curso = new CriaCursoRequest
         ("Teste", "Descricao", DateTime.Now,
-         DateTime.Now,1, "71123456");
+         DateTime.Now,1);
 
-         _whatsApp.EnviarMensagemWhatsAppAsync(
-            default(string), default(string))
-         .ReturnsForAnyArgs("Sucesso");
+        _cursoRepository.CriaNovoCursoAsync(new CursoEntity()).ReturnsForAnyArgs(1);
 
         // Act
         var result = await _sut.CriarCursoAsync(curso);
 
         // Assert 
-        Assert.Equal(result, default(int));
+        Assert.Equal(1,result);
     }
+
+    // [Fact]
+    // public async Task CriarCursoAsync_QuandoCriadoEnviarWhatsApp_DeveRetornarSucesso()
+    // {
+    //     // Arrange
+    //     var curso = new CriaCursoRequest
+    //     ("Teste", "Descricao", DateTime.Now,
+    //      DateTime.Now,1, "71123456");
+
+    //      _whatsApp.EnviarMensagemWhatsAppAsync(
+    //         default(string), default(string))
+    //      .ReturnsForAnyArgs("Sucesso");
+
+    //     // Act
+    //     var result = await _sut.CriarCursoAsync(curso);
+
+    //     // Assert 
+    //     Assert.Equal(result, default(int));
+    // }
 
 }
