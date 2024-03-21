@@ -1,2 +1,2 @@
 ﻿namespace Cepedi.Shareable.Responses;
-public record DeletaCursoResponse();
+public record DeletaCursoResponse(int cursoId);

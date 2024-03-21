@@ -7,11 +7,15 @@ public class ProfessorEntity
         Nome = nome;
         Especialidade = especialidade;
     }
+    public ProfessorEntity()
+    {
+
+    }
 
     public int Id { get; set; }
 
     public string Nome { get; set; } = default!;
-    
+
     public string Especialidade { get; set; } = default!;
 
     public List<CursoEntity> Cursos { get; set; } = new();

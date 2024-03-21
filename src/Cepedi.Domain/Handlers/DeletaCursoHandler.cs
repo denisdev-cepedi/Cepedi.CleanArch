@@ -15,8 +15,8 @@ public class DeletaCursoHandler : IDeletaCursoHandler
 
     public async Task<DeletaCursoResponse> DeletaCursoAsync(int cursoId)
     {
-        await _cursoRepository.DeletaCursoAsync(cursoId);
+        var id = await _cursoRepository.DeletaCursoAsync(cursoId);
 
-        return new DeletaCursoResponse();
+        return new DeletaCursoResponse(id);
     }
 }
