@@ -1,4 +1,5 @@
-﻿namespace Cepedi.Domain.Entities;
+﻿
+namespace Cepedi.Domain.Entities;
 public class ProfessorEntity
 {
     public ProfessorEntity(int id, string nome, string especialidade)
@@ -15,4 +16,9 @@ public class ProfessorEntity
     public string Especialidade { get; set; } = default!;
 
     public List<CursoEntity> Cursos { get; set; } = new();
+
+    public static implicit operator ProfessorEntity(Task<ProfessorEntity> v)
+    {
+        throw new NotImplementedException();
+    }
 }

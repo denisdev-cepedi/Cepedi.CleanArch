@@ -13,6 +13,9 @@ public class ProfessorRepository : IProfessorRepository
         _context = context;
     }
 
-    public async Task<ProfessorEntity> ObtemProfessorPorIdAsync(int professorId) 
-    => await _context.Professor.Where(professor => professor.Id == professorId).FirstOrDefaultAsync();
+    public async Task<ProfessorEntity> ObtemProfessorPorIdAsync(int professorId) {
+     
+     return await _context.Professor.Where(professor => professor.Id == professorId).FirstOrDefaultAsync();
+
+    }
 }
