@@ -16,13 +16,14 @@ public class CursoController : ControllerBase
     private readonly ILogger<CursoController> _logger;
     private readonly IObtemCursoHandler _obtemCursoHandler;
     private readonly IInserirCursoHandler _inserirCursoHandler;
-    private readonly ApplicationDbContext _context;
+    private readonly IAtualizarCursoHandler _atualizarCursoHandler;
     public CursoController(ILogger<CursoController> logger,
-    IObtemCursoHandler obtemCursoHandler, IInserirCursoHandler inserirCursoHandler)
+    IObtemCursoHandler obtemCursoHandler, IInserirCursoHandler inserirCursoHandler, IAtualizarCursoHandler atualizarCursoHandler)
     {
         _logger = logger;
         _obtemCursoHandler = obtemCursoHandler;
         _inserirCursoHandler = inserirCursoHandler;
+        _atualizarCursoHandler = atualizarCursoHandler;
     }
 
     [HttpGet("{idCurso}")]
@@ -35,6 +36,13 @@ public class CursoController : ControllerBase
     public async Task<ActionResult> InserirCursoAsync([FromBody] CursoDto cursoDto)
     {
         var curso = await _inserirCursoHandler.InserirCursoAsync(cursoDto);
+        return Ok(curso);
+    }
+
+    [HttpPut("{idCurso}")]
+    public async Task<ActionResult> AtualizarCursoAsync([FromRoute] int idCurso, [FromBody] CursoDto cursoDto)
+    {
+        var curso = await _atualizarCursoHandler.AtualizarCursoAsync(idCurso, cursoDto);
         return Ok(curso);
     }
 }

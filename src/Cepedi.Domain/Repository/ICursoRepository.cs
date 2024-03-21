@@ -7,4 +7,5 @@ public interface ICursoRepository
 {
     Task<CursoEntity> ObtemCursoPorIdAsync(int idCurso);
     Task<CursoEntity> InserirCursoAsync(CursoDto cursoDto);
+    Task<CursoEntity> AtualizarCursoAsync(int idCurso, CursoDto cursoDto);
 }

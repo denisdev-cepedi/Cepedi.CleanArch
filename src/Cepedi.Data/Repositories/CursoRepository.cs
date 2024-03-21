@@ -39,4 +39,29 @@ public class CursoRepository : ICursoRepository
         await _context.SaveChangesAsync();
         return curso;
     }
+
+    public async Task<CursoEntity> AtualizarCursoAsync(int idCurso, CursoDto cursoDto)
+    {
+        var curso = await ObtemCursoPorIdAsync(idCurso);
+        if (curso == null)
+        {
+            throw new Exception("Curso not found");
+        }
+
+        var professor = await _professorRepository.ObtemProfessorPorIdAsync(cursoDto.ProfessorId);
+        if (professor == null)
+        {
+            throw new Exception("Professor not found");
+        }
+
+        curso.Nome = cursoDto.Nome;
+        curso.Descricao = cursoDto.Descricao;
+        curso.DataInicio = cursoDto.DataInicio;
+        curso.DataFim = cursoDto.DataFim;
+        curso.Professor = professor;
+
+        _context.Curso.Update(curso);
+        await _context.SaveChangesAsync();
+        return curso;
+    }
 }
