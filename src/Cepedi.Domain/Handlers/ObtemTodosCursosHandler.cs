@@ -17,17 +17,6 @@ public class ObtemTodosCursosHandler : IObtemTodosCursosHandler
         _professorRepository = professorRepository;
     }
 
-    public async Task<ObtemCursoResponse> ObterCursoAsync(int idCurso)
-    {
-        var curso = await _cursoRepository.ObtemCursoPorIdAsync(idCurso);
-
-        var professor = await _professorRepository.ObtemProfessorPorIdAsync(curso.ProfessorId);
-
-        var duracao = $"O curso tem duração de {curso.DataInicio} até {curso.DataFim}";
-
-        return new ObtemCursoResponse(curso.Nome, duracao, professor.Nome);
-    }
-
     public async Task<ObtemTodosCursosResponse> ObterTodosCursosAsync()
     {
         var cursos = await _cursoRepository.ObtemTodosCursosAsync();
