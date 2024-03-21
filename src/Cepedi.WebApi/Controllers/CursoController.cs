@@ -13,6 +13,7 @@ public class CursoController : ControllerBase
 {
     private readonly ILogger<CursoController> _logger;
     private readonly IObtemCursoHandler _obtemCursoHandler;
+    private readonly IObtemTodosCursosHandler _obtemTodosCursosHandler;
     private readonly ICadastraCursoHandler _cadastraCursoHandler;
     private readonly IEditaCursoHandler _editaCursoHandler;
     private readonly IDeletaCursoHandler _deletaCursoHandler;
@@ -20,6 +21,7 @@ public class CursoController : ControllerBase
     public CursoController(
         ILogger<CursoController> logger,
         IObtemCursoHandler obtemCursoHandler,
+        IObtemTodosCursosHandler obtemTodosCursosHandler,
         ICadastraCursoHandler cadastraCursoHandler,
         IEditaCursoHandler editaCursoHandler,
         IDeletaCursoHandler deletaCursoHandler
@@ -27,6 +29,7 @@ public class CursoController : ControllerBase
     {
         _logger = logger;
         _obtemCursoHandler = obtemCursoHandler;
+        _obtemTodosCursosHandler = obtemTodosCursosHandler;
         _cadastraCursoHandler = cadastraCursoHandler;
         _editaCursoHandler = editaCursoHandler;
         _deletaCursoHandler = deletaCursoHandler;
@@ -36,6 +39,12 @@ public class CursoController : ControllerBase
     public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso)
     {
         return Ok(await _obtemCursoHandler.ObterCursoAsync(idCurso));
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<ObtemTodosCursosResponse>> ConsultarTodosCursosAsync()
+    {
+        return Ok(await _obtemTodosCursosHandler.ObterTodosCursosAsync());
     }
 
     [HttpPost]

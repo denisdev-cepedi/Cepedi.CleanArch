@@ -64,4 +64,9 @@ public class CursoRepository : ICursoRepository
     {
         return await _context.Curso.Where(curso => curso.Id == idCurso).FirstOrDefaultAsync();
     }
+
+    public async Task<IEnumerable<CursoEntity>> ObtemTodosCursosAsync()
+    {
+        return await _context.Curso.ToListAsync();
+    }
 }
