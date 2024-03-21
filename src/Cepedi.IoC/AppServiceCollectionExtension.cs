@@ -21,6 +21,7 @@ namespace Cepedi.IoC
             services.AddScoped<ICursoRepository, CursoRepository>();
             services.AddScoped<ICriaCursoHandler, CriaCursoHandler>();
             services.AddScoped<IAlteraCursoHandler, AlteraCursoHandler>();
+            services.AddScoped<IDeletarCursoHandler, DeletarCursoHandler>();
             //services.AddHttpContextAccessor();
 
             services.AddHealthChecks()

@@ -16,17 +16,20 @@ public class CursoController : ControllerBase
 
     private readonly ICriaCursoHandler _criaCursoHandler;
     private readonly IAlteraCursoHandler _alteraCursoHandler;
+    private readonly IDeletarCursoHandler _deletarCursoHandler;
 
     public CursoController(
         ILogger<CursoController> logger,
         IObtemCursoHandler obtemCursoHandler,
         ICriaCursoHandler criaCursoHandler,
-        IAlteraCursoHandler alteraCursoHandler)
+        IAlteraCursoHandler alteraCursoHandler,
+        IDeletarCursoHandler deletarCursoHandler)
     {
         _logger = logger;
         _obtemCursoHandler = obtemCursoHandler;
         _criaCursoHandler = criaCursoHandler;
         _alteraCursoHandler = alteraCursoHandler;
+        _deletarCursoHandler = deletarCursoHandler;
     }
 
     [HttpGet("{idCurso}")]
@@ -50,5 +53,10 @@ public class CursoController : ControllerBase
     {
         var cursoId = await _alteraCursoHandler.AlterarCursoAsync(request);
         return Ok(cursoId);
+    }
+
+    [HttpDelete]
+    public async Task<ActionResult<int>> DeletarCursoAsync([FromBody] int idCurso){
+        return Ok(await _deletarCursoHandler.DeletarCursoAsync(idCurso));
     }
 }

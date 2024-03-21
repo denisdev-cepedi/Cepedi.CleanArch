@@ -9,6 +9,8 @@ public interface ICursoRepository
     Task<List<CursoEntity>> ObtemCursosAsync();
     Task<int> CriaNovoCursoAsync(CursoEntity curso);
     Task<int> AlterarCursoAsync(CursoEntity curso);
+
+    Task<int> DeletarCursoAsync(CursoEntity curso);
 }
 
 public interface IWhatsApp 

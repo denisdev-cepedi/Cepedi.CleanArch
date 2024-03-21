@@ -25,6 +25,11 @@ namespace Cepedi.Data
             return _context.SaveChangesAsync();
         }
 
+        public Task<int> DeletarCursoAsync(CursoEntity curso) {
+            _context.Curso.Remove(curso);
+            return _context.SaveChangesAsync();
+        }
+
         public async Task<CursoEntity> ObtemCursoPorIdAsync(int idCurso) => 
         await _context.Curso.Where(curso => curso.Id == idCurso).FirstOrDefaultAsync() ;
 
