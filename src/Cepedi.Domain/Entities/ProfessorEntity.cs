@@ -14,8 +14,6 @@ namespace Cepedi.Domain.Entities
 
         public ProfessorEntity()
         {
-            // Implementação do construtor padrão aqui, se necessário
-            // Por exemplo, você pode inicializar propriedades com valores padrão
             Id = 0;
             Nome = "Novo Professor";
             Especialidade = "Nenhuma Especialidade";

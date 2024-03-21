@@ -26,6 +26,7 @@ namespace Cepedi.WebApi.Controllers
             _logger = logger;
             _context = context;
         }
+
         [HttpGet("{idCurso}")]
         public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso)
         {
@@ -93,39 +94,46 @@ namespace Cepedi.WebApi.Controllers
             }
         }
         [HttpPut("{idCurso}")]
-        public async Task<IActionResult> AtualizarCursoAsync([FromRoute] int idCurso, [FromBody] CursoEntity cursoAtualizado)
+        public async Task<ActionResult<CursoEntity>> AtualizarCursoAsync([FromRoute] int idCurso, [FromBody] AtualizarCursoRequest request)
         {
             try
             {
-                // Verifica se o ID fornecido na rota corresponde ao ID do curso no corpo da solicitação
-                if (idCurso != cursoAtualizado.Id)
-                {
-                    // Se os IDs não corresponderem, retorna um código de status 400 (Bad Request)
-                    return BadRequest("O ID do curso na rota não corresponde ao ID do curso no corpo da solicitação.");
-                }
+                // Consulta o curso pelo ID no banco de dados, incluindo o ProfessorEntity
+                var curso = await _context.Curso.Include(c => c.Professor).FirstOrDefaultAsync(c => c.Id == idCurso);
 
-                // Verifica se o curso com o ID especificado existe no banco de dados
-                var cursoExistente = await _context.Curso.FindAsync(idCurso);
-                if (cursoExistente == null)
+                if (curso == null)
                 {
-                    // Se o curso não for encontrado, retorna um código de status 404 (Not Found)
+                    // Se o curso não for encontrado, retorna um resultado NotFound
                     return NotFound($"Curso com ID {idCurso} não encontrado.");
                 }
 
-                // Atualiza as propriedades do curso existente com as propriedades do curso atualizado
-                cursoExistente.Nome = cursoAtualizado.Nome;
-                cursoExistente.Descricao = cursoAtualizado.Descricao;
-                cursoExistente.DataInicio = cursoAtualizado.DataInicio;
-                cursoExistente.DataFim = cursoAtualizado.DataFim;
-                cursoExistente.Professor = cursoAtualizado.Professor;
+                // Atualiza as propriedades do curso com base nos dados da solicitação
+                curso.Nome = request.Nome;
+                curso.Descricao = request.Descricao;
+                curso.DataInicio = request.DataInicio;
+                curso.DataFim = request.DataFim;
 
-                // Atualiza o curso no contexto do banco de dados
-                _context.Curso.Update(cursoExistente);
-                // Salva as mudanças no banco de dados
+                // Verifica se o ProfessorEntity associado precisa ser atualizado
+                if (curso.Professor != null)
+                {
+                    curso.Professor.Nome = request.ProfessorNome;
+                    curso.Professor.Especialidade = request.ProfessorEspecialidade;
+                }
+                else
+                {
+                    // Se não houver um ProfessorEntity associado, cria um novo
+                    curso.Professor = new ProfessorEntity
+                    {
+                        Nome = request.ProfessorNome,
+                        Especialidade = request.ProfessorEspecialidade
+                    };
+                }
+
+                // Salva as alterações no banco de dados
                 await _context.SaveChangesAsync();
 
-                // Retorna um código de status 204 (No Content) indicando que o curso foi atualizado com sucesso
-                return NoContent();
+                // Retorna um resultado Ok com o curso atualizado
+                return Ok(curso);
             }
             catch (Exception ex)
             {
@@ -134,13 +142,14 @@ namespace Cepedi.WebApi.Controllers
                 return StatusCode(500, "Ocorreu um erro ao atualizar o curso.");
             }
         }
+
         [HttpDelete("{idCurso}")]
         public async Task<IActionResult> ExcluirCursoAsync([FromRoute] int idCurso)
         {
             try
             {
-                // Verifica se o curso com o ID especificado existe no banco de dados
-                var curso = await _context.Curso.FindAsync(idCurso);
+                // Verifica se o curso com o ID especificado existe no banco de dados, incluindo o ProfessorEntity
+                var curso = await _context.Curso.Include(c => c.Professor).FirstOrDefaultAsync(c => c.Id == idCurso);
                 if (curso == null)
                 {
                     // Se o curso não for encontrado, retorna um código de status 404 (Not Found)
@@ -149,6 +158,13 @@ namespace Cepedi.WebApi.Controllers
 
                 // Remove o curso do contexto do banco de dados
                 _context.Curso.Remove(curso);
+
+                // Verifica se há um professor associado ao curso e remove-o também
+                if (curso.Professor != null)
+                {
+                    _context.Professor.Remove(curso.Professor);
+                }
+
                 // Salva as mudanças no banco de dados
                 await _context.SaveChangesAsync();
 
@@ -162,6 +178,7 @@ namespace Cepedi.WebApi.Controllers
                 return StatusCode(500, "Ocorreu um erro ao excluir o curso.");
             }
         }
+
 
     }
 }
