@@ -17,13 +17,15 @@ public class CursoController : ControllerBase
     private readonly IObtemCursoHandler _obtemCursoHandler;
     private readonly IInserirCursoHandler _inserirCursoHandler;
     private readonly IAtualizarCursoHandler _atualizarCursoHandler;
+    private readonly IExcluirHandler _excluirCursoHandler;
     public CursoController(ILogger<CursoController> logger,
-    IObtemCursoHandler obtemCursoHandler, IInserirCursoHandler inserirCursoHandler, IAtualizarCursoHandler atualizarCursoHandler)
+    IObtemCursoHandler obtemCursoHandler, IInserirCursoHandler inserirCursoHandler, IAtualizarCursoHandler atualizarCursoHandler, IExcluirHandler excluirCursoHandler)
     {
         _logger = logger;
         _obtemCursoHandler = obtemCursoHandler;
         _inserirCursoHandler = inserirCursoHandler;
         _atualizarCursoHandler = atualizarCursoHandler;
+        _excluirCursoHandler = excluirCursoHandler;
     }
 
     [HttpGet("{idCurso}")]
@@ -44,5 +46,12 @@ public class CursoController : ControllerBase
     {
         var curso = await _atualizarCursoHandler.AtualizarCursoAsync(idCurso, cursoDto);
         return Ok(curso);
+    }
+
+    [HttpDelete("{idCurso}")]
+    public async Task<ActionResult> ExcluirCursoAsync([FromRoute] int idCurso)
+    {
+        await _excluirCursoHandler.ExcluirAsync(idCurso);
+        return Ok();
     }
 }

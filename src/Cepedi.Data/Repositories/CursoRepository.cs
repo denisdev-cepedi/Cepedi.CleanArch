@@ -64,4 +64,17 @@ public class CursoRepository : ICursoRepository
         await _context.SaveChangesAsync();
         return curso;
     }
+
+    public async Task<CursoEntity> ExcluirAsync(int id)
+    {
+        var curso = await ObtemCursoPorIdAsync(id);
+        if (curso == null)
+        {
+            throw new Exception("Curso not found");
+        }
+
+        _context.Curso.Remove(curso);
+        await _context.SaveChangesAsync();
+        return curso;
+    }
 }
