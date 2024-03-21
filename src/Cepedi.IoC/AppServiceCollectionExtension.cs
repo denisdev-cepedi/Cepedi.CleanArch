@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Cepedi.Data;
 using Cepedi.Domain;
+using Cepedi.Domain.Handlers;
+using Cepedi.Domain.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,11 +15,13 @@ namespace Cepedi.IoC
         public static void ConfigureAppDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             ConfigureDbContext(services, configuration);
-
+            
             services.AddScoped<IObtemCursoHandler, ObtemCursoHandler>();
             services.AddScoped<IProfessorRepository, ProfessorRepository>();
             services.AddScoped<ICursoRepository, CursoRepository>();
-            
+            services.AddScoped<ICriaCursoHandler, CriaCursoHandler>();
+            services.AddScoped<IAlteraCursoHandler, AlteraCursoHandler>();
+            services.AddScoped<IExcluirCursoHandler, ExcluirCursoHandler>();
             //services.AddHttpContextAccessor();
 
             services.AddHealthChecks()

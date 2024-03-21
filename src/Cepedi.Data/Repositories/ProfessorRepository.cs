@@ -1,4 +1,4 @@
-﻿using Cepedi.Domain;
+using Cepedi.Domain;
 using Cepedi.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +11,13 @@ public class ProfessorRepository : IProfessorRepository
     public ProfessorRepository(ApplicationDbContext context)
     {
         _context = context;
+    }
+
+    public Task<ProfessorEntity> IncluirProfessorAsync(ProfessorEntity professor)
+    {
+        _context.Professor.Add(professor);
+         _context.SaveChangesAsync();
+         return Task.FromResult(professor);
     }
 
     public async Task<ProfessorEntity> ObtemProfessorPorIdAsync(int professorId) 

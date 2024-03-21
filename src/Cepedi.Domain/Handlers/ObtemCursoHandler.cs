@@ -1,4 +1,4 @@
-﻿using Cepedi.Shareable.Responses;
+using Cepedi.Shareable.Responses;
 
 namespace Cepedi.Domain;
 
@@ -24,5 +24,18 @@ public class ObtemCursoHandler : IObtemCursoHandler
         var duracao = $"O curso tem duração de {curso.DataInicio} até {curso.DataFim}";
 
         return new ObtemCursoResponse(curso.Nome, duracao, professor.Nome);
+    }
+    public async Task<IEnumerable<ObtemCursoResponse>> ObterCursosAsync()
+    {
+        var cursos = await _cursoRepository.ObtemCursosAsync();
+        var tasks = cursos.Select(async curso =>
+        {
+            var professor = await _professorRepository.ObtemProfessorPorIdAsync(curso.ProfessorId);
+            var duracao = $"O curso tem duração de {curso.DataInicio} até {curso.DataFim}";
+            return new ObtemCursoResponse(curso.Nome, duracao, professor?.Nome ?? "Professor não encontrado");
+        });
+
+        return await Task.WhenAll(tasks);
+
     }
 }
