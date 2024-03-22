@@ -14,6 +14,8 @@ public class CursoRepository : ICursoRepository
         _context = context;
     }
 
+    public async Task<IEnumerable<CursoEntity>> ListarCursosAsync() => await _context.Curso.Include(curso => curso.Professor).ToListAsync();
+    
     public async Task<CursoEntity> ObtemCursoPorIdAsync(int idCurso) => 
     await _context.Curso.Where(curso => curso.Id == idCurso).FirstOrDefaultAsync();
 

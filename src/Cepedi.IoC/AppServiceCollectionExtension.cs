@@ -15,6 +15,7 @@ namespace Cepedi.IoC
         {
             ConfigureDbContext(services, configuration);
 
+            services.AddScoped<IListarCursosHandler, ListarCursosHandler>();
             services.AddScoped<IObtemCursoHandler, ObtemCursoHandler>();
             services.AddScoped<ICreateCursoHandler, CreateCursoHandler>();
             services.AddScoped<IAtualizaCursoHandler, AtualizaCursoHandler>();

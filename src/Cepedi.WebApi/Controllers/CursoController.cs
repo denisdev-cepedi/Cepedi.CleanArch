@@ -14,6 +14,7 @@ namespace Cepedi.WebApi.Controllers;
 public class CursoController : ControllerBase
 {
     private readonly ILogger<CursoController> _logger;
+    private readonly IListarCursosHandler _listarCursosHandler;
     private readonly IObtemCursoHandler _obtemCursoHandler;
     private readonly ICreateCursoHandler _createCursoHandler;
     private readonly IAtualizaCursoHandler _atualizaCursoHandler;
@@ -23,13 +24,21 @@ public class CursoController : ControllerBase
     IObtemCursoHandler obtemCursoHandler,
     ICreateCursoHandler createCursoHandler,
     IAtualizaCursoHandler atualizaCursoHandler,
-    IDeleteCursoHandler deleteCursoHandler)
+    IDeleteCursoHandler deleteCursoHandler, 
+    IListarCursosHandler listarCursosHandler)
     {
         _logger = logger;
         _obtemCursoHandler = obtemCursoHandler;
         _createCursoHandler = createCursoHandler;
         _atualizaCursoHandler = atualizaCursoHandler;
         _deleteCursoHandler = deleteCursoHandler;
+        _listarCursosHandler = listarCursosHandler;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult> ListarCursosAsync()
+    {
+        return Ok(await _listarCursosHandler.ListarCursosAsync());
     }
 
     [HttpGet("{idCurso}")]
