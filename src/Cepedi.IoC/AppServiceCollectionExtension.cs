@@ -1,9 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Cepedi.Data;
 using Cepedi.Domain;
+using Cepedi.Domain.Repository;
+using Cepedi.Domain.Handlers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Cepedi.Domain.Services;
 
 namespace Cepedi.IoC
 {
@@ -15,6 +18,9 @@ namespace Cepedi.IoC
             ConfigureDbContext(services, configuration);
 
             services.AddScoped<IObtemCursoHandler, ObtemCursoHandler>();
+            services.AddScoped<IExcluiCursoHandler, ExcluiCursoHandler>();
+            services.AddScoped<ICadastraCursoHandler, CadastraCursoHandler>();
+            services.AddScoped<IAtualizaCursoHandler, AtualizaCursoHandler>();
             services.AddScoped<IProfessorRepository, ProfessorRepository>();
             services.AddScoped<ICursoRepository, CursoRepository>();
             
