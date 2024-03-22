@@ -1,3 +1,4 @@
+using Cepedi.Shareable.Exceptions;
 using Cepedi.Shareable.Requests;
 using Cepedi.Shareable.Responses;
 
@@ -17,7 +18,12 @@ public class AtualizaCursoHandler : IAtualizaCursoHandler
     public async Task<AtualizaCursoResponse> AtualizarCursoAsync(int idCurso, CriaCursoRequest cursoRequest)
     {
         var curso = await _cursoRepository.ObtemCursoPorIdAsync(idCurso);
+
+        if (curso == null) throw new CursoNaoEncontradoException(idCurso);
+        
         var professor = await _professorRepository.ObtemProfessorPorIdAsync(cursoRequest.professorId);
+
+        if (professor == null) throw new ProfessorNaoEncontradoException(cursoRequest.professorId);
 
         var cursoAtualizado = await _cursoRepository.AtualizarCursoAsync(curso, cursoRequest, professor);
 
