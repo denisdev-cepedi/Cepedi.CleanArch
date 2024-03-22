@@ -13,6 +13,29 @@ public class CursoRepository : ICursoRepository
         _context = context;
     }
 
-    public async Task<CursoEntity> ObtemCursoPorIdAsync(int idCurso) => 
+    public Task<int> AlterarCursoAsync(CursoEntity curso)
+    {
+        _context.Curso.Update(curso);
+        return _context.SaveChangesAsync();
+    }
+
+    public Task<int> ExcluirCursoAsync(int idCurso)
+    {
+        _context.Curso.Remove(_context.Curso.Find(idCurso));
+        return _context.SaveChangesAsync();
+    }
+
+    public async Task<CursoEntity> ObtemCursoPorIdAsync(int idCurso) =>
     await _context.Curso.Where(curso => curso.Id == idCurso).FirstOrDefaultAsync();
+
+    public async Task<List<CursoEntity>> ObtemCursosAsync()
+    {
+        return await _context.Curso.ToListAsync();
+    }
+
+    Task<int> ICursoRepository.CriaNovoCursoAsync(CursoEntity curso)
+    {
+        _context.Curso.Add(curso);
+        return _context.SaveChangesAsync();
+    }
 }
