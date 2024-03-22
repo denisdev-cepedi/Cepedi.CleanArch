@@ -1,9 +1,8 @@
 using Cepedi.Shareable.Responses;
 
-namespace Cepedi.Domain
+namespace Cepedi.Domain;
+
+public interface IObtemCursoHandler
 {
-    public interface IObtemCursoHandler
-    {
-        Task<ObtemCursoResponse> ObterCursoAsync(int idCurso);
-    }
+    Task<ObtemCursoResponse> ObterCursoAsync(int idCurso);
 }
