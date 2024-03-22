@@ -40,8 +40,8 @@ namespace Cepedi.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Ocorreu um erro ao consultar o curso");
-                return StatusCode(500, "Ocorreu um erro interno ao consultar o curso");
+                _logger.LogError(ex, "Ocorreu um erro ao consultar o curso.");
+                return StatusCode(500, "Ocorreu um erro interno ao consultar o curso.");
             }
         }
 
@@ -55,8 +55,8 @@ namespace Cepedi.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Ocorreu um erro ao listar os cursos");
-                return StatusCode(500, "Ocorreu um erro interno ao listar os cursos");
+                _logger.LogError(ex, "Ocorreu um erro ao listar os cursos.");
+                return StatusCode(500, "Ocorreu um erro interno ao listar os cursos.");
             }
         }
 
@@ -70,8 +70,8 @@ namespace Cepedi.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Ocorreu um erro ao criar o curso");
-                return StatusCode(500, "Ocorreu um erro interno ao criar o curso");
+                _logger.LogError(ex, "Ocorreu um erro ao criar o curso.");
+                return StatusCode(500, "Ocorreu um erro interno ao criar o curso.");
             }
         }
 
@@ -82,7 +82,7 @@ namespace Cepedi.WebApi.Controllers
             {
                 if (request == null)
                 {
-                    return BadRequest("Solicitação inválida");
+                    return BadRequest("Solicitação inválida.");
                 }
 
                 await _alteraCursoHandler.AlterarCursoAsync(request);
@@ -90,8 +90,8 @@ namespace Cepedi.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Ocorreu um erro ao atualizar o curso");
-                return StatusCode(500, "Ocorreu um erro interno ao atualizar o curso");
+                _logger.LogError(ex, "Ocorreu um erro ao atualizar o curso.");
+                return StatusCode(500, "Ocorreu um erro interno ao atualizar o curso.");
             }
         }
     }
