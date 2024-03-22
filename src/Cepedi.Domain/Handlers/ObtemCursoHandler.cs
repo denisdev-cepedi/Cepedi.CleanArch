@@ -1,6 +1,8 @@
 using Cepedi.Shareable.Responses;
+using Cepedi.Domain.Repository;
+using Cepedi.Domain.Services;
 
-namespace Cepedi.Domain;
+namespace Cepedi.Domain.Handlers;
 
 public class ObtemCursoHandler : IObtemCursoHandler
 {

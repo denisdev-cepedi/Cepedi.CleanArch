@@ -1,5 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <RootNamespace>Cepedi.Domain</RootNamespace>
     <AssemblyName>Cepedi.Domain</AssemblyName>
@@ -7,18 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="Handlers\" />
-    <Folder Include="Repository\" />
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.0.1" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Cepedi.Shareable\Cepedi.Shareable.csproj" />
   </ItemGroup>
-
 </Project>

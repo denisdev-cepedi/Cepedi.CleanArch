@@ -1,5 +1,6 @@
 using Cepedi.Domain;
 using Cepedi.Domain.Entities;
+using Cepedi.Domain.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cepedi.Data;

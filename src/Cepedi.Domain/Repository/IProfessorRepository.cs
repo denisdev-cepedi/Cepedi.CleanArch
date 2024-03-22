@@ -1,6 +1,6 @@
 using Cepedi.Domain.Entities;
 
-namespace Cepedi.Domain;
+namespace Cepedi.Domain.Repository;
 
 public interface IProfessorRepository
 {
