@@ -1,5 +1,7 @@
 ﻿using Cepedi.Data;
 using Cepedi.Domain;
+using Cepedi.Domain.Services;
+using Cepedi.Shareable.Exceptions;
 using Cepedi.Shareable.Requests;
 using Cepedi.Shareable.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -15,16 +17,19 @@ public class CursoController : ControllerBase
     private readonly IObtemCursoHandler _obtemCursoHandler;
     private readonly ICreateCursoHandler _createCursoHandler;
     private readonly IAtualizaCursoHandler _atualizaCursoHandler;
+    private readonly IDeleteCursoHandler _deleteCursoHandler;
     private readonly ApplicationDbContext _context;
     public CursoController(ILogger<CursoController> logger,
     IObtemCursoHandler obtemCursoHandler,
     ICreateCursoHandler createCursoHandler,
-    IAtualizaCursoHandler atualizaCursoHandler)
+    IAtualizaCursoHandler atualizaCursoHandler,
+    IDeleteCursoHandler deleteCursoHandler)
     {
         _logger = logger;
         _obtemCursoHandler = obtemCursoHandler;
         _createCursoHandler = createCursoHandler;
         _atualizaCursoHandler = atualizaCursoHandler;
+        _deleteCursoHandler = deleteCursoHandler;
     }
 
     [HttpGet("{idCurso}")]
@@ -43,5 +48,19 @@ public class CursoController : ControllerBase
     public async Task<ActionResult<AtualizaCursoResponse>> AtualizarCursoAsync([FromRoute] int idCurso, [FromBody] CriaCursoRequest criaCursoRequest)
     {
         return Ok(await _atualizaCursoHandler.AtualizarCursoAsync(idCurso, criaCursoRequest));
+    }
+
+    [HttpDelete("{idCurso}")]
+    public async Task<IActionResult> DeleteCursoAsync([FromRoute] int idCurso)
+    {
+        try
+        {
+            await _deleteCursoHandler.DeleteCursoAsync(idCurso);
+            return Ok();
+        }
+        catch (CursoNaoEncontradoException)
+        {
+            return NotFound();
+        }
     }
 }

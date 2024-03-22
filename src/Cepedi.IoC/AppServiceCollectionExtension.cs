@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Cepedi.Data;
 using Cepedi.Domain;
+using Cepedi.Domain.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,7 @@ namespace Cepedi.IoC
             services.AddScoped<IObtemCursoHandler, ObtemCursoHandler>();
             services.AddScoped<ICreateCursoHandler, CreateCursoHandler>();
             services.AddScoped<IAtualizaCursoHandler, AtualizaCursoHandler>();
+            services.AddScoped<IDeleteCursoHandler, DeleteCursoHandler>();
             services.AddScoped<IProfessorRepository, ProfessorRepository>();
             services.AddScoped<ICursoRepository, CursoRepository>();
             

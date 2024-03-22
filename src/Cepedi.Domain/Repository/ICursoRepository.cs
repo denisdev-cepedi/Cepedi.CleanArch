@@ -8,4 +8,5 @@ public interface ICursoRepository
     Task<CursoEntity> ObtemCursoPorIdAsync(int idCurso);
     Task<CursoEntity> CriaCursoAsync(CursoEntity curso);
     Task<CursoEntity> AtualizarCursoAsync(CursoEntity curso, CriaCursoRequest cursoRequest, ProfessorEntity professor);
+    Task ExcluirCursoAsync(CursoEntity curso);
 }

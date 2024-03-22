@@ -41,4 +41,11 @@ public class CursoRepository : ICursoRepository
 
         return curso;
     }
+
+    public async Task ExcluirCursoAsync(CursoEntity curso)
+    {
+        curso.Descricao += " - Curso removido";
+        _context.Curso.Update(curso);
+        await _context.SaveChangesAsync();
+    }
 }

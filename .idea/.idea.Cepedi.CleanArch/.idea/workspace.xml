@@ -9,8 +9,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63a0ad65-917b-4325-9538-b281ee16b67e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Cepedi.Domain/Handlers/AtualizaCursoHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cepedi.Domain/Handlers/AtualizaCursoHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cepedi.Shareable/Cepedi.Shareable.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cepedi.Shareable/Cepedi.Shareable.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Cepedi.CleanArch/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Cepedi.CleanArch/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cepedi.Data/Repositories/CursoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cepedi.Data/Repositories/CursoRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cepedi.Domain/Repository/ICursoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cepedi.Domain/Repository/ICursoRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cepedi.IoC/AppServiceCollectionExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cepedi.IoC/AppServiceCollectionExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cepedi.WebApi/Controllers/CursoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cepedi.WebApi/Controllers/CursoController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cepedi.WebApi/Database.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cepedi.WebApi/Database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cepedi.WebApi/Database.db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cepedi.WebApi/Database.db-shm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cepedi.WebApi/Database.db-wal" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cepedi.WebApi/Database.db-wal" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +39,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    ".NET Launch Settings Profile.Cepedi.WebApi: http.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "Victor/Semana2-Tarefa-18-03",
@@ -92,7 +99,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1711132386060</updated>
-      <workItem from="1711132401736" duration="1535000" />
+      <workItem from="1711132401736" duration="6404000" />
     </task>
     <servers />
   </component>
