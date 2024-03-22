@@ -1,6 +1,10 @@
-﻿using Cepedi.Domain.Entities;
+﻿using Cepedi.Domain;
 using Cepedi.Domain.Repository;
+using Cepedi.IoC;
+using Cepedi.Shareable.Requests;
+using Cepedi.Shareable.Responses;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace Cepedi.WebApi.Controllers;
 
@@ -9,24 +13,43 @@ namespace Cepedi.WebApi.Controllers;
 public class CursoController : ControllerBase
 {
     private readonly ILogger<CursoController> _logger;
-    private readonly ICursoRepository _repository;
+    private readonly IObtemCursoHandler _obtemCursoHandler;
 
-    public CursoController(ILogger<CursoController> logger, ICursoRepository repository)
+    private readonly ICriaCursoHandler _criaCursoHandler;
+    private readonly IAlteraCursoHandler _alteraCursoHandler;
+
+    public CursoController(
+        ILogger<CursoController> logger,
+        IObtemCursoHandler obtemCursoHandler,
+        ICriaCursoHandler criaCursoHandler,
+        IAlteraCursoHandler alteraCursoHandler)
     {
         _logger = logger;
-        _repository = repository;
+        _obtemCursoHandler = obtemCursoHandler;
+        _criaCursoHandler = criaCursoHandler;
+        _alteraCursoHandler = alteraCursoHandler;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<ICollection<ProfessorEntity>>> ConsultarCursosAsync()
+    [HttpGet("{idCurso}")]
+    public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso)
     {
-        var cursos = _repository.GetAll();
-        return Ok(cursos);
+        return Ok(await _obtemCursoHandler.ObterCursoAsync(idCurso));
+    }
+    [HttpGet()]
+    public async Task<ActionResult<IEnumerable<ObtemCursoResponse>>> ConsultarCursosAsync()
+    {
+        return Ok(await _obtemCursoHandler.ObterCursosAsync());
     }
     [HttpPost]
-    public async Task<ActionResult> CriarProfessorAsync()
+    public async Task<ActionResult<int>> CriarCursoAsync([FromBody] CriaCursoRequest request)
     {
-        // _repository.Insert(model);
-        return Ok();
+        var cursoId = await _criaCursoHandler.CriarCursoAsync(request);
+        return Ok(cursoId);
+    }
+    [HttpPut]
+    public async Task<ActionResult<int>> AlterarCursoAsync([FromBody] AlteraCursoRequest request)
+    {
+        var cursoId = await _alteraCursoHandler.AlterarCursoAsync(request);
+        return Ok(cursoId);
     }
 }

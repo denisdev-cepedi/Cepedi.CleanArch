@@ -1,23 +1,25 @@
+using Cepedi.Domain;
 using Cepedi.Domain.Entities;
-using Cepedi.Domain.Repository;
+using Microsoft.EntityFrameworkCore;
 
-namespace Cepedi.Data.Repositories;
+namespace Cepedi.Data;
+
 public class ProfessorRepository : IProfessorRepository
 {
-    protected readonly ApplicationDbContext _context;
+    private readonly ApplicationDbContext _context;
 
     public ProfessorRepository(ApplicationDbContext context)
     {
         _context = context;
     }
-    public ICollection<ProfessorEntity> GetAll()
+
+    public Task<ProfessorEntity> IncluirProfessorAsync(ProfessorEntity professor)
     {
-        return _context.Set<ProfessorEntity>().ToList();
+        _context.Professor.Add(professor);
+         _context.SaveChangesAsync();
+         return Task.FromResult(professor);
     }
 
-    public void Insert(ProfessorEntity professor)
-    {
-        _context.Set<ProfessorEntity>().Add(professor);
-        _context.SaveChanges();
-    }
+    public async Task<ProfessorEntity> ObtemProfessorPorIdAsync(int professorId) 
+    => await _context.Professor.Where(professor => professor.Id == professorId).FirstOrDefaultAsync();
 }

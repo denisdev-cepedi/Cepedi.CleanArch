@@ -1,8 +1,12 @@
 using Cepedi.Domain.Entities;
+using Cepedi.Shareable.Requests;
 
-namespace Cepedi.Domain.Repository;
+namespace Cepedi.Domain;
+
 public interface ICursoRepository
 {
-    void Insert(CursoEntity curso);
-    ICollection<CursoEntity> GetAll();
+    Task<CursoEntity> ObtemCursoPorIdAsync(int idCurso);
+    Task<List<CursoEntity>> ObtemCursosAsync();
+    Task<int> CriaNovoCursoAsync(CursoEntity curso);
+    Task<int> AlterarCursoAsync(CursoEntity curso);
 }

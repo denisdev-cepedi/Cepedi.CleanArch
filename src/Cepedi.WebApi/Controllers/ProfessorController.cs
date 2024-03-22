@@ -1,3 +1,4 @@
+using Cepedi.Domain;
 using Cepedi.Domain.Entities;
 using Cepedi.Domain.Repository;
 using Cepedi.Shareable.Requests;
@@ -19,16 +20,4 @@ public class ProfessorController : ControllerBase
         _repository = repository;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<ICollection<ProfessorEntity>>> ConsultarProfessorAsync()
-    {
-        var professores = _repository.GetAll();
-        return Ok(professores);
-    }
-    [HttpPost]
-    public async Task<ActionResult> CriarProfessorAsync(ProfessorRequest model)
-    {
-        // _repository.Insert(model);
-        return Ok();
-    }
 }
