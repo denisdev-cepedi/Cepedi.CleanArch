@@ -9,38 +9,32 @@ public class CursoRepository : ICursoRepository
     private readonly ApplicationDbContext _context;
     public CursoRepository(ApplicationDbContext context) => _context = context;
 
-    public async Task<CursoEntity> GetById(int id, CancellationToken cancellationToken)
+    public async Task<CursoEntity> ObtemCursoPorIdAsync(int id)
     {
-        return await _context.Curso
-            .Include(c => c.Professor)
-            .FirstOrDefaultAsync(c => c.Id == id, cancellationToken) ?? throw new KeyNotFoundException($"Curso with id {id} not found.");
+        return await _context.Curso.FirstOrDefaultAsync(curso => curso.Id == id) ?? throw new KeyNotFoundException();
     }
 
-    public async Task<IEnumerable<CursoEntity>> GetAll(CancellationToken cancellationToken)
+    public async Task<IEnumerable<CursoEntity>> ObtemCursosAsync()
     {
-        return await _context.Curso
-            .Include(c => c.Professor)
-            .ToListAsync(cancellationToken);
+        return await _context.Curso.ToListAsync();
     }
 
-    public async Task<CursoEntity> Create(CursoEntity curso, CancellationToken cancellationToken)
+    public async Task<int> CriaNovoCursoAsync(CursoEntity curso)
     {
-        var entity = _context.Curso.Add(curso);
-        await _context.SaveChangesAsync(cancellationToken);
-        return entity.Entity;
+        await _context.Curso.AddAsync(curso);
+        return await _context.SaveChangesAsync();
     }
 
-    public async Task<CursoEntity> Update(CursoEntity curso, CancellationToken cancellationToken)
+    public async Task<int> AtualizaCursoAsync(CursoEntity curso)
     {
-        var entity = _context.Curso.Update(curso);
-        await _context.SaveChangesAsync(cancellationToken);
-        return entity.Entity;
+        _context.Curso.Update(curso);
+        return await _context.SaveChangesAsync();
     }
 
-    public async Task<int> Delete(int id, CancellationToken cancellationToken)
+    public async Task<int> DeletaCursoAsync(int id)
     {
-        var curso = await GetById(id, cancellationToken);
+        var curso = await ObtemCursoPorIdAsync(id);
         _context.Curso.Remove(curso);
-        return await _context.SaveChangesAsync(cancellationToken);
+        return await _context.SaveChangesAsync();
     }
 }

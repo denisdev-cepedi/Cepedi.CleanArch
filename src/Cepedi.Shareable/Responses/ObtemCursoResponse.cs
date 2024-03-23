@@ -1,2 +1,2 @@
 ﻿namespace Cepedi.Shareable.Responses;
-public record ObtemCursoResponse(string curso, string horario, string professor);
+public record ObtemCursoResponse(int id, string curso, string horario, string professor);

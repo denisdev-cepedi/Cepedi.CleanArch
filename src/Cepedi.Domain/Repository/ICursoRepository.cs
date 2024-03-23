@@ -4,9 +4,9 @@ namespace Cepedi.Domain.Repository;
 
 public interface ICursoRepository 
 {
-    Task<CursoEntity> GetById(int id, CancellationToken cancellationToken);
-    Task<IEnumerable<CursoEntity>> GetAll(CancellationToken cancellationToken);
-    Task<CursoEntity> Create(CursoEntity curso, CancellationToken cancellationToken);
-    Task<CursoEntity> Update(CursoEntity curso, CancellationToken cancellationToken);
-    Task<int> Delete(int id, CancellationToken cancellationToken);
+    Task<CursoEntity> ObtemCursoPorIdAsync(int id);
+    Task<IEnumerable<CursoEntity>> ObtemCursosAsync();
+    Task<int> CriaNovoCursoAsync(CursoEntity curso);
+    Task<int> AtualizaCursoAsync(CursoEntity curso);
+    Task<int> DeletaCursoAsync(int id);
 }

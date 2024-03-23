@@ -9,16 +9,8 @@ public class ProfessorRepository : IProfessorRepository
     private readonly ApplicationDbContext _context;
     public ProfessorRepository(ApplicationDbContext context) => _context = context;
 
-    public async Task<ProfessorEntity> GetById(int id, CancellationToken cancellationToken)
+    public async Task<ProfessorEntity> ObtemProfessorPorIdAsync(int id)
     {
-        return await _context.Professor
-            .FirstOrDefaultAsync(p => p.Id == id, cancellationToken) ?? throw new KeyNotFoundException($"Professor with id {id} not found.");
+        return await _context.Professor.FirstOrDefaultAsync(professor => professor.Id == id) ?? throw new KeyNotFoundException();
     }
-
-    public async Task<IEnumerable<ProfessorEntity>> GetAll(CancellationToken cancellationToken)
-    {
-        return await _context.Professor
-            .ToListAsync(cancellationToken);
-    }
-
 }
