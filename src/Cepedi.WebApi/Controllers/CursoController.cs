@@ -4,14 +4,15 @@ using Cepedi.Shareable;
 using Cepedi.Shareable.Requests;
 using Cepedi.Shareable.Responses;
 using Microsoft.AspNetCore.Mvc;
-
 namespace Cepedi.WebApi.Controllers;
+
 [ApiController]
 [Route("[controller]")]
 public class CursoController : ControllerBase
 {
     private readonly ILogger<CursoController> _logger;
     private readonly IObtemCursoHandler _obtemCursoHandler;
+    private readonly IObtemTodosCursosHandler _obtemTodosCursosHandler;
     private readonly ICadastraCursoHandler _cadastraCursoHandler;
     private readonly IEditaCursoHandler _editaCursoHandler;
     private readonly IDeletaCursoHandler _deletaCursoHandler;
@@ -19,6 +20,7 @@ public class CursoController : ControllerBase
     public CursoController(
         ILogger<CursoController> logger,
         IObtemCursoHandler obtemCursoHandler,
+        IObtemTodosCursosHandler obtemTodosCursosHandler,
         ICadastraCursoHandler cadastraCursoHandler,
         IEditaCursoHandler editaCursoHandler,
         IDeletaCursoHandler deletaCursoHandler
@@ -26,15 +28,21 @@ public class CursoController : ControllerBase
     {
         _logger = logger;
         _obtemCursoHandler = obtemCursoHandler;
+        _obtemTodosCursosHandler = obtemTodosCursosHandler;
         _cadastraCursoHandler = cadastraCursoHandler;
         _editaCursoHandler = editaCursoHandler;
         _deletaCursoHandler = deletaCursoHandler;
     }
-
     [HttpGet("{idCurso}")]
     public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso)
     {
         return Ok(await _obtemCursoHandler.ObterCursoAsync(idCurso));
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<ObtemTodosCursosResponse>> ConsultarTodosCursosAsync()
+    {
+        return Ok(await _obtemTodosCursosHandler.ObterTodosCursosAsync());
     }
 
     [HttpPost]
@@ -42,7 +50,6 @@ public class CursoController : ControllerBase
     {
         return Ok(await _cadastraCursoHandler.CadastraCursoAsync(curso));
     }
-
     [HttpPut("{cursoId}")]
     public async Task<ActionResult<EditaCursoResponse>> EditarCursoAsync([FromRoute] int cursoId, [FromBody] EditaCursoRequest curso)
     {

@@ -16,7 +16,7 @@ namespace Cepedi.IoC
         public static void ConfigureAppDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             ConfigureDbContext(services, configuration);
-
+            services.AddScoped<IObtemTodosCursosHandler, ObtemTodosCursosHandler>();
             services.AddScoped<IObtemCursoHandler, ObtemCursoHandler>();
             services.AddScoped<ICadastraCursoHandler, CadastraCursoHandler>();
             services.AddScoped<IEditaCursoHandler, EditaCursoHandler>();
