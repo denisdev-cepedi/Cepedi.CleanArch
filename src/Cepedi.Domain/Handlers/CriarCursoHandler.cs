@@ -1,4 +1,4 @@
-﻿using Cepedi.Domain.Entities;
+﻿﻿using Cepedi.Domain.Entities;
 using Cepedi.Shareable.Requests;
 
 namespace Cepedi.Domain;
@@ -12,14 +12,13 @@ public class CriarCursoHandler : ICriarCursoHandler
     }
     public async Task<CursoEntity> CriarCursoAsync(CriarCursoRequest request)
     {
-        var novoCurso = new CursoEntity
-        {
+        var novoCurso = new CursoEntity{
             Nome = request.Nome,
             Descricao = request.Descricao,
             DataInicio = request.DataInicio,
             DataFim = request.DataFim,
             ProfessorId = request.ProfessorId
         };
-        return await _cursoRepository.CriarCursoAsync(novoCurso);
+         return await _cursoRepository.CriarCursoAsync(novoCurso);
     }
 }

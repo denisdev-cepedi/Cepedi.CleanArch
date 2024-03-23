@@ -1,4 +1,4 @@
-﻿namespace Cepedi.Shareable;
+﻿﻿namespace Cepedi.Shareable;
 
 public interface IShareableEntryPoint
 {

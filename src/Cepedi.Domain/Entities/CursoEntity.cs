@@ -23,7 +23,7 @@ public class CursoEntity
     public string Descricao { get; set; } = default!;
 
     public DateTime DataInicio { get; set; }
-    
+
     public DateTime DataFim { get; set; }
 
     public ProfessorEntity Professor { get; set; }

@@ -1,4 +1,4 @@
-﻿﻿namespace Cepedi.Domain;
+﻿﻿﻿namespace Cepedi.Domain;
 
 public interface IExcluirCursoHandler
 {
