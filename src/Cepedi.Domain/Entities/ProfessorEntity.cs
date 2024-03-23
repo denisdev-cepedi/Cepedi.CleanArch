@@ -1,6 +1,10 @@
 ﻿namespace Cepedi.Domain.Entities;
 public class ProfessorEntity
 {
+    public ProfessorEntity()
+    {
+    }
+
     public ProfessorEntity(int id, string nome, string especialidade)
     {
         Id = id;

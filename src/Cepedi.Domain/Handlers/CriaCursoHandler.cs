@@ -8,10 +8,12 @@ namespace Cepedi.Domain.Handlers;
 public class CriaCursoHandler : ICriaCursoHandler
 {
     private readonly ICursoRepository _cursoRepository;
+    private readonly IProfessorRepository _professorRepository;
 
-    public CriaCursoHandler(ICursoRepository cursoRepository)
+    public CriaCursoHandler(ICursoRepository cursoRepository, IProfessorRepository professorRepository)
     {
         _cursoRepository = cursoRepository;
+        _professorRepository = professorRepository;
     }
 
     public async Task<int> CriaCursoAsync(CriaCursoRequest request)
@@ -24,6 +26,8 @@ public class CriaCursoHandler : ICriaCursoHandler
             DataFim = request.DataFim,
             ProfessorId = request.ProfessorId
         };
+
+        _ = await _professorRepository.ObtemProfessorPorIdAsync(curso.ProfessorId) ?? throw new KeyNotFoundException("Professor não encontrado");
 
         return await _cursoRepository.CriaNovoCursoAsync(curso);
     }
