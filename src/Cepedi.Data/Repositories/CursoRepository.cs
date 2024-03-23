@@ -12,6 +12,11 @@ public class CursoRepository : ICursoRepository
         _context = context;
     }
 
+    public async Task<IEnumerable<CursoEntity>> ObtemTodosCursosAsync()
+    {
+        return await _context.Curso.ToListAsync();
+    }
+
     public Task<CursoEntity> CadastraCursoAsync(CadastraCursoRequest request)
     {
         var professor = _context.Professor.FirstOrDefaultAsync(professor => professor.Id == request.professorId);
