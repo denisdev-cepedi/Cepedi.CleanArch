@@ -1,26 +1,28 @@
-﻿using Cepedi.Domain.Interfaces;
-using Cepedi.Shareable.Requests;
-using Cepedi.Shareable.Responses;
-using MediatR;
+﻿using Cepedi.Shareable.Responses;
 
-namespace Cepedi.Domain.Handlers;
-public class ObtemCursoHandler : IRequestHandler<ObtemCursoRequest, ObtemCursoResponse>
+namespace Cepedi.Domain;
+
+public class ObtemCursoHandler : IObtemCursoHandler
 {
     private readonly ICursoRepository _cursoRepository;
     private readonly IProfessorRepository _professorRepository;
 
-    public ObtemCursoHandler(ICursoRepository cursoRepository, IProfessorRepository professorRepository)
+    public ObtemCursoHandler(
+        ICursoRepository cursoRepository,
+        IProfessorRepository professorRepository)
     {
         _cursoRepository = cursoRepository;
         _professorRepository = professorRepository;
     }
 
-    public async Task<ObtemCursoResponse> Handle(ObtemCursoRequest request, CancellationToken cancellationToken)
+    public async Task<ObtemCursoResponse> ObterCursoAsync(int idCurso)
     {
-        var curso = _cursoRepository.GetById(request.idCurso);
-        var professor = _professorRepository.GetById(curso.ProfessorId);
-        var msg = $"de {curso.DataInicio.ToString("dd/MM/yyyy")} até {curso.DataFim.ToString("dd/MM/yyyy")}";
+        var curso = await _cursoRepository.ObtemCursoPorIdAsync(idCurso);
 
-        return new ObtemCursoResponse(curso.Nome, msg, professor.Nome);
+        var professor = await _professorRepository.ObtemProfessorPorIdAsync(curso.ProfessorId);
+
+        var duracao = $"O curso tem duração de {curso.DataInicio} até {curso.DataFim}";
+
+        return new ObtemCursoResponse(curso.Nome, duracao, professor.Nome);
     }
 }

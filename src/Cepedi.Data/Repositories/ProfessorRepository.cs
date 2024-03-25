@@ -1,9 +1,18 @@
-﻿using Cepedi.Domain.Entities;
-using Cepedi.Domain.Interfaces;
+﻿using Cepedi.Domain;
+using Cepedi.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace Cepedi.Data.Repositories;
-public class ProfessorRepository : BaseRepository<ProfessorEntity>, IProfessorRepository
+namespace Cepedi.Data;
+
+public class ProfessorRepository : IProfessorRepository
 {
-    public ProfessorRepository(ApplicationDbContext context) : base(context) { }
+    private readonly ApplicationDbContext _context;
 
+    public ProfessorRepository(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
+    public async Task<ProfessorEntity> ObtemProfessorPorIdAsync(int professorId) 
+    => await _context.Professor.Where(professor => professor.Id == professorId).FirstOrDefaultAsync();
 }
