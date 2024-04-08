@@ -1,7 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
+using Cepedi.Shareable.Responses;
+using MediatR;
 namespace Cepedi.Shareable.Requests;
-public record CriaCursoRequest(string Nome, string Descricao, DateTime DataInicio, DateTime DataFim, int ProfessorId);
+
+public class CriarCursoRequest : IRequest<ObtemCursoResponse>
+{
+    string Nome { get; set; }
+    string Descricao { get; set; }
+    DateTime DataInicio { get; set; }
+    DateTime DataFim { get; set; }
+    int ProfessorId { get; set; }
+    string telefone { get; set; }
+}
