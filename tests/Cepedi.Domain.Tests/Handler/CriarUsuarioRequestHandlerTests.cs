@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NSubstitute;
 
-namespace Cepedi.Domain.Tests;
+namespace Cepedi.BancoCentral.Domain.Tests;
 
 public class CriarUsuarioRequestHandlerTests
 {
