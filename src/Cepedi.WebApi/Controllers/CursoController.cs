@@ -34,6 +34,8 @@ public class CursoController : ControllerBase
     //     return Ok(cursos);
     // }
 
+    // teste
+
     [HttpPost]
     [ProducesResponseType(typeof(ObtemCursoResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseErro), StatusCodes.Status400BadRequest)]
