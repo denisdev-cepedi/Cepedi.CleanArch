@@ -4,10 +4,10 @@ namespace Cepedi.Shareable.Requests;
 
 public class CriarCursoRequest : IRequest<ObtemCursoResponse>
 {
-    string Nome { get; set; }
-    string Descricao { get; set; }
-    DateTime DataInicio { get; set; }
-    DateTime DataFim { get; set; }
-    int ProfessorId { get; set; }
-    string telefone { get; set; }
+    public string Nome { get; set; } = default!;
+    public string Descricao { get; set; } = default!;
+    public DateTime DataInicio { get; set; }
+    public DateTime DataFim { get; set; }
+    public int ProfessorId { get; set; } = default!;
+    public string telefone { get; set; } = default!;
 }
