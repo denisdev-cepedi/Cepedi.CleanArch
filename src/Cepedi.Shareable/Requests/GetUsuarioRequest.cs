@@ -1,5 +1,6 @@
 ﻿namespace Cepedi.BancoCentral.Shareable;
 
-public interface IShareableEntryPoint
+public class GetUsuarioRequest
 {
+
 }

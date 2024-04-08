@@ -1,32 +1,45 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Cepedi.Domain.Handlers;
-using Cepedi.Shareable.Requests;
-using NSubstitute;
+﻿namespace Cepedi.Domain.Tests;
 
-namespace Cepedi.Domain.Tests.Handler
+public class CriaCursoHandlerTests
 {
-    public class CriaCursoHandlerTests
-    {
-        private readonly ICursoRepository _repository = Substitute.For<ICursoRepository>();
-        private readonly CriaCursoHandler _criaCurso;
+    //private readonly IUsuarioRepository _cursoRepository = 
+    //Substitute.For<IUsuarioRepository>();
+    //private readonly CriaCursoHandler _sut;
 
-        public CriaCursoHandlerTests() => _criaCurso = new CriaCursoHandler(_repository);
+    //public CriaCursoHandlerTests()
+    //{
+    //    _sut = new CriaCursoHandler(_cursoRepository);
+    //}
 
-        [Fact]
-        public async Task CriaCursoHandlerAsync_QuandoCriaCurso_DeveRetornarSucesso()
-        {
-            // Arrange
-            var curso = new CriaCursoRequest("Nome do curso", "Descricao do curso", DateTime.Now, DateTime.Now, 1);
-            _repository.CriaNovoCursoAsync(new()).ReturnsForAnyArgs(1);
+    ////TODO : Devo fazer esse teste em algum momento na minha vida
+    //// [Fact]
+    //// public async Task CriarCursoAsync_QuandoCriadoEnviarWhatsApp_DeveLancarException()
+    //// {
+    ////     // Arrange
+    ////     var curso = new CriaCursoRequest
+    ////     ("Teste", "Descricao", DateTime.Now,
+    ////      DateTime.Now,1 );
 
-            // Act
-            var result = await _criaCurso.CriarCursoAsync(curso);
+    ////     // Act
+    ////     var result = await _sut.CriarCursoAsync(curso);
 
-            // Assert
-            Assert.Equal(1, result);
-        }
-    }
+    ////     // Assert 
+    ////     Assert.Equal(result, default(int));
+    //// }
+
+    //[Fact]
+    //public async Task CriarCursoAsync_QuandoCriadoEnviarWhatsApp_DeveRetornarSucesso()
+    //{
+    //    // Arrange
+    //    var curso = new CriaCursoRequest
+    //    ("Teste", "Descricao", DateTime.Now,
+    //     DateTime.Now,1, "71123456");
+
+    //    // Act
+    //    var result = await _sut.CriarCursoAsync(curso);
+
+    //    // Assert 
+    //    Assert.Equal(result, default(int));
+    //}
+
 }

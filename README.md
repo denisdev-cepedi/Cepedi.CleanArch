@@ -1,6 +1,6 @@
 # Cepedi.CleanArch
 
-Executar o projeto `src\Cepedi.WebApi` para abrir o swagger
+Executar o projeto `src\Cepedi.BancoCentral.WebApi` para abrir o swagger
 
 ## Características do projeto
 
@@ -11,7 +11,7 @@ Executar o projeto `src\Cepedi.WebApi` para abrir o swagger
 - Framework de Mock: NSubstitute
 - Framework de fake data generator: Bogus
 - Code Analyzer: NetAnalyzers, SonarAnalyzer.Csharp
-- Banco de dados: Sqlite
+- Banco de dados: SqlServer
 - Projeto de testes de unidade
 - Controllers e Actinos atendendo o padrão RestFull
 - Tratamento de Warning como Error
@@ -23,5 +23,5 @@ Executar o projeto `src\Cepedi.WebApi` para abrir o swagger
 ## Setup
 
 * Quais ferramentas necessárias
- - Visual Studio, .NET Core SDK 8+, etc
+ - Visual Studio, .NET Core SDK 7+, etc
 
