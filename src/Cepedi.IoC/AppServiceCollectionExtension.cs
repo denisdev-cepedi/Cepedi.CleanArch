@@ -15,11 +15,13 @@ namespace Cepedi.IoC
         {
             ConfigureDbContext(services, configuration);
 
-            services.AddScoped<IListarCursosHandler, ListarCursosHandler>();
-            services.AddScoped<IObtemCursoHandler, ObtemCursoHandler>();
-            services.AddScoped<ICreateCursoHandler, CreateCursoHandler>();
-            services.AddScoped<IAtualizaCursoHandler, AtualizaCursoHandler>();
-            services.AddScoped<IDeleteCursoHandler, DeleteCursoHandler>();
+            // services.AddScoped<IListarCursosHandler, ListarCursosHandler>();
+            // services.AddScoped<IObtemCursoHandler, ObtemCursoHandler>();
+            // services.AddScoped<ICreateCursoHandler, CreateCursoHandler>();
+            // services.AddScoped<IAtualizaCursoHandler, AtualizaCursoHandler>();
+            // services.AddScoped<IDeleteCursoHandler, DeleteCursoHandler>();
+            ConfigureDbContext(services, configuration);
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
             services.AddScoped<IProfessorRepository, ProfessorRepository>();
             services.AddScoped<ICursoRepository, CursoRepository>();
             

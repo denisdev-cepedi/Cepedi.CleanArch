@@ -10,10 +10,6 @@
   <component name="ChangeListManager">
     <list default="true" id="63a0ad65-917b-4325-9538-b281ee16b67e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Cepedi.CleanArch/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Cepedi.CleanArch/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cepedi.Data/Repositories/CursoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cepedi.Data/Repositories/CursoRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cepedi.Domain/Repository/ICursoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cepedi.Domain/Repository/ICursoRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cepedi.IoC/AppServiceCollectionExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cepedi.IoC/AppServiceCollectionExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cepedi.WebApi/Controllers/CursoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cepedi.WebApi/Controllers/CursoController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,39 +19,42 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7c7da17bf69d4019b180a4c6707e347cd310/eb/86d6b7cb/HealthCheckServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2e3ThF063Bn8ZvyOzWOdkrYrdh5" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.Cepedi.WebApi: http.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Victor/Semana2-Tarefa-18-03",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.Cepedi.WebApi: http.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Victor/Semana2-Tarefa-18-03&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "/home/victorquirino/.config/JetBrains/Rider2023.3/resharper-host/DecompilerCache",
-      "/home/victorquirino/.config/JetBrains/Rider2023.3/resharper-host/SourcesCache",
-      "/home/victorquirino/.local/share/Symbols/src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/home/victorquirino/.config/JetBrains/Rider2023.3/resharper-host/DecompilerCache&quot;,
+      &quot;/home/victorquirino/.config/JetBrains/Rider2023.3/resharper-host/SourcesCache&quot;,
+      &quot;/home/victorquirino/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.Cepedi.WebApi: http">
     <configuration name="Cepedi.WebApi: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/Cepedi.WebApi/Cepedi.WebApi.csproj" />
@@ -96,7 +95,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1711132386060</updated>
-      <workItem from="1711132401736" duration="10943000" />
+      <workItem from="1711132401736" duration="11917000" />
+      <workItem from="1711203054294" duration="570000" />
+      <workItem from="1711207965832" duration="639000" />
+      <workItem from="1711284579457" duration="454000" />
+      <workItem from="1711562882934" duration="4206000" />
+      <workItem from="1712079534254" duration="139000" />
+      <workItem from="1712079757866" duration="286000" />
+      <workItem from="1712595470938" duration="601000" />
     </task>
     <servers />
   </component>
