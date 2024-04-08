@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="Refit" Version="7.0.0" />
+    <PackageReference Include="MediatR" Version="12.0.1" />
   </ItemGroup>
 
 </Project>
