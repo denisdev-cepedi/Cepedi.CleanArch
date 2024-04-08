@@ -43,10 +43,13 @@ public class UserController : ControllerBase
         return await _mediator.Send(request);
     }
 
-    //[HttpPut]
-    //public async Task<ActionResult<int>> AlterarCursoAsync([FromBody] CriarUsuarioRequest request)
-    //{
-    //    var cursoId = await _alteraCursoHandler.AlterarCursoAsync(request);
-    //    return Ok(cursoId);
-    //}
+    [HttpPut]
+    [ProducesResponseType(typeof(AlterarUsuarioResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErro), StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<AlterarUsuarioResponse>>AlterarUsuarioAsync(
+        [FromBody] AlterarUsuarioRequest request)
+    {
+        return await _mediator.Send(request);
+    }
+
 }

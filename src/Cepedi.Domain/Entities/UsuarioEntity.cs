@@ -14,4 +14,15 @@ public class UsuarioEntity
     public bool CelularValidado { get; set; }
 
     public string Email { get; set; } = default!;
+
+    internal void Atualizar(int id, DateTime dataNascimento, string celular, bool celularValidado, string email, string cpf)
+    {
+    
+        DataNascimento = dataNascimento;
+        Celular = celular;
+        CelularValidado = celularValidado;
+        Email = email;
+        Cpf = cpf;
+        
+    }
 }
