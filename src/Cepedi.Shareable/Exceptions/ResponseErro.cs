@@ -1,5 +1,5 @@
-namespace Cepedi.Shareable.Exceptions;
-public class ResponseError
+﻿namespace Cepedi.Shareable.Exceptions;
+public class ResponseErro
 {
     public string Titulo { get; set; } = default!;
 

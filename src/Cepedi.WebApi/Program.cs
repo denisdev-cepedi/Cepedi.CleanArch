@@ -1,7 +1,6 @@
 using Serilog;
-using Cepedi.IoC;
-using Cepedi.WebApi;
-using Cepedi.Domain.Repository;
+using Cepedi.BancoCentral.IoC;
+using Cepedi.BancoCentral.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +11,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
-
 
 builder.Services.ConfigureAppDependencies(builder.Configuration);
 
