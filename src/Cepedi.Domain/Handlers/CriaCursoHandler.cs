@@ -8,7 +8,7 @@ using Cepedi.Shareable.Requests;
 
 namespace Cepedi.Domain.Handlers
 {
-    public class CriaCursoHandler: ICriaCursoHandler
+    public class CriaCursoHandler: ICriarCursoHandler
     {
          private readonly ICursoRepository _cursoRepository;
 
@@ -17,7 +17,7 @@ namespace Cepedi.Domain.Handlers
             _cursoRepository = cursoRepository;
         }
 
-        public async Task<int> CriarCursoAsync(CriaCursoRequest request)
+        public async Task<int> CriarCursoAsync(CriarCursoRequest request)
         {
             var novoCurso = new CursoEntity
             {

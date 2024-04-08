@@ -6,8 +6,8 @@ using Cepedi.Shareable.Requests;
 
 namespace Cepedi.Domain.Repository
 {
-    public interface ICriaCursoHandler
+    public interface ICriarCursoHandler
     {
-         Task<int> CriarCursoAsync(CriaCursoRequest request);
+         Task<int> CriarCursoAsync(CriarCursoRequest request);
     }
 }

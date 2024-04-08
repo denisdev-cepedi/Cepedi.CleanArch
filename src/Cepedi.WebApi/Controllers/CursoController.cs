@@ -4,6 +4,7 @@ using Cepedi.IoC;
 using Cepedi.Shareable.Requests;
 using Cepedi.Shareable.Responses;
 using Microsoft.AspNetCore.Mvc;
+using MediatR;
 
 namespace Cepedi.WebApi.Controllers;
 
@@ -12,51 +13,46 @@ namespace Cepedi.WebApi.Controllers;
 public class CursoController : ControllerBase
 {
     private readonly ILogger<CursoController> _logger;
-    private readonly IObtemCursoHandler _obtemCursoHandler;
-    private readonly ICriaCursoHandler _criaCursoHandler;
-    private readonly IAlteraCursoHandler _alteraCursoHandler;
-    private readonly IExcluirCursoHandler _excluiCursoHandler;
+    private readonly IMediator _mediator;
+
 
     public CursoController(
         ILogger<CursoController> logger,
-        IObtemCursoHandler obtemCursoHandler,
-        ICriaCursoHandler criaCursoHandler,
-        IAlteraCursoHandler alteraCursoHandler, 
-        IExcluirCursoHandler excluiCursoHandler)
+        IMediator mediator)
     {
         _logger = logger;
-        _obtemCursoHandler = obtemCursoHandler;
-        _criaCursoHandler = criaCursoHandler;
-        _alteraCursoHandler = alteraCursoHandler;
-        _excluiCursoHandler = excluiCursoHandler;
+        _mediator = mediator;
     }
 
-    [HttpGet("{idCurso}")]
-    public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso)
-    {
-        return Ok(await _obtemCursoHandler.ObterCursoAsync(idCurso));
-    }
-    [HttpGet()]
-    public async Task<ActionResult<IEnumerable<ObtemCursoResponse>>> ConsultarCursosAsync()
-    {
-        return Ok(await _obtemCursoHandler.ObterCursosAsync());
-    }
+    // [HttpGet("{idCurso}")]
+    // public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso)
+    // {
+    //     return Ok(await _obtemCursoHandler.ObterCursoAsync(idCurso));
+    // }
+
+    // [HttpGet()]
+    // public async Task<ActionResult<IEnumerable<ObtemCursoResponse>>> ConsultarCursosAsync()
+    // {
+    //     return Ok(await _obtemCursoHandler.ObterCursosAsync());
+    // }
+
     [HttpPost]
-    public async Task<ActionResult<int>> CriarCursoAsync([FromBody] CriaCursoRequest request)
+    public async Task<ActionResult<CriarCursoResponse>> CriarCursoAsync([FromBody] CriarCursoRequest request)
     {
-        var cursoId = await _criaCursoHandler.CriarCursoAsync(request);
-        return Ok(cursoId);
+        return await _mediator.Send(request);
     }
-    [HttpPut]
-    public async Task<ActionResult<int>> AlterarCursoAsync([FromBody] AlteraCursoRequest request)
-    {
-        var cursoId = await _alteraCursoHandler.AlterarCursoAsync(request);
-        return Ok(cursoId);
-    }
-    [HttpDelete("{idCurso}")]
-    public async Task<ActionResult<int>> ExcluirCursoAsync([FromRoute] int idCurso)
-    {
-        var cursoId = await _excluiCursoHandler.ExcluirCursoAsync(idCurso);
-        return Ok(cursoId);
-    }
+
+    // [HttpPut]
+    // public async Task<ActionResult<int>> AlterarCursoAsync([FromBody] AlteraCursoRequest request)
+    // {
+    //     var cursoId = await _alteraCursoHandler.AlterarCursoAsync(request);
+    //     return Ok(cursoId);
+    // }
+
+    // [HttpDelete("{idCurso}")]
+    // public async Task<ActionResult<int>> ExcluirCursoAsync([FromRoute] int idCurso)
+    // {
+    //     var cursoId = await _excluiCursoHandler.ExcluirCursoAsync(idCurso);
+    //     return Ok(cursoId);
+    // }
 }
