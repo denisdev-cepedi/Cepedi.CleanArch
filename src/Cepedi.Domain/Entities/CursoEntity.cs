@@ -2,10 +2,10 @@
 
 public class CursoEntity
 {
-    public CursoEntity()
-    {        
-    }
+    // Construtor padrão necessário para o Entity Framework
+    private CursoEntity() {}
 
+    // Construtor para inicialização direta das propriedades
     public CursoEntity(int id, string nome, string descricao, DateTime inicio, DateTime fim, ProfessorEntity professor)
     {
         Id = id;
@@ -16,18 +16,18 @@ public class CursoEntity
         Professor = professor;
     }
 
-    public int Id { get; set; }
+    public int Id { get; private set; }
 
-    public string Nome { get; set; } = default!;
+    public string Nome { get; private set; } = default!;
 
-    public string Descricao { get; set; } = default!;
+    public string Descricao { get; private set; } = default!;
 
-    public DateTime DataInicio { get; set; }
+    public DateTime DataInicio { get; private set; }
     
-    public DateTime DataFim { get; set; }
+    public DateTime DataFim { get; private set; }
 
-    public ProfessorEntity Professor { get; set; }
+    // Propriedade de navegação para o Professor
+    public ProfessorEntity Professor { get; private set; }
 
     public int ProfessorId { get; set; } 
-
 }
