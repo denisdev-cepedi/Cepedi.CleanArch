@@ -3,15 +3,18 @@ using Cepedi.BancoCentral.Domain.Repository;
 using Cepedi.Shareable.Requests;
 using Cepedi.Shareable.Responses;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
-namespace Cepedi.Domain.Handlers;
+namespace Cepedi.BancoCentral.Domain.Handlers;
 public class CriarUsuarioRequestHandler : IRequestHandler<CriarUsuarioRequest, CriarUsuarioResponse>
 {
+    private readonly ILogger<CriarUsuarioRequestHandler> _logger;
     private readonly IUsuarioRepository _usuarioRepository;
 
-    public CriarUsuarioRequestHandler(IUsuarioRepository usuarioRepository)
+    public CriarUsuarioRequestHandler(IUsuarioRepository usuarioRepository, ILogger<CriarUsuarioRequestHandler> logger)
     {
         _usuarioRepository = usuarioRepository;
+        _logger = logger;
     }
 
     public async Task<CriarUsuarioResponse> Handle(CriarUsuarioRequest request, CancellationToken cancellationToken)
@@ -32,8 +35,10 @@ public class CriarUsuarioRequestHandler : IRequestHandler<CriarUsuarioRequest, C
 
             return new CriarUsuarioResponse(usuario.Id, usuario.Nome);
 
-        }catch
+        }
+        catch
         {
+            _logger.LogError("Ocorreu um erro durante a execução");
             throw;
         }
     }

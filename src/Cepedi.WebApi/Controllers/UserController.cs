@@ -37,7 +37,8 @@ public class UserController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(CriarUsuarioResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseErro), StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<CriarUsuarioResponse>> CriarCursoAsync([FromBody] CriarUsuarioRequest request)
+    public async Task<ActionResult<CriarUsuarioResponse>> CriarUsuarioAsync(
+        [FromBody] CriarUsuarioRequest request)
     {
         return await _mediator.Send(request);
     }
