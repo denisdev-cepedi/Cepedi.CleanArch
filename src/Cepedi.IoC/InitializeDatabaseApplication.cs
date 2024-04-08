@@ -45,17 +45,14 @@ public class ApplicationDbContextInitialiser
     public async Task TrySeedAsync()
     {
         // Default roles
-        var professor = new ProfessorEntity(1, "Denis", ".NET");
-        var curso = new CursoEntity(1, ".NET Avançado", "Curso avançado de .NET", DateTime.Now, DateTime.Now.AddMonths(3), professor);
-
-        // Adicionando o curso à lista de cursos do professor
-        professor.Cursos.Add(curso);
+        var usuario = new UsuarioEntity { Nome = "Denis", Celular = "71992414041", CelularValidado = true, 
+            Cpf = "1234567891", DataNascimento = DateTime.Now.AddYears(-31), Email = "denis.vieira@cepedi.org.br" };
 
         // Default data
         // Seed, if necessary
-        if (!_context.Professor.Any())
+        if (!_context.Usuario.Any())
         {
-            _context.Professor.Add(professor);            
+            _context.Usuario.Add(usuario);
 
             await _context.SaveChangesAsync();
         }
