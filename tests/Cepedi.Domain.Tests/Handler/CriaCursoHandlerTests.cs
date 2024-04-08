@@ -1,56 +1,32 @@
-﻿using Cepedi.Data;
-using Cepedi.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Cepedi.Domain.Handlers;
 using Cepedi.Shareable.Requests;
-using Microsoft.EntityFrameworkCore;
 using NSubstitute;
 
-namespace Cepedi.Domain.Tests;
-
-public class CriaCursoHandlerTests
+namespace Cepedi.Domain.Tests.Handler
 {
-    private readonly ICursoRepository _cursoRepository = 
-    Substitute.For<ICursoRepository>();
-    private readonly IWhatsApp _whatsApp = Substitute.For<IWhatsApp>();
-    private readonly CriaCursoHandler _sut;
-
-    public CriaCursoHandlerTests()
+    public class CriaCursoHandlerTests
     {
-        _sut = new CriaCursoHandler(_cursoRepository, _whatsApp);
+        private readonly ICursoRepository _repository = Substitute.For<ICursoRepository>();
+        private readonly CriaCursoHandler _criaCurso;
+
+        public CriaCursoHandlerTests() => _criaCurso = new CriaCursoHandler(_repository);
+
+        [Fact]
+        public async Task CriaCursoHandlerAsync_QuandoCriaCurso_DeveRetornarSucesso()
+        {
+            // Arrange
+            var curso = new CriaCursoRequest("Nome do curso", "Descricao do curso", DateTime.Now, DateTime.Now, 1);
+            _repository.CriaNovoCursoAsync(new()).ReturnsForAnyArgs(1);
+
+            // Act
+            var result = await _criaCurso.CriarCursoAsync(curso);
+
+            // Assert
+            Assert.Equal(1, result);
+        }
     }
-    //TODO : Devo fazer esse teste em algum momento na minha vida
-    // [Fact]
-    // public async Task CriarCursoAsync_QuandoCriadoEnviarWhatsApp_DeveLancarException()
-    // {
-    //     // Arrange
-    //     var curso = new CriaCursoRequest
-    //     ("Teste", "Descricao", DateTime.Now,
-    //      DateTime.Now,1 );
-
-    //     // Act
-    //     var result = await _sut.CriarCursoAsync(curso);
-
-    //     // Assert 
-    //     Assert.Equal(result, default(int));
-    // }
-
-    [Fact]
-    public async Task CriarCursoAsync_QuandoCriadoEnviarWhatsApp_DeveRetornarSucesso()
-    {
-        // Arrange
-        var curso = new CriaCursoRequest
-        ("Teste", "Descricao", DateTime.Now,
-         DateTime.Now,1, "71123456");
-
-         _whatsApp.EnviarMensagemWhatsAppAsync(
-            default(string), default(string))
-         .ReturnsForAnyArgs("Sucesso");
-
-        // Act
-        var result = await _sut.CriarCursoAsync(curso);
-
-        // Assert 
-        Assert.Equal(result, default(int));
-    }
-
 }

@@ -25,6 +25,12 @@ namespace Cepedi.Data
             return _context.SaveChangesAsync();
         }
 
+        public Task<int> ExcluirCursoAsync(int idCurso)
+        {
+            _context.Curso.Remove(_context.Curso.Find(idCurso));
+            return _context.SaveChangesAsync();
+        }
+
         public async Task<CursoEntity> ObtemCursoPorIdAsync(int idCurso) => 
         await _context.Curso.Where(curso => curso.Id == idCurso).FirstOrDefaultAsync();
 

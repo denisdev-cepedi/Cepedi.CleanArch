@@ -1,0 +1,4 @@
+﻿namespace Cepedi.Shareable.Responses;
+
+public record CriaCursoResponse(string Nome, string Descricao, DateTime DataInicio, DateTime DataFim, int ProfessorId);
+
