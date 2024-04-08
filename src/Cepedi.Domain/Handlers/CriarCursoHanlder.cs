@@ -1,9 +1,11 @@
 ﻿using Cepedi.Domain.Entities;
 using Cepedi.Shareable;
+using Cepedi.Shareable.Responses;
+using MediatR;
 
 namespace Cepedi.Domain;
 
-public class CriarCursoHandlder : ICriarCursoHandler
+public class CriarCursoHandlder : IRequestHandler<CriarCursoRequest, CriarCursoResponse>
 {
     private readonly ICursoRepository _cursoRepository;
     private readonly IProfessorRepository _professorRepository;
@@ -14,7 +16,7 @@ public class CriarCursoHandlder : ICriarCursoHandler
         _professorRepository = professorRepository;
     }
 
-    public async Task<int> CriarCursoAsync(CriarCursoRequest request)
+    public async Task<CriarCursoResponse> Handle(CriarCursoRequest request, CancellationToken cancellationToken)
     {
         ProfessorEntity professor = _professorRepository.ObtemProfessorPorIdAsync(request.idProfessor);
         var novoCurso = new CursoEntity
@@ -28,6 +30,6 @@ public class CriarCursoHandlder : ICriarCursoHandler
         };
 
         await _cursoRepository.AddCursoDbAsync(novoCurso);
-        return default(int);
+        return new CriarCursoResponse(novoCurso.Id, novoCurso.Nome);
     }
 }
