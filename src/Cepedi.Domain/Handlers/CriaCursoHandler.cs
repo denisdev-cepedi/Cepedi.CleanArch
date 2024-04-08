@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using Cepedi.Domain.Entities;
 using Cepedi.Domain.Repository;
 using Cepedi.Shareable.Requests;
+using MediatR;
 
 namespace Cepedi.Domain.Handlers
 {
-    public class CriaCursoHandler: ICriaCursoHandler
+    public class CriaCursoHandler: IRequestHandler<CriarCursoRequest, CriarCursoResponse>
     {
          private readonly ICursoRepository _cursoRepository;
 
@@ -16,23 +17,28 @@ namespace Cepedi.Domain.Handlers
         {
             _cursoRepository = cursoRepository;
         }
-
-        public async Task<int> CriarCursoAsync(CriaCursoRequest request)
+        public async Task<CriarCursoResponse> Handle(CriarCursoRequest request, CancellationToken cancellationToken)
         {
-            var novoCurso = new CursoEntity
+            try
             {
-                Nome = request.Nome,
-                Descricao = request.Descricao,
-                DataInicio = request.DataInicio,
-                DataFim = request.DataFim,
-                ProfessorId = request.ProfessorId
-            };
-            
-            
-            await _cursoRepository.CriaNovoCursoAsync(novoCurso);
+                var novoCurso = new CursoEntity
+                {
+                    Nome = request.Nome,
+                    Descricao = request.Descricao,
+                    DataInicio = request.DataInicio,
+                    DataFim = request.DataFim,
+                    ProfessorId = request.ProfessorId
+                };
+                
 
-            return default(int);
+                await _cursoRepository.CriaNovoCursoAsync(novoCurso);
 
+                return new CriarCursoResponse(novoCurso.Nome, novoCurso.Descricao, novoCurso.DataInicio.ToString());
+
+            }catch
+            {
+                throw;
+            }
         }
 
     }

@@ -1,4 +1,4 @@
-﻿﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using Cepedi.Data;
 using Cepedi.Domain;
 using Cepedi.Domain.Handlers;
@@ -15,11 +15,13 @@ namespace Cepedi.IoC
         public static void ConfigureAppDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             ConfigureDbContext(services, configuration);
+
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
             
             services.AddScoped<IObtemCursoHandler, ObtemCursoHandler>();
             services.AddScoped<IProfessorRepository, ProfessorRepository>();
             services.AddScoped<ICursoRepository, CursoRepository>();
-            services.AddScoped<ICriaCursoHandler, CriaCursoHandler>();
+            // services.AddScoped<ICriaCursoHandler, CriaCursoHandler>();
             services.AddScoped<IAlteraCursoHandler, AlteraCursoHandler>();
             //services.AddHttpContextAccessor();
 
@@ -32,7 +34,7 @@ namespace Cepedi.IoC
             services.AddDbContext<ApplicationDbContext>((sp, options) =>
             {
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
-                //options.UseSqlServer(connectionString);
+                // options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
             services.AddScoped<ApplicationDbContextInitialiser>();
