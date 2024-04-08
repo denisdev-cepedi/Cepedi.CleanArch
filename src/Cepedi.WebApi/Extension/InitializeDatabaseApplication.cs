@@ -1,6 +1,6 @@
-﻿using Cepedi.IoC;
+﻿using Cepedi.BancoCentral.IoC;
 
-namespace Cepedi.WebApi;
+namespace Cepedi.BancoCentral.WebApi;
 public static class InitializeDatabaseApplication
 {
     public static async Task InitialiseDatabaseAsync(this WebApplication application)
