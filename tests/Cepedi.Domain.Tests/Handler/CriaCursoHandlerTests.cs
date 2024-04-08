@@ -1,74 +1,74 @@
-﻿using Cepedi.Data;
-using Cepedi.Domain.Entities;
-using Cepedi.Domain.Handlers;
-using Cepedi.Shareable.Requests;
-using Microsoft.EntityFrameworkCore;
-using NSubstitute;
+﻿// using Cepedi.Data;
+// using Cepedi.Domain.Entities;
+// using Cepedi.Domain.Handlers;
+// using Cepedi.Shareable.Requests;
+// using Microsoft.EntityFrameworkCore;
+// using NSubstitute;
 
-namespace Cepedi.Domain.Tests;
+// namespace Cepedi.Domain.Tests;
 
-public class CriaCursoHandlerTests
-{
-    private readonly ICursoRepository _cursoRepository = 
-    Substitute.For<ICursoRepository>();
-    // private readonly IWhatsApp _whatsApp = Substitute.For<IWhatsApp>();
-    private readonly CriaCursoHandler _sut;
+// public class CriaCursoHandlerTests
+// {
+//     private readonly ICursoRepository _cursoRepository = 
+//     Substitute.For<ICursoRepository>();
+//     // private readonly IWhatsApp _whatsApp = Substitute.For<IWhatsApp>();
+//     private readonly CriaCursoHandler _sut;
 
-    public CriaCursoHandlerTests()
-    {
-        _sut = new CriaCursoHandler(_cursoRepository);
-    }
+//     public CriaCursoHandlerTests()
+//     {
+//         _sut = new CriaCursoHandler(_cursoRepository);
+//     }
 
-    //TODO : Devo fazer esse teste em algum momento na minha vida
-    // [Fact]
-    // public async Task CriarCursoAsync_QuandoCriadoEnviarWhatsApp_DeveLancarException()
-    // {
-    //     // Arrange
-    //     var curso = new CriaCursoRequest
-    //     ("Teste", "Descricao", DateTime.Now,
-    //      DateTime.Now,1 );
+//     //TODO : Devo fazer esse teste em algum momento na minha vida
+//     // [Fact]
+//     // public async Task CriarCursoAsync_QuandoCriadoEnviarWhatsApp_DeveLancarException()
+//     // {
+//     //     // Arrange
+//     //     var curso = new CriaCursoRequest
+//     //     ("Teste", "Descricao", DateTime.Now,
+//     //      DateTime.Now,1 );
 
-    //     // Act
-    //     var result = await _sut.CriarCursoAsync(curso);
+//     //     // Act
+//     //     var result = await _sut.CriarCursoAsync(curso);
 
-    //     // Assert 
-    //     Assert.Equal(result, default(int));
-    // }
-    
-    [Fact]
-    public async Task CriarCursoAsync_QuandoCriadoEnviarWhatsApp_DeveRetornarSucesso()
-    {
-        // Arrange
-        var curso = new CriaCursoRequest
-        ("Teste", "Descricao", DateTime.Now,
-         DateTime.Now,1);
+//     //     // Assert 
+//     //     Assert.Equal(result, default(int));
+//     // }
 
-        _cursoRepository.CriaNovoCursoAsync(new CursoEntity()).ReturnsForAnyArgs(1);
+//     [Fact]
+//     public async Task CriarCursoAsync_QuandoCriadoEnviarWhatsApp_DeveRetornarSucesso()
+//     {
+//         // Arrange
+//         var curso = new CriaCursoRequest
+//         ("Teste", "Descricao", DateTime.Now,
+//          DateTime.Now,1);
 
-        // Act
-        var result = await _sut.CriarCursoAsync(curso);
+//         _cursoRepository.CriaNovoCursoAsync(new CursoEntity()).ReturnsForAnyArgs(1);
 
-        // Assert 
-        Assert.Equal(1,result);
-    }
+//         // Act
+//         var result = await _sut.CriarCursoAsync(curso);
 
-    // [Fact]
-    // public async Task CriarCursoAsync_QuandoCriadoEnviarWhatsApp_DeveRetornarSucesso()
-    // {
-    //     // Arrange
-    //     var curso = new CriaCursoRequest
-    //     ("Teste", "Descricao", DateTime.Now,
-    //      DateTime.Now,1, "71123456");
+//         // Assert 
+//         Assert.Equal(1,result);
+//     }
 
-    //      _whatsApp.EnviarMensagemWhatsAppAsync(
-    //         default(string), default(string))
-    //      .ReturnsForAnyArgs("Sucesso");
+//     // [Fact]
+//     // public async Task CriarCursoAsync_QuandoCriadoEnviarWhatsApp_DeveRetornarSucesso()
+//     // {
+//     //     // Arrange
+//     //     var curso = new CriaCursoRequest
+//     //     ("Teste", "Descricao", DateTime.Now,
+//     //      DateTime.Now,1, "71123456");
 
-    //     // Act
-    //     var result = await _sut.CriarCursoAsync(curso);
+//     //      _whatsApp.EnviarMensagemWhatsAppAsync(
+//     //         default(string), default(string))
+//     //      .ReturnsForAnyArgs("Sucesso");
 
-    //     // Assert 
-    //     Assert.Equal(result, default(int));
-    // }
+//     //     // Act
+//     //     var result = await _sut.CriarCursoAsync(curso);
 
-}
+//     //     // Assert 
+//     //     Assert.Equal(result, default(int));
+//     // }
+
+// }

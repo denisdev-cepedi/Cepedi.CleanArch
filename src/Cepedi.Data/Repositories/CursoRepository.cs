@@ -25,24 +25,25 @@ namespace Cepedi.Data
             return _context.SaveChangesAsync();
         }
 
-        public Task<int> DeletarCursoAsync(CursoEntity curso) {
+        public Task<int> DeletarCursoAsync(CursoEntity curso)
+        {
             _context.Curso.Remove(curso);
             return _context.SaveChangesAsync();
         }
 
-        public async Task<CursoEntity> ObtemCursoPorIdAsync(int idCurso) => 
-        await _context.Curso.Where(curso => curso.Id == idCurso).FirstOrDefaultAsync() ;
+        public async Task<CursoEntity> ObtemCursoPorIdAsync(int idCurso) =>
+        await _context.Curso.Where(curso => curso.Id == idCurso).FirstOrDefaultAsync();
 
         public async Task<List<CursoEntity>> ObtemCursosAsync()
         {
-           return await _context.Curso.ToListAsync();
+            return await _context.Curso.ToListAsync();
         }
 
-        Task<int> ICursoRepository.CriaNovoCursoAsync(CursoEntity curso)
+        public async Task<CursoEntity> CriaNovoCursoAsync(CursoEntity curso)
         {
             _context.Curso.Add(curso);
-            return _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            return curso;
         }
-        
     }
 }

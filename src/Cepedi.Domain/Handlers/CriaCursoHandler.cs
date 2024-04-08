@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 using Cepedi.Domain.Entities;
 using Cepedi.Domain.Repository;
 using Cepedi.Shareable.Requests;
+using Cepedi.Shareable.Responses;
 
 namespace Cepedi.Domain.Handlers
 {
-    public class CriaCursoHandler: ICriaCursoHandler
+    public class CriaCursoHandler : ICriaCursoHandler
     {
-         private readonly ICursoRepository _cursoRepository;
+        private readonly ICursoRepository _cursoRepository;
         //  private readonly IWhatsApp _whatsApp;
 
         public CriaCursoHandler(ICursoRepository cursoRepository)
@@ -19,7 +20,7 @@ namespace Cepedi.Domain.Handlers
             // _whatsApp = whatsApp;
         }
 
-        public async Task<int> CriarCursoAsync(CriaCursoRequest request)
+        public async Task<CursoEntity> CriarCursoAsync(CriaCursoRequest request)
         {
             var novoCurso = new CursoEntity
             {
@@ -30,7 +31,7 @@ namespace Cepedi.Domain.Handlers
                 ProfessorId = request.ProfessorId,
                 // Telefone = request.telefone
             };
-        
+
 
             // var retornoMensagem = await _whatsApp.EnviarMensagemWhatsAppAsync(request.telefone, $"O curso {request.Descricao} está aberto");
 

@@ -1,5 +1,4 @@
 ﻿using Cepedi.Domain.Entities;
-using Cepedi.Shareable.;
 using Cepedi.Shareable.Requests;
 using Cepedi.Shareable.Responses;
 using MediatR;
@@ -15,7 +14,7 @@ public class CriarCursoRequestHandler : IRequestHandler<CriaCursoRequest, CriaCu
         _cursoRepository = cursoRepository;
     }
 
-    public async Task<int> Handle(CriaCursoRequest request, CancellationToken cancellationToken)
+    public async Task<CriaCursoResponse> Handle(CriaCursoRequest request, CancellationToken cancellationToken)
     {
         var novoCurso = new CursoEntity
         {

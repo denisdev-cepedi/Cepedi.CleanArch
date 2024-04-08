@@ -7,13 +7,13 @@ public interface ICursoRepository
 {
     Task<CursoEntity> ObtemCursoPorIdAsync(int idCurso);
     Task<List<CursoEntity>> ObtemCursosAsync();
-    Task<int> CriaNovoCursoAsync(CursoEntity curso);
+    Task<CursoEntity> CriaNovoCursoAsync(CursoEntity curso);
     Task<int> AlterarCursoAsync(CursoEntity curso);
 
     Task<int> DeletarCursoAsync(CursoEntity curso);
 }
 
-public interface IWhatsApp 
+public interface IWhatsApp
 {
     Task<string> EnviarMensagemWhatsAppAsync(string numeroTelefone, string mensagem);
 }
