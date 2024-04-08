@@ -6,6 +6,7 @@ using Cepedi.Domain.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MediatR;
 
 namespace Cepedi.IoC
 {
@@ -19,7 +20,8 @@ namespace Cepedi.IoC
             services.AddScoped<IObtemCursoHandler, ObtemCursoHandler>();
             services.AddScoped<IProfessorRepository, ProfessorRepository>();
             services.AddScoped<ICursoRepository, CursoRepository>();
-            services.AddScoped<ICriaCursoHandler, CriaCursoHandler>();
+            // services.AddScoped<ICriaCursoHandler, CriaCursoHandler>();
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
             services.AddScoped<IAlteraCursoHandler, AlteraCursoHandler>();
             services.AddScoped<IDeletarCursoHandler, DeletarCursoHandler>();
             //services.AddHttpContextAccessor();
