@@ -27,7 +27,7 @@ public class UserController : ControllerBase
     [ProducesResponseType(typeof(ResponseErro), StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<ObterUsuarioResponse>> ObterUsuarioAsync([FromRoute] ObterUsuarioRequest request)
     {
-        return await _mediator.Send(new ObterUsuarioRequest());
+        return await _mediator.Send(request);
     }
     
     //[HttpGet()]
@@ -52,10 +52,10 @@ public class UserController : ControllerBase
         return await _mediator.Send(request);
     }
 
-    [HttpDelete]
+    [HttpDelete("{Id}")]
     [ProducesResponseType(typeof(DeletarUsuarioResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseErro), StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<DeletarUsuarioResponse>> DeletarUsuarioAsync([FromBody] DeletarUsuarioRequest request)
+    public async Task<ActionResult<DeletarUsuarioResponse>> DeletarUsuarioAsync([FromRoute] DeletarUsuarioRequest request)
     {
         return await _mediator.Send(request);
     }

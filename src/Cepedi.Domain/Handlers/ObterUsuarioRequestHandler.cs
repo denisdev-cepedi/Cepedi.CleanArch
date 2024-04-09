@@ -18,8 +18,8 @@ public class ObterUsuarioRequestHandler : IRequestHandler<ObterUsuarioRequest, O
     {
         try
         {
-            var id = request;
-            var usuario = await _usuarioRepository.ObterUsuarioAsync(1);
+            var teste = request;
+            var usuario = await _usuarioRepository.ObterUsuarioAsync(request.Id);
 
             return new ObterUsuarioResponse(usuario.Id, usuario.Nome, usuario.Email, usuario.DataNascimento.ToString(), usuario.Celular);
 
