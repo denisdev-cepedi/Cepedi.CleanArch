@@ -1,4 +1,4 @@
-﻿namespace Cepedi.Shareable;
+﻿namespace Cepedi.BancoCentral.Shareable;
 
 public interface IShareableEntryPoint
 {
