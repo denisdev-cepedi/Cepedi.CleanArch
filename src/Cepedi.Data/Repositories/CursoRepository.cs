@@ -1,43 +1,50 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Cepedi.Domain;
+﻿using Cepedi.Domain;
 using Cepedi.Domain.Entities;
-using Cepedi.Shareable.Requests;
 using Microsoft.EntityFrameworkCore;
 
-namespace Cepedi.Data
+namespace Cepedi.Data;
+
+public class CursoRepository : ICursoRepository
 {
-    public class CursoRepository : ICursoRepository
+    private readonly ApplicationDbContext _context;
+
+    public CursoRepository(ApplicationDbContext context)
     {
+        _context = context;
+    }
 
-        private readonly ApplicationDbContext _context;
+    public Task<int> AlterarCursoAsync(CursoEntity curso)
+    {
+        _context.Curso.Update(curso);
+        return _context.SaveChangesAsync();
+    }
 
-        public CursoRepository(ApplicationDbContext context)
+    public Task<CursoEntity> CriarCursoAsync(CursoEntity curso)
+    {
+        _context.Curso.Add(curso);
+        _context.SaveChanges();
+        return Task.FromResult(curso);
+    }
+
+    public Task<int> ExcluirCursoAsync(int idCurso)
+    {
+        var cursoEncontrado = _context.Curso.SingleOrDefault(c => c.Id == idCurso);
+        if (cursoEncontrado == null)
         {
-            _context = context;
+            throw new Exception($"Curso com ID {idCurso} não encontrado");
         }
 
-        public Task<int> AlterarCursoAsync(CursoEntity curso)
-        {
-            _context.Curso.Update(curso);
-            return _context.SaveChangesAsync();
-        }
+        _context.Curso.Remove(cursoEncontrado);
+        return _context.SaveChangesAsync();
+    }
 
-        public async Task<CursoEntity> ObtemCursoPorIdAsync(int idCurso) => 
-        await _context.Curso.Where(curso => curso.Id == idCurso).FirstOrDefaultAsync();
+    public async Task<CursoEntity> ObtemCursoPorIdAsync(int idCurso) =>
+    await _context.Curso.Where(curso => curso.Id == idCurso).FirstOrDefaultAsync();
 
-        public async Task<List<CursoEntity>> ObtemCursosAsync()
-        {
-           return await _context.Curso.ToListAsync();
-        }
-
-        Task<int> ICursoRepository.CriaNovoCursoAsync(CursoEntity curso)
-        {
-            _context.Curso.Add(curso);
-            return _context.SaveChangesAsync();
-        }
-        
+    Task<IEnumerable<CursoEntity>> ICursoRepository.ObtemCursosAsync()
+    {
+        return _context.Curso
+            .ToListAsync()
+            .ContinueWith(task => task.Result.AsEnumerable());
     }
 }
