@@ -52,4 +52,22 @@ public class UserController : ControllerBase
         return await _mediator.Send(request);
     }
 
+    [HttpGet]
+    [ProducesResponseType(typeof(ObterUsuarioByIdResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErro), StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<ObterUsuarioByIdResponse>> ObterUsuarioByIdAsync(
+        [FromQuery] ObterUsuarioByIdRequest request)
+    {
+        return await _mediator.Send(request);
+    }
+
+    [HttpGet ("Users")]
+    [ProducesResponseType(typeof(ObterUsuariosResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErro), StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<List<ObterUsuariosResponse>>> ObterUsuariosAsync(
+        [FromRoute] ObterUsuariosRequest request)
+    {
+        return await _mediator.Send(request);
+    }
+
 }

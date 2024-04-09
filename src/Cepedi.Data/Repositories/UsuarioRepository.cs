@@ -1,6 +1,7 @@
 using Cepedi.BancoCentral.Domain;
 using Cepedi.BancoCentral.Domain.Entities;
 using Cepedi.BancoCentral.Domain.Repository;
+using Cepedi.Shareable.Requests;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cepedi.BancoCentral.Data.Repositories
@@ -31,9 +32,20 @@ namespace Cepedi.BancoCentral.Data.Repositories
             return usuario;
         }
 
+        public Task DeletarUsuarioByIdAsync(DeletarUsuarioByIdRequest request)
+        {
+            _context.Remove(request.Id);
+            return _context.SaveChangesAsync();
+        }
+
         public Task<UsuarioEntity> GetUsuarioById(int UsuarioId)
         {
             return _context.Usuario.Where(x => x.Id == UsuarioId).FirstOrDefaultAsync();
+        }
+
+        public Task<List<UsuarioEntity>> GetUsuariosAsync()
+        {
+            return _context.Usuario.ToListAsync();
         }
     }
 }
