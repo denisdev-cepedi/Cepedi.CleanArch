@@ -47,16 +47,24 @@ public class ApplicationDbContextInitialiser
         // Default roles
         var professor = new ProfessorEntity(1, "Denis", ".NET");
         var curso = new CursoEntity(1, ".NET Avançado", "Curso avançado de .NET", DateTime.Now, DateTime.Now.AddMonths(3), professor);
-
+        var professor2 = new ProfessorEntity(2, "Degas", "Java");
+        var curso2 = new CursoEntity(2,"Java Avançado", "Curso avançado de Java", DateTime.Now, DateTime.Now.AddMonths(3), professor2);
+        var professor3 = new ProfessorEntity(3, "Helder", "Python");
+        var curso3 = new CursoEntity(3, "Python Avançado", "Curso avançado de Python", DateTime.Now, DateTime.Now.AddMonths(3), professor3);
         // Adicionando o curso à lista de cursos do professor
         professor.Cursos.Add(curso);
+        professor2.Cursos.Add(curso2);
+        professor3.Cursos.Add(curso3);
 
         // Default data
         // Seed, if necessary
         if (!_context.Professor.Any())
         {
-            _context.Professor.Add(professor);            
-
+            _context.Professor.Add(professor);   
+            await _context.SaveChangesAsync();
+            _context.Professor.Add(professor2);
+            await _context.SaveChangesAsync();
+            _context.Professor.Add(professor3);
             await _context.SaveChangesAsync();
         }
     }

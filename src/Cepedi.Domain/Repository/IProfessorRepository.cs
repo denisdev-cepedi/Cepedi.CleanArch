@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Cepedi.Domain.Entities;
+﻿using Cepedi.Domain.Entities;
 
-namespace Cepedi.Domain
+namespace Cepedi.Domain;
+
+public interface IProfessorRepository
 {
-    public interface IProfessorRepository
-    {
-        Task<ProfessorEntity> ObtemProfessorPorIdAsync(int professorId);
-        Task<ProfessorEntity> IncluirProfessorAsync(ProfessorEntity professor);
-    }
+    Task<ProfessorEntity> ObtemProfessorPorIdAsync(int professorId);
+    Task<ProfessorEntity> IncluirProfessorAsync(ProfessorEntity professor);
 }
