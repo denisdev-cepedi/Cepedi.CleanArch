@@ -18,18 +18,16 @@ public class AlterarUsuarioRequestHandler : IRequestHandler<AlterarUsuarioReques
     {
         try
         {
-            var usuario = new UsuarioEntity()
-            {
-                Id = request.Id,
-                Nome = request.Nome,
-                DataNascimento = request.DataNascimento,
-                Celular = request.Celular,
-                CelularValidado = request.CelularValidado,
-                Email = request.Email,
-                Cpf = request.Cpf
-            };
+            var usuario = await _usuarioRepository.ObterUsuarioAsync(request.Id);
+            if(usuario == null) throw new NotImplementedException();
 
-
+            usuario.Celular = request.Celular;
+            usuario.CelularValidado = request.CelularValidado;
+            usuario.Cpf = request.Cpf;
+            usuario.DataNascimento = request.DataNascimento;
+            usuario.Email = request.Email;
+            usuario.Nome = request.Nome;
+            
             await _usuarioRepository.AlterarUsuarioAsync(usuario);
 
             return new AlterarUsuarioResponse(usuario.Id, usuario.Nome);

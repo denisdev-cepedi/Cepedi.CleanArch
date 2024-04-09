@@ -35,5 +35,11 @@ namespace Cepedi.BancoCentral.Data.Repositories
         {
             return _context.Usuario.Where(u => u.Id == id).FirstOrDefault();
         }
+        public async Task<UsuarioEntity?> DeletarUsuarioAsync(int id)
+        {
+            _context.Remove(_context.Usuario.Single(a => a.Id == id));
+            _context.SaveChanges();
+            return null;
+        }
     }
 }

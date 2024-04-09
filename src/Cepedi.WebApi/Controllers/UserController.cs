@@ -22,11 +22,13 @@ public class UserController : ControllerBase
         _mediator = mediator;
     }
 
-    //[HttpGet("{idUsuario}")]
-    //public async Task<ActionResult<CriarUsuarioResponse>> ObterUsuarioAsync([FromRoute] int idUsuario)
-    //{
-    //    return await _mediator.Send(new CriarUsuarioRequest();
-    //}
+    [HttpGet("{Id}")]
+    [ProducesResponseType(typeof(ObterUsuarioResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErro), StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<ObterUsuarioResponse>> ObterUsuarioAsync([FromRoute] ObterUsuarioRequest request)
+    {
+        return await _mediator.Send(new ObterUsuarioRequest());
+    }
     
     //[HttpGet()]
     //public async Task<ActionResult<IEnumerable<CriarUsuarioResponse>>> ConsultarCursosAsync()
@@ -46,6 +48,14 @@ public class UserController : ControllerBase
     [ProducesResponseType(typeof(AlterarUsuarioResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseErro), StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<AlterarUsuarioResponse>> AlterarUsuarioAsync([FromBody] AlterarUsuarioRequest request)
+    {
+        return await _mediator.Send(request);
+    }
+
+    [HttpDelete]
+    [ProducesResponseType(typeof(DeletarUsuarioResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErro), StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<DeletarUsuarioResponse>> DeletarUsuarioAsync([FromBody] DeletarUsuarioRequest request)
     {
         return await _mediator.Send(request);
     }
