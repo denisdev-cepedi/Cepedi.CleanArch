@@ -1,6 +1,6 @@
 using Serilog;
-using Cepedi.IoC;
-using Cepedi.WebApi;
+using Cepedi.BancoCentral.IoC;
+using Cepedi.BancoCentral.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
