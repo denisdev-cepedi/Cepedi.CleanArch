@@ -1,9 +1,9 @@
-﻿using Cepedi.BancoCentral.Data;
-using Cepedi.BancoCentral.Domain.Entities;
+﻿using Cepedi.Data;
+using Cepedi.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace Cepedi.BancoCentral.IoC;
+namespace Cepedi.IoC;
 public class ApplicationDbContextInitialiser
 {
     private readonly ILogger<ApplicationDbContextInitialiser> _logger;
@@ -45,14 +45,17 @@ public class ApplicationDbContextInitialiser
     public async Task TrySeedAsync()
     {
         // Default roles
-        var usuario = new UsuarioEntity { Nome = "Denis", Celular = "71992414041", CelularValidado = true, 
-            Cpf = "1234567891", DataNascimento = DateTime.Now.AddYears(-31), Email = "denis.vieira@cepedi.org.br" };
+        var professor = new ProfessorEntity(1, "Denis", ".NET");
+        var curso = new CursoEntity(1, ".NET Avançado", "Curso avançado de .NET", DateTime.Now, DateTime.Now.AddMonths(3), professor);
+
+        // Adicionando o curso à lista de cursos do professor
+        professor.Cursos.Add(curso);
 
         // Default data
         // Seed, if necessary
-        if (!_context.Usuario.Any())
+        if (!_context.Professor.Any())
         {
-            _context.Usuario.Add(usuario);
+            _context.Professor.Add(professor);            
 
             await _context.SaveChangesAsync();
         }

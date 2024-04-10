@@ -1,8 +1,9 @@
-﻿using Refit;
+﻿using Cepedi.Shareable.Requests;
+using Refit;
 
-namespace Cepedi.BancoCentral.Domain.Services;
+namespace Cepedi.Domain.Services;
 public interface IServiceExterno
 {
     [Post("api/v1/Enviar")]
-    Task<ApiResponse<HttpResponseMessage>> EnviarNotificacao([Body] object notificacao);
+    Task<ApiResponse<HttpResponseMessage>> EnviarNotificacao([Body] SolicitaDadosRequest notificacao);
 }

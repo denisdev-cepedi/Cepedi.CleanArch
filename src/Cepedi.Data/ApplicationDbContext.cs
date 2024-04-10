@@ -1,13 +1,14 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Cepedi.BancoCentral.Domain.Entities;
+using Cepedi.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Cepedi.BancoCentral.Data;
+namespace Cepedi.Data;
 
 [ExcludeFromCodeCoverage]
 public class ApplicationDbContext : DbContext
 {
-    public DbSet<UsuarioEntity> Usuario { get; set; } = default!;
+    public DbSet<ProfessorEntity> Professor { get; set; } = default!;
+    public DbSet<CursoEntity> Curso { get; set; } = default!;
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
