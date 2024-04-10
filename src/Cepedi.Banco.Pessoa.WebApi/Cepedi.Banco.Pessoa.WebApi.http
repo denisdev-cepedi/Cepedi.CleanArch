@@ -1,0 +1,6 @@
+@Cepedi.WebApi_HostAddress = http://localhost:5078
+
+GET {{Cepedi.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
