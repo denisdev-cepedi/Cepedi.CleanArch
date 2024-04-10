@@ -7,13 +7,18 @@ public class UsuarioEntityTypeConfiguration : IEntityTypeConfiguration<UsuarioEn
 {
     public void Configure(EntityTypeBuilder<UsuarioEntity> builder)
     {
-        builder.ToTable("Usuario");
-        builder.HasKey(c => c.Id); // Define a chave primária
+        builder.ToTable("Pessoa");
+        builder.HasKey(p => p.Id);
 
-        builder.Property(c => c.Nome).IsRequired().HasMaxLength(150);
-        builder.Property(c => c.Email).HasMaxLength(255);
-        builder.Property(c => c.Cpf).IsRequired().HasMaxLength(12);
-        builder.Property(c => c.Celular).IsRequired().HasMaxLength(12);
-        builder.Property(c => c.DataNascimento).IsRequired();
+        builder.Property(p => p.Nome).IsRequired().HasMaxLength(150);
+        builder.Property(p => p.Email).IsRequired().HasMaxLength(250);
+        builder.Property(p => p.Cpf).IsRequired().HasMaxLength(11);
+        builder.Property(p => p.Telefone).IsRequired().HasMaxLength(14);
+        builder.Property(p => p.DataNascimento).IsRequired();
+        builder.Property(p => p.Genero).IsRequired();
+        builder.Property(p => p.EstadoCivil).IsRequired();
+        builder.Property(p => p.Nacionalidade).IsRequired();
+
+        builder.HasOne(p => p.Endereco).WithOne(e => e.Pessoa).HasForeignKey<PessoaEntity>(p => p.Endereco);
     }
 }
