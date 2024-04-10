@@ -1,11 +1,11 @@
-﻿using Cepedi.Banco.Pessoa.Domain.Entities;
+using Cepedi.Banco.Pessoa.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Cepedi.Banco.Pessoa.Data.EntityTypeConfiguration;
-public class UsuarioEntityTypeConfiguration : IEntityTypeConfiguration<UsuarioEntity>
+public class PessoaEntityTypeConfiguration : IEntityTypeConfiguration<PessoaEntity>
 {
-    public void Configure(EntityTypeBuilder<UsuarioEntity> builder)
+    public void Configure(EntityTypeBuilder<PessoaEntity> builder)
     {
         builder.ToTable("Pessoa");
         builder.HasKey(p => p.Id);
