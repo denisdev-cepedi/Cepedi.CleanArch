@@ -2,6 +2,7 @@ namespace Cepedi.Banco.Pessoa.Domain.Entities;
 
 public class EnderecoEntity
 {
+    public int Id { get; set; }
     public string Cep { get; set; } = default!;
     public string Logradouro { get; set; } = default!;
     public string Complemento { get; set; } = default!;
