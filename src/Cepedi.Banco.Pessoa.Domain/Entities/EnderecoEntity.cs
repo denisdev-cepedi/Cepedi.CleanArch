@@ -11,4 +11,7 @@ public class EnderecoEntity
     public string Uf { get; set; } = default!;
     public string Pais { get; set; } = default!;
     public string Numero { get; set; } = default!;
+    public int IdPessoa { get; set; }
+
+    public PessoaEntity Pessoa { get; set; } = default!;
 }

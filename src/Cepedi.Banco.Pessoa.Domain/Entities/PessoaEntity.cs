@@ -10,6 +10,5 @@ public class PessoaEntity
     public string Genero { get; set; } = default!;
     public string EstadoCivil { get; set; } = default!;
     public string Nacionalidade { get; set; } = default!;
-    public int IdEndereco { get; set; }
-    public EnderecoEntity Endereco { get; set; } = default!;
+    public ICollection<EnderecoEntity> Enderecos { get; set; } = default!;
 }
