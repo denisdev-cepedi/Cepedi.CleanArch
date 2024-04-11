@@ -11,6 +11,6 @@ public static class InitializeDatabaseApplication
 
         await initialiser.InitialiseAsync();
 
-        await initialiser.SeedAsync();
+        // await initialiser.SeedAsync();
     }
 }
