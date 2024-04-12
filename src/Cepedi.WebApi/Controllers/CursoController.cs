@@ -1,4 +1,4 @@
-﻿using Cepedi.Shareable.Requests;
+using Cepedi.Shareable.Requests;
 using Cepedi.Shareable.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
