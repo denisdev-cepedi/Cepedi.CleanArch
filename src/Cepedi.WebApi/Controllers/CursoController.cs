@@ -2,65 +2,69 @@
 using Cepedi.Shareable.Requests;
 using Microsoft.AspNetCore.Mvc;
 using Cepedi.Domain.Services;
+using MediatR;
+using Cepedi.Shareable.Exceptions;
+using Cepedi.Shareable;
+using OperationResult;
 
 namespace Cepedi.WebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class CursoController : ControllerBase
+public class CursoController : BaseController
 {
     private readonly ILogger<CursoController> _logger;
-    private readonly ICriaCursoHandler _criaCursoHandler;
-    private readonly IObtemCursoHandler _obtemCursoHandler;
-    private readonly IAtualizaCursoHandler _atualizaCursoHandler;
-    private readonly IDeletaCursoHandler _deletaCursoHandler;
+    private readonly IMediator _mediator;
 
     public CursoController(
         ILogger<CursoController> logger, 
-        ICriaCursoHandler criaCursoHandler, 
-        IObtemCursoHandler obtemCursoHandler, 
-        IAtualizaCursoHandler atualizaCursoHandler, 
-        IDeletaCursoHandler deletaCursoHandler)
+        IMediator mediator)
+        : base(mediator)
     {
         _logger = logger;
-        _criaCursoHandler = criaCursoHandler;
-        _obtemCursoHandler = obtemCursoHandler;
-        _atualizaCursoHandler = atualizaCursoHandler;
-        _deletaCursoHandler = deletaCursoHandler;
+        _mediator = mediator;
     }
 
-    [HttpGet("{idCurso}")]
-    public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] int idCurso)
+    [HttpGet("{IdCurso}")]
+    [ProducesResponseType(typeof(ObtemCursoResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<ObtemCursoResponse>> ConsultarCursoAsync([FromRoute] ObtemCursoRequest request)
     {
-        var response = await _obtemCursoHandler.ObtemCursoAsync(idCurso);
-        return Ok(response);        
-    }
+        return await SendCommand(request);
+    }         
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ObtemCursoResponse>>> ConsultarCursosAsync()
+    [ProducesResponseType(typeof(ObtemCursosResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status204NoContent)]
+    public async Task<ActionResult<ObtemCursosResponse>> ConsultarCursosAsync( [FromRoute] ObtemCursosRequest request)
     {
-        var response = await _obtemCursoHandler.ObtemCursosAsync();
-        return Ok(response);
+         return await SendCommand(request);
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> CriarCursoAsync([FromBody] CriaCursoRequest request)
+    [ProducesResponseType(typeof(CriaCursoResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<CriaCursoResponse>> CriaCursoAsync([FromBody] CriaCursoRequest request)
     {
-        var response = await _criaCursoHandler.CriaCursoAsync(request);
-        return Ok(response);
+         return await SendCommand(request);
     }
 
-    [HttpPut("{idCurso}")]
-    public async Task<ActionResult<int>> AtualizarCursoAsync([FromBody] AtualizaCursoRequest request)
+    [HttpPut("{IdCurso}")]
+    [ProducesResponseType(typeof(AtualizaCursoResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<AtualizaCursoResponse>> AtualizaCursoAsync([FromRoute] AtualizaCursoRequest request)
     {
-        var response = await _atualizaCursoHandler.AtualizaCursoAsync(request);
-        return Ok(response);
+         return await SendCommand(request);
     }
 
-    [HttpDelete("{idCurso}")]
-    public async Task<ActionResult<int>> DeletarCursoAsync([FromRoute] int idCurso)
+    [HttpDelete("{IdCurso}")]
+    [ProducesResponseType(typeof(DeletaCursoResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status204NoContent)]
+    public async Task<ActionResult<DeletaCursoResponse>> DeletaCursoAsync([FromRoute] DeletaCursoRequest request)
     {
-        var response = await _deletaCursoHandler.DeletaCursoAsync(idCurso);
-        return Ok(response);
+        return await SendCommand(request);
     }
+
 }
