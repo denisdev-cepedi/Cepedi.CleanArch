@@ -3,7 +3,7 @@ using MediatR;
 using OperationResult;
 
 namespace Cepedi.Shareable.Requests;
-public class ObtemCursoRequest : IRequest<Result<ObtemCursoResponse>>
+
+public class ObtemCursosRequest : IRequest<Result<ObtemCursosResponse>>
 {
-    public int IdCurso { get; set; }
 }

@@ -2,8 +2,9 @@
 using MediatR;
 using OperationResult;
 
-namespace Cepedi.Shareable.Requests;
-public class ObtemCursoRequest : IRequest<Result<ObtemCursoResponse>>
+namespace Cepedi.Shareable;
+
+public class DeletaCursoRequest : IRequest<Result<DeletaCursoResponse>>
 {
     public int IdCurso { get; set; }
 }
