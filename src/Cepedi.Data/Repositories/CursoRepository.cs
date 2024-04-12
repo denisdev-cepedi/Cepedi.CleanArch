@@ -19,22 +19,26 @@ public class CursoRepository : ICursoRepository
         return await _context.Curso.ToListAsync();
     }
 
-    public async Task<int> CriaNovoCursoAsync(CursoEntity curso)
+    public async Task<CursoEntity> CriaNovoCursoAsync(CursoEntity curso)
     {
         await _context.Curso.AddAsync(curso);
-        return await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
+        return curso;
+
     }
 
-    public async Task<int> AtualizaCursoAsync(CursoEntity curso)
+    public async Task<CursoEntity> AtualizaCursoAsync(CursoEntity curso)
     {
         _context.Curso.Update(curso);
-        return await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
+        return curso;
     }
 
-    public async Task<int> DeletaCursoAsync(int id)
+    public async Task<CursoEntity> DeletaCursoAsync(int id)
     {
         var curso = await ObtemCursoPorIdAsync(id);
         _context.Curso.Remove(curso);
-        return await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
+        return curso;
     }
 }

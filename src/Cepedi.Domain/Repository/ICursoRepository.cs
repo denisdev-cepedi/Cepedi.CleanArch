@@ -6,7 +6,7 @@ public interface ICursoRepository
 {
     Task<CursoEntity> ObtemCursoPorIdAsync(int id);
     Task<IEnumerable<CursoEntity>> ObtemCursosAsync();
-    Task<int> CriaNovoCursoAsync(CursoEntity curso);
-    Task<int> AtualizaCursoAsync(CursoEntity curso);
-    Task<int> DeletaCursoAsync(int id);
+    Task<CursoEntity> CriaNovoCursoAsync(CursoEntity curso);
+    Task<CursoEntity> AtualizaCursoAsync(CursoEntity curso);
+    Task<CursoEntity> DeletaCursoAsync(int id);
 }
