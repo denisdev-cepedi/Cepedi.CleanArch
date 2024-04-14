@@ -16,9 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Cepedi.Dados\Cepedi.Dados.csproj" />
-    <ProjectReference Include="..\Cepedi.Dominio\Cepedi.Dominio.csproj" />
-    <ProjectReference Include="..\Cepedi.Compartilhado\Cepedi.Compartilhado.csproj" />
+    <ProjectReference Include="..\Cepedi.Data\Cepedi.Data.csproj" />
+    <ProjectReference Include="..\Cepedi.Domain\Cepedi.Domain.csproj" />
+    <ProjectReference Include="..\Cepedi.CompartilhadoCompartilhado\Cepedi.CompartilhadoCompartilhado.csproj" />
   </ItemGroup>
 
 </Project>
