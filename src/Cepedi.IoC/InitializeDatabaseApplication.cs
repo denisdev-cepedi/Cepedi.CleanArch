@@ -1,5 +1,5 @@
-﻿using Cepedi.Data;
-using Cepedi.Domain.Entities;
+﻿using Cepedi.Dados;
+using Cepedi.Dominio.Entidades;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
