@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>Cepedi.Banco.Pessoa.Data</RootNamespace>
-    <AssemblyName>Cepedi.Banco.Pessoa.Data</AssemblyName>
+    <RootNamespace>Cepedi.Banco.Pessoa.Dados</RootNamespace>
+    <AssemblyName>Cepedi.Banco.Pessoa.Dados</AssemblyName>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.35" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.17"/>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.17" />
@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\Queries\" />
+    <Folder Include="Repositorios\Queries\" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿using Cepedi.Banco.Pessoa.Compartilhado.Enums;
 
 namespace Cepedi.Compartilhado.Exceptions;
-public class ResponseErro
+public class ResultadoErro
 {
     public string Titulo { get; set; } = default!;
 

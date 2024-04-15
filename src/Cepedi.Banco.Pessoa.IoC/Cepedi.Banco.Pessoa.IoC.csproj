@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Cepedi.Banco.Pessoa.Data\Cepedi.Banco.Pessoa.Data.csproj" />
+    <ProjectReference Include="..\Cepedi.Banco.Pessoa.Dados\Cepedi.Banco.Pessoa.Dados.csproj" />
     <ProjectReference Include="..\Cepedi.Banco.Pessoa.Dominio\Cepedi.Banco.Pessoa.Dominio.csproj" />
     <ProjectReference Include="..\Cepedi.Banco.Pessoa.Compartilhado\Cepedi.Banco.Pessoa.Compartilhado.csproj" />
   </ItemGroup>

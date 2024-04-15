@@ -3,8 +3,8 @@
 namespace Cepedi.Banco.Pessoa.Compartilhado.Exceptions;
 public class AplicacaoExcecao : Exception
 {
-    public AplicacaoExcecao(ResponseErro erro)
+    public AplicacaoExcecao(ResultadoErro erro)
      : base(erro.Descricao) => ResponseErro = erro;
 
-    public ResponseErro ResponseErro { get; set; }
+    public ResultadoErro ResponseErro { get; set; }
 }

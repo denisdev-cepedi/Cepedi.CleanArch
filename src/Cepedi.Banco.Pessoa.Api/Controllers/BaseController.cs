@@ -35,7 +35,7 @@ public class BaseController : ControllerBase
         _ => BadRequest(FormatErrorMessage(BancoCentralMensagemErrors.Generico))
     };
 
-    private ResponseErro FormatErrorMessage(ResponseErro responseErro, IEnumerable<string>? errors = null)
+    private ResultadoErro FormatErrorMessage(ResultadoErro responseErro, IEnumerable<string>? errors = null)
     {
         if (errors == null)
         {

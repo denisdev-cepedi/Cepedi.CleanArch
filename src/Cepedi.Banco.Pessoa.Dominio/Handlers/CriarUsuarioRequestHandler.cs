@@ -1,6 +1,6 @@
-﻿using Cepedi.Banco.Pessoa.Dominio.Entidades;
+﻿using Cepedi.Banco.Pessoa.Compartilhado.Enums;
+using Cepedi.Banco.Pessoa.Dominio.Entidades;
 using Cepedi.Banco.Pessoa.Dominio.Repository;
-using Cepedi.Banco.Pessoa.Compartilhado.Enums;
 using Cepedi.Compartilhado.Requests;
 using Cepedi.Compartilhado.Responses;
 using MediatR;
@@ -41,7 +41,7 @@ public class CriarUsuarioRequestHandler
         catch
         {
             _logger.LogError("Ocorreu um erro durante a execução");
-            return Result.Error<CriarUsuarioResponse>(new Shareable.Exceptions.ApplicationException(
+            return Result.Error<CriarUsuarioResponse>(new Compartilhado.Exceptions.AplicacaoExcecao(
                 (BancoCentralMensagemErrors.ErroGravacaoUsuario)));
         }
     }

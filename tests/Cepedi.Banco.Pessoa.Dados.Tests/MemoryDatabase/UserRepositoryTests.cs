@@ -1,5 +1,6 @@
-using Cepedi.Banco.Pessoa.Data.Repositories;
-using Cepedi.Banco.Pessoa.Domain.Entities;
+using Cepedi.Banco.Pessoa.Dados;
+using Cepedi.Banco.Pessoa.Dados.Repositorios;
+using Cepedi.Banco.Pessoa.Dominio.Entidades;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cepedi.Banco.Pessoa.Data.Tests.MemoryDatabase;

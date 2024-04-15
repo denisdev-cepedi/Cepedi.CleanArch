@@ -2,7 +2,7 @@
 using Cepedi.Banco.Pessoa.Dominio.Entidades;
 using Microsoft.EntityFrameworkCore;
 
-namespace Cepedi.Banco.Pessoa.Data;
+namespace Cepedi.Banco.Pessoa.Dados;
 
 [ExcludeFromCodeCoverage]
 public class ApplicationDbContext : DbContext
