@@ -1,4 +1,4 @@
-# Cepedi.CleanArch
+# Cepedi.CleanArch 
 
 Executar o projeto `src\Cepedi.Banco.Pessoa.Api` para abrir o swagger
 
