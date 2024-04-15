@@ -1,13 +1,13 @@
-﻿using Cepedi.Banco.Pessoa.WebApi.Controllers;
-using Cepedi.Shareable.Requests;
-using Cepedi.Shareable.Responses;
+﻿using Cepedi.Banco.Pessoa.Api.Controllers;
+using Cepedi.Compartilhado.Requests;
+using Cepedi.Compartilhado.Responses;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NSubstitute;
 using OperationResult;
 
-namespace Cepedi.Banco.Pessoa.WebApi.Tests
+namespace Cepedi.Banco.Pessoa.Api.Tests
 {
     public class UserControllerTests
     {

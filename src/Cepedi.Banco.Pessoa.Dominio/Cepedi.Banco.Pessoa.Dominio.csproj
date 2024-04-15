@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Cepedi.Banco.Pessoa.Dominio</RootNamespace>
+    <AssemblyName>Cepedi.Banco.Pessoa.Dominio</AssemblyName>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Notifications\" />
+    <Folder Include="Repository\Queries\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cepedi.Banco.Pessoa.Compartilhado\Cepedi.Banco.Pessoa.Compartilhado.csproj" />
+  </ItemGroup>
+
+</Project>
