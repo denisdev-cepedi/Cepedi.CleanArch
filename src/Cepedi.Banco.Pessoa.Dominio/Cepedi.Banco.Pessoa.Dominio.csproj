@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Handlers/" />
     <Folder Include="Notifications\" />
     <Folder Include="Repository\Queries\" />
     <Folder Include="Services\" />
