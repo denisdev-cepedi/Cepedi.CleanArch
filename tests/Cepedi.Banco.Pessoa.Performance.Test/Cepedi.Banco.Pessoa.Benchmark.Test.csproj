@@ -12,6 +12,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.12" />
     <PackageReference Include="Dapper" Version="2.1.35" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.5" />
@@ -22,8 +30,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Cepedi.Banco.Pessoa.Compartilhado\Cepedi.Banco.Pessoa.Compartilhado.csproj" />
     <ProjectReference Include="..\..\src\Cepedi.Banco.Pessoa.Dados\Cepedi.Banco.Pessoa.Dados.csproj" />
-    <ProjectReference Include="..\..\src\Cepedi.Banco.Pessoa.Dominio\Cepedi.Banco.Pessoa.Dominio.csproj" />
   </ItemGroup>
 
 </Project>

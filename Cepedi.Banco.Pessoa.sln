@@ -36,7 +36,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cepedi.Banco.Pessoa.Data.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cepedi.Banco.Pessoa.Dominio.Tests", "tests\Cepedi.Banco.Pessoa.Dominio.Tests\Cepedi.Banco.Pessoa.Dominio.Tests.csproj", "{9DAB5B5F-3BAC-4659-B0AC-D174E861448D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cepedi.Banco.Pessoa.Performance.Tests", "tests\Cepedi.Banco.Pessoa.Performance.Tests\Cepedi.Banco.Pessoa.Performance.Tests.csproj", "{C572F79F-1CAE-4540-96DF-156A8986396C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cepedi.Banco.Pessoa.Benchmark.Test", "tests\Cepedi.Banco.Pessoa.Performance.Test\Cepedi.Banco.Pessoa.Benchmark.Test.csproj", "{44C7D46D-92D9-4DBB-BD09-566058DB1A06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -76,10 +76,10 @@ Global
 		{9DAB5B5F-3BAC-4659-B0AC-D174E861448D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DAB5B5F-3BAC-4659-B0AC-D174E861448D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DAB5B5F-3BAC-4659-B0AC-D174E861448D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C572F79F-1CAE-4540-96DF-156A8986396C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C572F79F-1CAE-4540-96DF-156A8986396C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C572F79F-1CAE-4540-96DF-156A8986396C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C572F79F-1CAE-4540-96DF-156A8986396C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44C7D46D-92D9-4DBB-BD09-566058DB1A06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44C7D46D-92D9-4DBB-BD09-566058DB1A06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44C7D46D-92D9-4DBB-BD09-566058DB1A06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44C7D46D-92D9-4DBB-BD09-566058DB1A06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,7 +93,7 @@ Global
 		{3CDCE5DF-C0AF-444B-B7E4-091457E06606} = {2D4A6734-55E9-46FD-BC86-1A6B9652198C}
 		{6A373535-A713-45D2-A44B-53F97D43F498} = {2D4A6734-55E9-46FD-BC86-1A6B9652198C}
 		{9DAB5B5F-3BAC-4659-B0AC-D174E861448D} = {2D4A6734-55E9-46FD-BC86-1A6B9652198C}
-		{C572F79F-1CAE-4540-96DF-156A8986396C} = {2D4A6734-55E9-46FD-BC86-1A6B9652198C}
+		{44C7D46D-92D9-4DBB-BD09-566058DB1A06} = {2D4A6734-55E9-46FD-BC86-1A6B9652198C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {18F2618F-D5A0-4779-AB65-8871DF992684}
