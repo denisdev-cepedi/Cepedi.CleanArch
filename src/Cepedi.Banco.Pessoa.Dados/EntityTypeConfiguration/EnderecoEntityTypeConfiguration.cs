@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Cepedi.Banco.Pessoa.Data.EntityTypeConfiguration;
 
+
 public class EnderecoEntityTypeConfiguration : IEntityTypeConfiguration<EnderecoEntity>
 {
     public void Configure(EntityTypeBuilder<EnderecoEntity> builder)
