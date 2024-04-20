@@ -19,6 +19,25 @@ public class AtualizarEnderecoRequestHandler : IRequestHandler<AtualizarEndereco
 
     public async Task<Result<AtualizarEnderecoResponse>> Handle(AtualizarEnderecoRequest request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var endereco = await _enderecoRepository.ObterEnderecoAsync(request.Id);
+        if (endereco == null)
+        {
+            return Result.Error<AtualizarEnderecoResponse>(new Compartilhado.Exceptions.SemResultadosExcecao());
+        }
+
+        endereco.Atualizar(request);
+
+        return new AtualizarEnderecoResponse()
+        {
+            Id = endereco.Id,
+            Cep = request.Cep,
+            Logradouro = request.Logradouro,
+            Complemento = request.Complemento,
+            Bairro = request.Bairro,
+            Cidade = request.Cidade,
+            Uf = request.Uf,
+            Pais = request.Pais,
+            Numero = request.Numero
+        };
     }
 }

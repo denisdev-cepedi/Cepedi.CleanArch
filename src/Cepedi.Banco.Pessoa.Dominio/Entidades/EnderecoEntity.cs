@@ -1,3 +1,5 @@
+using Cepedi.Banco.Pessoa.Compartilhado.Requests;
+
 namespace Cepedi.Banco.Pessoa.Dominio.Entidades;
 
 public class EnderecoEntity
@@ -14,4 +16,17 @@ public class EnderecoEntity
     public int IdPessoa { get; set; }
 
     public PessoaEntity Pessoa { get; set; } = default!;
+
+    public void Atualizar(AtualizarEnderecoRequest request)
+    {
+        Cep = request.Cep;
+        Logradouro = request.Logradouro;
+        Complemento = request.Complemento;
+        Bairro = request.Bairro;
+        Cidade = request.Cidade;
+        Uf = request.Uf;
+        Pais = request.Pais;
+        Numero = request.Numero;
+        IdPessoa = request.IdPessoa;
+    }
 }

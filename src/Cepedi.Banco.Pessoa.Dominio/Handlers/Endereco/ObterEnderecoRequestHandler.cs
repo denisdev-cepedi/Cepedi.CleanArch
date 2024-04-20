@@ -18,6 +18,23 @@ public class ObterEnderecoRequestHandler : IRequestHandler<ObterEnderecoRequest,
     }
     public async Task<Result<ObterEnderecoResponse>> Handle(ObterEnderecoRequest request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var endereco = await _enderecoRepository.ObterEnderecoAsync(request.EnderecoId);
+        if (endereco == null)
+        {
+            return Result.Error<ObterEnderecoResponse>(new Compartilhado.Exceptions.SemResultadosExcecao());
+        }
+
+        return new ObterEnderecoResponse()
+        {
+            Id = endereco.Id,
+            Cep = endereco.Cep,
+            Logradouro = endereco.Logradouro,
+            Complemento = endereco.Complemento,
+            Bairro = endereco.Bairro,
+            Cidade = endereco.Cidade,
+            Uf = endereco.Uf,
+            Pais = endereco.Pais,
+            Numero = endereco.Numero
+        };
     }
 }

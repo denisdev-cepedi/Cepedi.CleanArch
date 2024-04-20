@@ -1,5 +1,6 @@
 ﻿using Cepedi.Banco.Pessoa.Compartilhado.Requests;
 using Cepedi.Banco.Pessoa.Compartilhado.Responses;
+using Cepedi.Banco.Pessoa.Dominio.Entidades;
 using Cepedi.Banco.Pessoa.Dominio.Repository;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -18,6 +19,32 @@ public class CadastrarEnderecoRequestHandler : IRequestHandler<CadastrarEndereco
     }
     public async Task<Result<CadastrarEnderecoResponse>> Handle(CadastrarEnderecoRequest request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var endereco = new EnderecoEntity()
+        {
+            Cep = request.Cep,
+            Logradouro = request.Logradouro,
+            Complemento = request.Complemento,
+            Bairro = request.Bairro,
+            Cidade = request.Cidade,
+            Uf = request.Uf,
+            Pais = request.Pais,
+            Numero = request.Numero,
+            IdPessoa = request.IdPessoa
+        };
+
+        await _enderecoRepository.CadastrarEnderecoAsync(endereco);
+
+        return new CadastrarEnderecoResponse()
+        {
+            Id = endereco.Id,
+            Cep = request.Cep,
+            Logradouro = request.Logradouro,
+            Complemento = request.Complemento,
+            Bairro = request.Bairro,
+            Cidade = request.Cidade,
+            Uf = request.Uf,
+            Pais = request.Pais,
+            Numero = request.Numero
+        };
     }
 }

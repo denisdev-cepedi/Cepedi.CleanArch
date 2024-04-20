@@ -2,5 +2,5 @@
 
 public class ObterTodosEnderecosResponse
 {
-
+    public List<ObterEnderecoResponse> Enderecos { get; set; } = default!;
 }

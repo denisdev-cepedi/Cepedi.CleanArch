@@ -19,6 +19,21 @@ public class ObterTodosEnderecosRequestHandler : IRequestHandler<ObterTodosEnder
 
     public async Task<Result<ObterTodosEnderecosResponse>> Handle(ObterTodosEnderecosRequest request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var enderecos = await _enderecoRepository.ObterTodosEnderecosAsync();
+        return new ObterTodosEnderecosResponse()
+        {
+            Enderecos = enderecos.Select(endereco => new ObterEnderecoResponse()
+            {
+                Id = endereco.Id,
+                Cep = endereco.Cep,
+                Logradouro = endereco.Logradouro,
+                Complemento = endereco.Complemento,
+                Bairro = endereco.Bairro,
+                Cidade = endereco.Cidade,
+                Uf = endereco.Uf,
+                Pais = endereco.Pais,
+                Numero = endereco.Numero
+            }).ToList()
+        };
     }
 }

@@ -1,13 +1,12 @@
-﻿using Cepedi.Banco.Pessoa.Compartilhado.Requests;
-using Cepedi.Banco.Pessoa.Compartilhado.Responses;
+﻿using Cepedi.Banco.Pessoa.Dominio.Entidades;
 
 namespace Cepedi.Banco.Pessoa.Dominio.Repository;
 
 public interface IEnderecoRepository
 {
-    Task<ObterEnderecoResponse> ObterEndereco(int id);
-    Task<ObterTodosEnderecosResponse> ObterTodosEnderecos();
-    Task<CadastrarEnderecoResponse> CadastrarEndereco(CadastrarEnderecoRequest request);
-    Task<ExcluirEnderecoResponse> ExcluirEndereco(ExcluirEnderecoRequest request);
-    Task<AtualizarEnderecoRequest> AtualizarEndereco(AtualizarEnderecoRequest request);
+    Task<EnderecoEntity> ObterEnderecoAsync(int id);
+    Task<List<EnderecoEntity>> ObterTodosEnderecosAsync();
+    Task<EnderecoEntity> CadastrarEnderecoAsync(EnderecoEntity endereco);
+    Task<EnderecoEntity> AtualizarEnderecoAsync(EnderecoEntity endereco);
+    Task<EnderecoEntity> ExcluirEnderecoAsync(EnderecoEntity endereco);
 }
