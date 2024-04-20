@@ -24,7 +24,7 @@ public class ObterEnderecoRequestHandler : IRequestHandler<ObterEnderecoRequest,
             return Result.Error<ObterEnderecoResponse>(new Compartilhado.Exceptions.SemResultadosExcecao());
         }
 
-        return new ObterEnderecoResponse()
+        return Result.Success(new ObterEnderecoResponse()
         {
             Id = endereco.Id,
             Cep = endereco.Cep,
@@ -35,6 +35,6 @@ public class ObterEnderecoRequestHandler : IRequestHandler<ObterEnderecoRequest,
             Uf = endereco.Uf,
             Pais = endereco.Pais,
             Numero = endereco.Numero
-        };
+        });
     }
 }

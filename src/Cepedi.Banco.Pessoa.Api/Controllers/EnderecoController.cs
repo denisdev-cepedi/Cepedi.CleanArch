@@ -1,5 +1,6 @@
 ﻿using Cepedi.Banco.Pessoa.Compartilhado.Requests;
 using Cepedi.Banco.Pessoa.Compartilhado.Responses;
+using Cepedi.Banco.Pessoa.Dados;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +11,12 @@ namespace Cepedi.Banco.Pessoa.Api.Controllers;
 public class EnderecoController : BaseController
 {
     private readonly ILogger<EnderecoController> _logger;
+    private readonly ApplicationDbContext _context;
 
-    public EnderecoController(IMediator mediator, ILogger<EnderecoController> logger) : base(mediator)
+    public EnderecoController(IMediator mediator, ILogger<EnderecoController> logger, ApplicationDbContext context) : base(mediator)
     {
         _logger = logger;
+        _context = context;
     }
 
     [HttpGet]
@@ -41,8 +44,9 @@ public class EnderecoController : BaseController
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult<ExcluirEnderecoResponse>> ExcluirEndereco([FromRoute] ExcluirEnderecoRequest request)
+    public async Task<ActionResult<ExcluirEnderecoResponse>> ExcluirEndereco([FromRoute] int id)
     {
+        var request = new ExcluirEnderecoRequest() { EnderecoId = id };
         return await SendCommand(request);
     }
 

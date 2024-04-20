@@ -27,6 +27,5 @@ public class EnderecoEntity
         Uf = request.Uf;
         Pais = request.Pais;
         Numero = request.Numero;
-        IdPessoa = request.IdPessoa;
     }
 }

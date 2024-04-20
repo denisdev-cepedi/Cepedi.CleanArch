@@ -34,7 +34,7 @@ public class CadastrarEnderecoRequestHandler : IRequestHandler<CadastrarEndereco
 
         await _enderecoRepository.CadastrarEnderecoAsync(endereco);
 
-        return new CadastrarEnderecoResponse()
+        return Result.Success(new CadastrarEnderecoResponse()
         {
             Id = endereco.Id,
             Cep = request.Cep,
@@ -45,6 +45,6 @@ public class CadastrarEnderecoRequestHandler : IRequestHandler<CadastrarEndereco
             Uf = request.Uf,
             Pais = request.Pais,
             Numero = request.Numero
-        };
+        });
     }
 }

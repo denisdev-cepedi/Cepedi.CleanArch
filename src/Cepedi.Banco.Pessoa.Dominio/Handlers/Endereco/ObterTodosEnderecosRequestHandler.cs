@@ -20,7 +20,7 @@ public class ObterTodosEnderecosRequestHandler : IRequestHandler<ObterTodosEnder
     public async Task<Result<ObterTodosEnderecosResponse>> Handle(ObterTodosEnderecosRequest request, CancellationToken cancellationToken)
     {
         var enderecos = await _enderecoRepository.ObterTodosEnderecosAsync();
-        return new ObterTodosEnderecosResponse()
+        return Result.Success(new ObterTodosEnderecosResponse()
         {
             Enderecos = enderecos.Select(endereco => new ObterEnderecoResponse()
             {
@@ -34,6 +34,6 @@ public class ObterTodosEnderecosRequestHandler : IRequestHandler<ObterTodosEnder
                 Pais = endereco.Pais,
                 Numero = endereco.Numero
             }).ToList()
-        };
+        });
     }
 }

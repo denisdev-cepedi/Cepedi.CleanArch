@@ -1,34 +1,51 @@
-﻿using Cepedi.Banco.Pessoa.Compartilhado.Requests;
-using Cepedi.Banco.Pessoa.Compartilhado.Responses;
-using Cepedi.Banco.Pessoa.Dominio.Entidades;
+﻿using Cepedi.Banco.Pessoa.Dominio.Entidades;
 using Cepedi.Banco.Pessoa.Dominio.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cepedi.Banco.Pessoa.Dados.Repositorios;
 
 public class EnderecoRepository : IEnderecoRepository
 {
-    public Task<EnderecoEntity> AtualizarEnderecoAsync(EnderecoEntity endereco)
+    private readonly ApplicationDbContext _context;
+
+    public EnderecoRepository(ApplicationDbContext context)
     {
-        throw new NotImplementedException();
+        _context = context;
     }
 
-    public Task<EnderecoEntity> CadastrarEnderecoAsync(EnderecoEntity endereco)
+    public async Task<EnderecoEntity> AtualizarEnderecoAsync(EnderecoEntity endereco)
     {
-        throw new NotImplementedException();
+        _context.Endereco.Update(endereco);
+        await _context.SaveChangesAsync();
+
+        return endereco;
     }
 
-    public Task<EnderecoEntity> ExcluirEnderecoAsync(EnderecoEntity endereco)
+    public async Task<EnderecoEntity> CadastrarEnderecoAsync(EnderecoEntity endereco)
     {
-        throw new NotImplementedException();
+        _context.Endereco.Add(endereco);
+        await _context.SaveChangesAsync();
+
+        return endereco;
     }
 
-    public Task<EnderecoEntity> ObterEnderecoAsync(int id)
+    public async Task<EnderecoEntity> ExcluirEnderecoAsync(EnderecoEntity endereco)
     {
-        throw new NotImplementedException();
+        _context.Endereco.Remove(endereco);
+        await _context.SaveChangesAsync();
+
+        return endereco;
     }
 
-    public Task<List<EnderecoEntity>> ObterTodosEnderecosAsync()
+    public async Task<EnderecoEntity> ObterEnderecoAsync(int id)
     {
-        throw new NotImplementedException();
+        var endereco = await _context.Endereco.FirstOrDefaultAsync(endereco => endereco.Id == id);
+        return endereco;
+    }
+
+    public async Task<List<EnderecoEntity>> ObterTodosEnderecosAsync()
+    {
+        var enderecos = await _context.Endereco.ToListAsync();
+        return enderecos;
     }
 }

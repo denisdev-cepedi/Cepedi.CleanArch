@@ -26,8 +26,9 @@ public class AtualizarEnderecoRequestHandler : IRequestHandler<AtualizarEndereco
         }
 
         endereco.Atualizar(request);
+        await _enderecoRepository.AtualizarEnderecoAsync(endereco);
 
-        return new AtualizarEnderecoResponse()
+        return Result.Success(new AtualizarEnderecoResponse()
         {
             Id = endereco.Id,
             Cep = request.Cep,
@@ -38,6 +39,6 @@ public class AtualizarEnderecoRequestHandler : IRequestHandler<AtualizarEndereco
             Uf = request.Uf,
             Pais = request.Pais,
             Numero = request.Numero
-        };
+        });
     }
 }

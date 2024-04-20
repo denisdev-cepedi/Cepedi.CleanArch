@@ -27,6 +27,6 @@ public class ExcluirEnderecoRequestHandler : IRequestHandler<ExcluirEnderecoRequ
 
         await _enderecoRepository.ExcluirEnderecoAsync(endereco);
 
-        return new ExcluirEnderecoResponse();
+        return Result.Success(new ExcluirEnderecoResponse());
     }
 }
