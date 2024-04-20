@@ -43,6 +43,12 @@ public class EnderecoRepository : IEnderecoRepository
         return endereco;
     }
 
+    public async Task<EnderecoEntity> ObterEnderecoPorCepAsync(string cep)
+    {
+        var endereco = await _context.Endereco.FirstOrDefaultAsync(endereco => endereco.Cep == cep);
+        return endereco;
+    }
+
     public async Task<List<EnderecoEntity>> ObterTodosEnderecosAsync()
     {
         var enderecos = await _context.Endereco.ToListAsync();

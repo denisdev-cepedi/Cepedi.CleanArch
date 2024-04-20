@@ -31,6 +31,12 @@ public class EnderecoController : BaseController
         return await SendCommand(new ObterEnderecoRequest() { EnderecoId = id });
     }
 
+    [HttpGet("/cep/{cep}")]
+    public async Task<ActionResult<ObterEnderecoPorCepResponse>> ObterEnderecoPorCep([FromRoute] string cep)
+    {
+        return await SendCommand(new ObterEnderecoPorCepRequest() { Cep = cep });
+    }
+
     [HttpPost]
     public async Task<ActionResult<CadastrarEnderecoResponse>> CadastrarEndereco([FromBody] CadastrarEnderecoRequest request)
     {
