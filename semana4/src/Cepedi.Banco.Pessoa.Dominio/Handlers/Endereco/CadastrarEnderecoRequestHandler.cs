@@ -45,8 +45,8 @@ public class CadastrarEnderecoRequestHandler : IRequestHandler<CadastrarEndereco
             }
         }
         var responseContent = await response.Content.ReadAsStringAsync();
-        var betBulkResponse = JsonSerializer.Deserialize<ObterEnderecoResponse>(responseContent);
-        if(betBulkResponse?.Cep == null)
+        var getBulkResponse = JsonSerializer.Deserialize<ObterCepResponse>(responseContent);
+        if(getBulkResponse?.Cep == null)
         {
             return Result.Error<CadastrarEnderecoResponse>(new Compartilhado.Exceptions.SemResultadosExcecao());
         }
