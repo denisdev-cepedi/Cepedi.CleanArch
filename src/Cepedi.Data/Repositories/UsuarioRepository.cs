@@ -32,6 +32,11 @@ namespace Cepedi.BancoCentral.Data.Repositories
              _context.Usuario.Where(usuario => usuario.Id == idUsuario).FirstOrDefaultAsync();
              
         }
+        public async Task<List<UsuarioEntity>> ObterUsuarios()
+        {
+            return await
+             _context.Usuario.ToListAsync();    
+        }
 
         public async Task<UsuarioEntity> CriarUsuarioAsync(UsuarioEntity usuario)
         {

@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Cepedi.Banco.Pessoa.IoC</RootNamespace>
+    <AssemblyName>Cepedi.Banco.Pessoa.IoC</AssemblyName>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
+    <PackageReference Include="MediatR" Version="12.0.1" />
+    <!--<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />-->
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Refit" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cepedi.Banco.Pessoa.Dados\Cepedi.Banco.Pessoa.Dados.csproj" />
+    <ProjectReference Include="..\Cepedi.Banco.Pessoa.Dominio\Cepedi.Banco.Pessoa.Dominio.csproj" />
+    <ProjectReference Include="..\Cepedi.Banco.Pessoa.Compartilhado\Cepedi.Banco.Pessoa.Compartilhado.csproj" />
+  </ItemGroup>
+
+</Project>

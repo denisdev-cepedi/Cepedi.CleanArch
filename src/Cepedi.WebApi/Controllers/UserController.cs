@@ -29,11 +29,11 @@ public class UserController : ControllerBase
     //    return await _mediator.Send(new CriarUsuarioRequest();
     //}
     
-    //[HttpGet()]
-    //public async Task<ActionResult<IEnumerable<CriarUsuarioResponse>>> ConsultarCursosAsync()
-    //{
-    //    return Ok(await _obtemCursoHandler.ObterCursosAsync());
-    //}
+    [HttpGet()]
+    public async Task<ActionResult<IEnumerable<ObterUsuarioResponse>>> ConsultarCursosAsync()
+    {
+       return Ok(await _mediator.Send(new ObterUsuarioRequest()));
+    }
     
     [HttpPost]
     [ProducesResponseType(typeof(CriarUsuarioResponse), StatusCodes.Status200OK)]
@@ -48,6 +48,15 @@ public class UserController : ControllerBase
     public async Task<ActionResult<CriarUsuarioResponse>> AlterarCursoAsync([FromBody] AlterarUsuarioRequest request)
     {
         var response = await _mediator.Send(request);
+        return Ok(response);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> Delete(int id, CancellationToken cancellationToken){
+        var request = new ApagarCursoRequest(id);
+
+        var response = await _mediator.Send(request, cancellationToken);
+
         return Ok(response);
     }
 }
