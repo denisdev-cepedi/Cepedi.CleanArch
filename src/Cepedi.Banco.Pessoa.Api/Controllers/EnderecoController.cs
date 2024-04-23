@@ -1,6 +1,8 @@
 ﻿using Cepedi.Banco.Pessoa.Compartilhado.Requests;
 using Cepedi.Banco.Pessoa.Compartilhado.Responses;
 using Cepedi.Banco.Pessoa.Dados;
+using Cepedi.Banco.Pessoa.Dominio.Services;
+using Cepedi.Compartilhado.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,11 +14,14 @@ public class EnderecoController : BaseController
 {
     private readonly ILogger<EnderecoController> _logger;
     private readonly ApplicationDbContext _context;
+    private readonly IServiceExterno _serviceExterno;
 
-    public EnderecoController(IMediator mediator, ILogger<EnderecoController> logger, ApplicationDbContext context) : base(mediator)
+    public EnderecoController(IMediator mediator, ILogger<EnderecoController> logger, ApplicationDbContext context, 
+        IServiceExterno serviceExterno) : base(mediator)
     {
         _logger = logger;
         _context = context;
+        _serviceExterno = serviceExterno;
     }
 
     [HttpGet]
@@ -35,6 +40,13 @@ public class EnderecoController : BaseController
     public async Task<ActionResult<ObterEnderecoPorCepResponse>> ObterEnderecoPorCep([FromRoute] string cep)
     {
         return await SendCommand(new ObterEnderecoPorCepRequest() { Cep = cep });
+    }
+
+    [HttpGet("/api/endereco/{cep}")]
+    public async Task<ActionResult<EnderecoCepResponse>> ObterEnderecoPorCepExterno([FromRoute] string cep)
+    {
+        var endereco = await _serviceExterno.ObterEnderecoPorCepExternoAsync(cep);
+        return Ok(endereco);
     }
 
     [HttpPost]

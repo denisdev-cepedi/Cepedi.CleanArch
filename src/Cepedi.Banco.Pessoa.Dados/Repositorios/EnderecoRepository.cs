@@ -3,6 +3,7 @@ using Cepedi.Banco.Pessoa.Dominio.Repository;
 using Microsoft.EntityFrameworkCore;
 using Cepedi.Banco.Pessoa.Dados.Repositorios.Queries;
 using Cepedi.Banco.Pessoa.Dominio.Services;
+using Cepedi.Compartilhado.Responses;
 
 namespace Cepedi.Banco.Pessoa.Dados.Repositorios;
 
@@ -63,7 +64,7 @@ public class EnderecoRepository : IEnderecoRepository
         return enderecos;
     }
 
-    private async Task<EnderecoEntity> ObterEnderecoPorCepExternoAsync(string cep)
+    public async Task<EnderecoEntity> ObterEnderecoPorCepExternoAsync(string cep)
     {
         var response = await _serviceExterno.ObterEnderecoPorCepExternoAsync(cep);
 
@@ -74,12 +75,12 @@ public class EnderecoRepository : IEnderecoRepository
 
         var endereco = new EnderecoEntity()
         {
-            Cep = response.Content.Cep,
-            Logradouro = response.Content.Logradouro,
-            Complemento = response.Content.Complemento,
-            Bairro = response.Content.Bairro,
-            Cidade = response.Content.Localidade,
-            Uf = response.Content.Uf,
+            Cep = response.cep,
+            Logradouro = response.logradouro,
+            Complemento = response.complemento,
+            Bairro = response.bairro,
+            Cidade = response.localidade,
+            Uf = response.uf,
             Pais = "Brasil",
             Numero = "S/N"
         };

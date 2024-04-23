@@ -1,4 +1,5 @@
 ﻿using Cepedi.Banco.Pessoa.Dominio.Entidades;
+using Cepedi.Compartilhado.Responses;
 
 namespace Cepedi.Banco.Pessoa.Dominio.Repository;
 
@@ -10,4 +11,5 @@ public interface IEnderecoRepository
     Task<EnderecoEntity> CadastrarEnderecoAsync(EnderecoEntity endereco);
     Task<EnderecoEntity> AtualizarEnderecoAsync(EnderecoEntity endereco);
     Task<EnderecoEntity> ExcluirEnderecoAsync(EnderecoEntity endereco);
+    Task<EnderecoEntity> ObterEnderecoPorCepExternoAsync(string cep);
 }

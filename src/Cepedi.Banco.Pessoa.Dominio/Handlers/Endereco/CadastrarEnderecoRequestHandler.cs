@@ -1,4 +1,6 @@
-﻿using Cepedi.Banco.Pessoa.Compartilhado.Requests;
+﻿using Cepedi.Banco.Pessoa.Compartilhado.Enums;
+using Cepedi.Banco.Pessoa.Compartilhado.Exceptions;
+using Cepedi.Banco.Pessoa.Compartilhado.Requests;
 using Cepedi.Banco.Pessoa.Compartilhado.Responses;
 using Cepedi.Banco.Pessoa.Dominio.Entidades;
 using Cepedi.Banco.Pessoa.Dominio.Repository;
@@ -20,15 +22,11 @@ public class CadastrarEnderecoRequestHandler : IRequestHandler<CadastrarEndereco
     public async Task<Result<CadastrarEnderecoResponse>> Handle(CadastrarEnderecoRequest request, CancellationToken cancellationToken)
     {
 
-        // verificar se o CEP  é válido
-        // através da API https://viacep.com.br/ws/22031012/json/
-        // var cep = await _enderecoRepository.ObterEnderecoPorCepAsync(request.Cep);
-
-        var enderecoPorCep = await _enderecoRepository.ObterEnderecoPorCepAsync(request.Cep);
+        var enderecoPorCep = await _enderecoRepository.ObterEnderecoPorCepExternoAsync(request.Cep);
         
         if (enderecoPorCep == null)
         {
-            return Result.Error<CadastrarEnderecoResponse>(new Compartilhado.Exceptions.SemResultadosExcecao());
+            return Result.Error<CadastrarEnderecoResponse>(new AplicacaoExcecao(BancoCentralMensagemErrors.CepInvalido));
         }
 
         var endereco = new EnderecoEntity()
@@ -43,8 +41,6 @@ public class CadastrarEnderecoRequestHandler : IRequestHandler<CadastrarEndereco
             Numero = request.Numero,
             IdPessoa = request.IdPessoa
         }; 
-
-
 
         await _enderecoRepository.CadastrarEnderecoAsync(endereco);
 

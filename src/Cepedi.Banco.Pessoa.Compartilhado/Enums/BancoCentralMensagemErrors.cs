@@ -30,4 +30,11 @@ public class BancoCentralMensagemErrors
         Descricao = "Os dados enviados na requisição são inválidos",
         Tipo = ETipoErro.Erro
     };
+
+    public static ResultadoErro CepInvalido = new()
+    {
+        Titulo = "CEP inválido",
+        Descricao = "O CEP informado é inválido",
+        Tipo = ETipoErro.Erro
+    };
 }
