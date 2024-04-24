@@ -34,6 +34,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cepedi.Api.Tests", "tests\C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cepedi.Api", "src\Cepedi.Api\Cepedi.Api.csproj", "{796629A5-CDFF-43FE-A768-ACCE7F279AA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08 - RabbitMQ", "08 - RabbitMQ\08 - RabbitMQ.csproj", "{FBD8B21A-8FCC-4D99-8ACE-4A35B96463C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{796629A5-CDFF-43FE-A768-ACCE7F279AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{796629A5-CDFF-43FE-A768-ACCE7F279AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{796629A5-CDFF-43FE-A768-ACCE7F279AA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBD8B21A-8FCC-4D99-8ACE-4A35B96463C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBD8B21A-8FCC-4D99-8ACE-4A35B96463C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBD8B21A-8FCC-4D99-8ACE-4A35B96463C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBD8B21A-8FCC-4D99-8ACE-4A35B96463C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
