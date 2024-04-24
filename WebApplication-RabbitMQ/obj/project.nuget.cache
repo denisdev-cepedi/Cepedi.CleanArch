@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "UPZ5qUgGF3TYPlqI2936k0/Ta34ZkNFDM/fJtToAXHyXbIZMQwO+qleFoQ35kp0+ZlNsPgxr/6sS+dugYFEJ5A==",
+  "success": true,
+  "projectFilePath": "/home/kayque-almeida-piton/Cepedi.CleanArch/WebApplication-RabbitMQ/WebApplication-RabbitMQ.csproj",
+  "expectedPackageFiles": [
+    "/home/kayque-almeida-piton/.nuget/packages/microsoft.aspnetcore.openapi/7.0.15/microsoft.aspnetcore.openapi.7.0.15.nupkg.sha512",
+    "/home/kayque-almeida-piton/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/kayque-almeida-piton/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/home/kayque-almeida-piton/.nuget/packages/rabbitmq.client/6.8.1/rabbitmq.client.6.8.1.nupkg.sha512",
+    "/home/kayque-almeida-piton/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "/home/kayque-almeida-piton/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "/home/kayque-almeida-piton/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "/home/kayque-almeida-piton/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
+    "/home/kayque-almeida-piton/.nuget/packages/system.memory/4.5.5/system.memory.4.5.5.nupkg.sha512",
+    "/home/kayque-almeida-piton/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
