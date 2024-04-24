@@ -1,0 +1,11 @@
+@RabbitMQConsumer_HostAddress = http://localhost:5109
+
+GET {{RabbitMQConsumer_HostAddress}}/todos/
+Accept: application/json
+
+###
+
+GET {{RabbitMQConsumer_HostAddress}}/todos/1
+Accept: application/json
+
+###
