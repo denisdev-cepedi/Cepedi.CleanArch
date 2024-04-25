@@ -56,4 +56,13 @@ public class EnderecoController : BaseController
         return await SendCommand(request);
     }
 
+    [HttpGet("enviar")]
+    public IActionResult EnviarMensagem()
+    {
+        var produtor = new Produtor();
+        produtor.Enviar();
+        
+        return Ok("Mensagem enviada com sucesso!");
+    }
+
 }
