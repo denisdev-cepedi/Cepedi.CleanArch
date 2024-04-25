@@ -4,6 +4,7 @@ using Cepedi.Banco.Pessoa.Compartilhado.Requests;
 using Cepedi.Banco.Pessoa.Compartilhado.Responses;
 using Cepedi.Banco.Pessoa.Dominio.Entidades;
 using Cepedi.Banco.Pessoa.Dominio.Repository;
+using Cepedi.Banco.Pessoa.Dominio.Servicos;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using OperationResult;
@@ -14,10 +15,15 @@ public class CadastrarEnderecoRequestHandler : IRequestHandler<CadastrarEndereco
 {
     private readonly IEnderecoRepository _enderecoRepository;
     private readonly ILogger<CadastrarEnderecoRequestHandler> _logger;
-    public CadastrarEnderecoRequestHandler(IEnderecoRepository enderecoRepository, ILogger<CadastrarEnderecoRequestHandler> logger)
+    private readonly IRabbitMQProdutor _rabbitMQProdutor;
+    public CadastrarEnderecoRequestHandler(
+        IEnderecoRepository enderecoRepository, 
+        ILogger<CadastrarEnderecoRequestHandler> logger,
+        IRabbitMQProdutor rabbitMQProdutor)
     {
         _enderecoRepository = enderecoRepository;
         _logger = logger;
+        _rabbitMQProdutor = rabbitMQProdutor;
     }
     public async Task<Result<CadastrarEnderecoResponse>> Handle(CadastrarEnderecoRequest request, CancellationToken cancellationToken)
     {
@@ -46,14 +52,16 @@ public class CadastrarEnderecoRequestHandler : IRequestHandler<CadastrarEndereco
         }
         var responseContent = await response.Content.ReadAsStringAsync();
         var getBulkResponse = JsonSerializer.Deserialize<ObterCepResponse>(responseContent);
-        if(getBulkResponse?.Cep == null)
+        if(getBulkResponse == null)
         {
             return Result.Error<CadastrarEnderecoResponse>(new Compartilhado.Exceptions.SemResultadosExcecao());
         }
 
+        _rabbitMQProdutor.SendMenssagem("Cadastrou novo endereço");
+
         await _enderecoRepository.CadastrarEnderecoAsync(endereco);
 
-        return Result.Success(new CadastrarEnderecoResponse()
+        CadastrarEnderecoResponse responseObj = new CadastrarEnderecoResponse()
         {
             Id = endereco.Id,
             Cep = request.Cep,
@@ -64,6 +72,10 @@ public class CadastrarEnderecoRequestHandler : IRequestHandler<CadastrarEndereco
             Uf = request.Uf,
             Pais = request.Pais,
             Numero = request.Numero
-        });
+        };
+
+        _rabbitMQProdutor.SendMenssagem(JsonSerializer.Serialize(responseObj));
+        
+        return Result.Success(responseObj);
     }
 }

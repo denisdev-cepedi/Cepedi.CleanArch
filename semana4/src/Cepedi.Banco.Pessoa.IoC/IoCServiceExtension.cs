@@ -4,6 +4,7 @@ using Cepedi.Banco.Pessoa.Dados;
 using Cepedi.Banco.Pessoa.Dados.Repositorios;
 using Cepedi.Banco.Pessoa.Dominio.Pipelines;
 using Cepedi.Banco.Pessoa.Dominio.Repository;
+using Cepedi.Banco.Pessoa.Dominio.Servicos;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,7 @@ namespace Cepedi.Banco.Pessoa.IoC
             ConfigurarFluentValidation(services);
 
             services.AddScoped<IEnderecoRepository, EnderecoRepository>();
+            services.AddScoped<IRabbitMQProdutor, RabbitMQProdutor>();
 
             //services.AddHttpContextAccessor();
 
