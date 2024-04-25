@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.Json;
 using Cepedi.RabbitMQ.Interfaces;
+
 using RabbitMQ.Client;
 
 namespace Cepedi.RabbitMQ;
@@ -9,17 +10,18 @@ public class ProducerRabbitMQ : IMessageProducer
 {
     public void SendMessage<T>(T message)
     {
-        var factory = new ConnectionFactory() { 
-            HostName = "srv508250.hstgr.cloud",
+        var factory = new ConnectionFactory()
+        {
+            HostName = "srv508250.hstgr.cloud", 
             Port = 5672,
             UserName = "aluno",
-            Password = "cepedialuno"
+            Password = "changeme"
         };
 
         using (var connection = factory.CreateConnection())
         using (var channel = connection.CreateModel())
         {
-            channel.QueueDeclare(queue: "FilaRabbitMQ",
+            channel.QueueDeclare(queue: "Fila.Teste.Jhonata",
                                  durable: false,
                                  exclusive: false,
                                  autoDelete: false,
@@ -29,7 +31,7 @@ public class ProducerRabbitMQ : IMessageProducer
             var body = Encoding.UTF8.GetBytes(messageSerialized);
 
             channel.BasicPublish(exchange: "",
-                                 routingKey: "FilaRabbitMQ",
+                                 routingKey: "pixteste",
                                  basicProperties: null,
                                  body: body);
 

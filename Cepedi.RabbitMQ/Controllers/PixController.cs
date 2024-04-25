@@ -26,9 +26,22 @@ public class PixController : Controller
         _messageProducer.SendMessage(pix);
         return Ok(pix);
     }
+
+    [HttpPost]
+    public IActionResult Post([FromQuery] int id, [FromQuery] decimal value, [FromQuery] string description)
+    {
+        Pix pix = new Pix
+        {
+            Id = id,
+            Value = value,
+            Description = description
+        };
+        _messageProducer.SendMessage(pix);
+        return Ok(pix);
+    }
 }
 
-internal class Pix
+public class Pix
 {
     public int Id { get; set; }
     public decimal Value { get; set; }

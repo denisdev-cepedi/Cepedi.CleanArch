@@ -8,7 +8,11 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/", context => {
+    context.Response.Redirect("/api/pix");
+    return Task.CompletedTask;
+});
+
 app.MapControllers();
 
 app.Run();
