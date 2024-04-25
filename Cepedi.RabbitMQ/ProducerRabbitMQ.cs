@@ -31,7 +31,7 @@ public class ProducerRabbitMQ : IMessageProducer
             var body = Encoding.UTF8.GetBytes(messageSerialized);
 
             channel.BasicPublish(exchange: "",
-                                 routingKey: "pixteste",
+                                 routingKey: "Fila.Teste.Jhonata",
                                  basicProperties: null,
                                  body: body);
 
