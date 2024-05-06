@@ -1,6 +1,7 @@
 ﻿using Cepedi.Banco.Pessoa.Compartilhado.Requests;
 using Cepedi.Banco.Pessoa.Compartilhado.Responses;
 using Cepedi.Banco.Pessoa.Dominio.Repository;
+using Cepedi.Banco.Pessoa.Dominio.Services;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using OperationResult;
@@ -11,19 +12,25 @@ public class ObterEnderecoPorCepRequestHandler : IRequestHandler<ObterEnderecoPo
 {
     private readonly IEnderecoRepository _enderecoRepository;
     private readonly ILogger<ObterEnderecoPorCepRequestHandler> _logger;
-    public ObterEnderecoPorCepRequestHandler(IEnderecoRepository enderecoRepository, ILogger<ObterEnderecoPorCepRequestHandler> logger)
+    private readonly IMessageProductor _messageProductor;
+    public ObterEnderecoPorCepRequestHandler(IEnderecoRepository enderecoRepository, ILogger<ObterEnderecoPorCepRequestHandler> logger, IMessageProductor messageProductor)
     {
         _enderecoRepository = enderecoRepository;
         _logger = logger;
+        _messageProductor = messageProductor;
     }
     public async Task<Result<ObterEnderecoPorCepResponse>> Handle(ObterEnderecoPorCepRequest request, CancellationToken cancellationToken)
     {
         var endereco = await _enderecoRepository.ObterEnderecoPorCepAsync(request.Cep);
+        _messageProductor.SendingMessage(request.Cep.ToString());
         if (endereco == null)
         {
+
+           
             return Result.Error<ObterEnderecoPorCepResponse>(new Compartilhado.Exceptions.SemResultadosExcecao());
         }
 
+        
         return Result.Success(new ObterEnderecoPorCepResponse()
         {
             Id = endereco.Id,

@@ -1,6 +1,7 @@
 ﻿using Cepedi.Banco.Pessoa.Compartilhado.Requests;
 using Cepedi.Banco.Pessoa.Compartilhado.Responses;
 using Cepedi.Banco.Pessoa.Dados;
+using Cepedi.Banco.Pessoa.Dominio.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,7 @@ public class EnderecoController : BaseController
 {
     private readonly ILogger<EnderecoController> _logger;
     private readonly ApplicationDbContext _context;
+
 
     public EnderecoController(IMediator mediator, ILogger<EnderecoController> logger, ApplicationDbContext context) : base(mediator)
     {

@@ -4,6 +4,7 @@ using Cepedi.Banco.Pessoa.Compartilhado.Requests;
 using Cepedi.Banco.Pessoa.Compartilhado.Responses;
 using Cepedi.Banco.Pessoa.Dominio.Entidades;
 using Cepedi.Banco.Pessoa.Dominio.Repository;
+using Cepedi.Banco.Pessoa.Dominio.Services;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using OperationResult;
@@ -12,12 +13,14 @@ namespace Cepedi.Banco.Pessoa.Dominio.Handlers;
 
 public class CadastrarEnderecoRequestHandler : IRequestHandler<CadastrarEnderecoRequest, Result<CadastrarEnderecoResponse>>
 {
+    private readonly IMessageProductor _messageProductor;
     private readonly IEnderecoRepository _enderecoRepository;
     private readonly ILogger<CadastrarEnderecoRequestHandler> _logger;
-    public CadastrarEnderecoRequestHandler(IEnderecoRepository enderecoRepository, ILogger<CadastrarEnderecoRequestHandler> logger)
+    public CadastrarEnderecoRequestHandler(IEnderecoRepository enderecoRepository, ILogger<CadastrarEnderecoRequestHandler> logger, IMessageProductor messageProductor)
     {
         _enderecoRepository = enderecoRepository;
         _logger = logger;
+        _messageProductor = messageProductor;
     }
     public async Task<Result<CadastrarEnderecoResponse>> Handle(CadastrarEnderecoRequest request, CancellationToken cancellationToken)
     {
@@ -52,7 +55,7 @@ public class CadastrarEnderecoRequestHandler : IRequestHandler<CadastrarEndereco
         }
 
         await _enderecoRepository.CadastrarEnderecoAsync(endereco);
-
+        _messageProductor.SendingMessage(endereco.ToString());
         return Result.Success(new CadastrarEnderecoResponse()
         {
             Id = endereco.Id,

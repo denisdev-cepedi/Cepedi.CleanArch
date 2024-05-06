@@ -20,13 +20,14 @@ public class AtualizarEnderecoRequestHandler : IRequestHandler<AtualizarEndereco
     public async Task<Result<AtualizarEnderecoResponse>> Handle(AtualizarEnderecoRequest request, CancellationToken cancellationToken)
     {
         var endereco = await _enderecoRepository.ObterEnderecoAsync(request.Id);
+        await _enderecoRepository.AtualizarEnderecoAsync(endereco);
         if (endereco == null)
         {
             return Result.Error<AtualizarEnderecoResponse>(new Compartilhado.Exceptions.SemResultadosExcecao());
         }
 
         endereco.Atualizar(request);
-        await _enderecoRepository.AtualizarEnderecoAsync(endereco);
+        
 
         return Result.Success(new AtualizarEnderecoResponse()
         {
